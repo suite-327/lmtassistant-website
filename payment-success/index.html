@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - LMT Assistant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f8fafc;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 500px;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: #22c55e;
+        }
+        p {
+            color: #94a3b8;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .invoice-info {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .invoice-info p {
+            margin: 0;
+            color: #f8fafc;
+        }
+        .invoice-info span {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .note {
+            font-size: 14px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">✓</div>
+        <h1>Payment Successful!</h1>
+        <p>Thank you for your payment. Your transaction has been completed successfully.</p>
+
+        <div class="invoice-info" id="invoice-info" style="display: none;">
+            <span>Invoice</span>
+            <p id="invoice-id"></p>
+        </div>
+
+        <p>A confirmation receipt has been sent to your email address.</p>
+        <p class="note">You can safely close this page.</p>
+    </div>
+
+    <script>
+        // Display invoice info if available
+        const params = new URLSearchParams(window.location.search);
+        const invoiceId = params.get('invoice_id');
+
+        if (invoiceId) {
+            document.getElementById('invoice-info').style.display = 'block';
+            document.getElementById('invoice-id').textContent = '#' + invoiceId.substring(0, 8).toUpperCase();
+        }
+    </script>
+</body>
+</html>
