@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - LMT Assistant</title>
+    <meta name="description" content="Frequently asked questions about LMT Assistant - the practice management app for massage therapists.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #94a3b8;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .faq-section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #7c3aed;
+            margin-bottom: 16px;
+        }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%;
+            padding: 20px;
+            text-align: left;
+            background: none;
+            border: none;
+            color: #f8fafc;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question:hover { background: rgba(255, 255, 255, 0.02); }
+        .faq-icon {
+            font-size: 20px;
+            color: #7c3aed;
+            transition: transform 0.2s;
+        }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-answer {
+            display: none;
+            padding: 0 20px 20px;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-answer a {
+            color: #7c3aed;
+            text-decoration: none;
+        }
+        .faq-answer a:hover { text-decoration: underline; }
+        .faq-answer ul {
+            margin: 12px 0;
+            padding-left: 24px;
+        }
+        .faq-answer li { margin-bottom: 8px; }
+        .contact-box {
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 48px;
+        }
+        .contact-box h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        .contact-box p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+        .contact-btn {
+            display: inline-block;
+            background: #7c3aed;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .contact-btn:hover { background: #6d28d9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">
+            <span>&larr;</span> Back to Home
+        </a>
+
+        <h1>Frequently Asked Questions</h1>
+        <p class="subtitle">Find answers to common questions about LMT Assistant</p>
+
+        <div class="faq-section">
+            <div class="section-title">Getting Started</div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What is LMT Assistant?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    LMT Assistant is a comprehensive practice management app designed specifically for Licensed Massage Therapists. It helps you manage clients, schedule appointments, create invoices, track expenses, log mileage, and maintain SOAP notes - all in one secure, HIPAA-compliant platform.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is LMT Assistant available on iOS and Android?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes! LMT Assistant is available on both iOS (iPhone and iPad) and Android devices. You can download it from the App Store or Google Play Store.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How much does LMT Assistant cost?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    LMT Assistant offers a free tier with essential features. Premium features are available through our subscription plans. Check our pricing page for current rates and what's included in each plan.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <div class="section-title">Privacy & Security</div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is my client data secure?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Absolutely. We take security seriously:
+                    <ul>
+                        <li>All sensitive client information (PHI) is encrypted using AES-256 encryption</li>
+                        <li>Data is encrypted both in transit and at rest</li>
+                        <li>We use Supabase with row-level security policies</li>
+                        <li>Your encryption keys are unique to your account</li>
+                        <li>We never share or sell your data</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is LMT Assistant HIPAA compliant?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    LMT Assistant is designed with HIPAA compliance in mind. We implement technical safeguards including encryption, access controls, and audit logging. However, HIPAA compliance is a shared responsibility - you should also follow best practices like using strong passwords and keeping your device secure.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Can I export or delete my data?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes. You have full control over your data. You can export your data at any time from the Settings menu. If you choose to delete your account, all your data will be permanently removed from our servers.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <div class="section-title">Features</div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do I create SOAP notes?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    From a client's profile, tap "Add SOAP Note" to create a new session note. You can document Subjective observations, Objective findings, Assessment, and Plan. SOAP notes are automatically linked to the client and appointment for easy reference.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Can I track mileage for mobile massage?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes! The mileage tracker lets you log trips for outcall appointments. You can enter addresses manually or use GPS to calculate distances. All mileage is categorized and summarized for easy tax reporting at year end.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do invoices work?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Create professional invoices by selecting a client, adding services/line items, and setting payment terms. You can preview invoices as PDFs, share them via email or text, and track payment status. Add your payment handles (Venmo, Zelle, etc.) to display on invoices.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Can I scan receipts for expenses?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes! Use your camera to scan receipts and LMT Assistant will automatically extract the merchant, amount, and date using OCR technology. This makes expense tracking quick and paperless.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <div class="section-title">Account & Support</div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do I reset my password?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    On the login screen, tap "Forgot Password" and enter your email address. You'll receive a link to reset your password. For security reasons, the link expires after 24 hours.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do I contact support?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    You can reach our support team at <a href="mailto:support@suite-327.com">support@suite-327.com</a>. We typically respond within 24-48 hours. You can also use the "Contact Support" option in the app's Settings menu.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Can I suggest new features?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    We love hearing from our users! Use the "Request a Feature" option in Settings, or email us directly. Many of our best features came from user suggestions.
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <h3>Still have questions?</h3>
+            <p>Our support team is here to help you get the most out of LMT Assistant.</p>
+            <a href="mailto:support@suite-327.com" class="contact-btn">Contact Support</a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>

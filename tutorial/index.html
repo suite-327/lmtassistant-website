@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started Tutorial - LMT Assistant</title>
+    <meta name="description" content="Learn how to use LMT Assistant with our step-by-step tutorial guide for massage therapists.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #94a3b8;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .progress-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 48px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        .progress-step {
+            flex-shrink: 0;
+            width: 120px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .progress-step:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .progress-step.active {
+            background: rgba(124, 58, 237, 0.2);
+            border-color: #7c3aed;
+        }
+        .progress-step .step-num {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            background: rgba(124, 58, 237, 0.3);
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .progress-step.active .step-num {
+            background: #7c3aed;
+        }
+        .progress-step .step-label {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .progress-step.active .step-label {
+            color: #f8fafc;
+        }
+        .tutorial-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .section-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .section-content {
+            color: #94a3b8;
+            line-height: 1.8;
+        }
+        .section-content h4 {
+            color: #f8fafc;
+            font-size: 16px;
+            margin: 24px 0 12px;
+        }
+        .section-content h4:first-child {
+            margin-top: 0;
+        }
+        .section-content ul, .section-content ol {
+            margin: 12px 0;
+            padding-left: 24px;
+        }
+        .section-content li {
+            margin-bottom: 8px;
+        }
+        .tip-box {
+            background: rgba(45, 212, 191, 0.1);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .tip-box .tip-label {
+            color: #2dd4bf;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+        .tip-box p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .warning-box .warning-label {
+            color: #fbbf24;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+        .warning-box p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .feature-card .icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        .feature-card h5 {
+            color: #f8fafc;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .nav-btn.prev {
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+        }
+        .nav-btn.prev:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
+        }
+        .nav-btn.next {
+            background: #7c3aed;
+            color: white;
+        }
+        .nav-btn.next:hover {
+            background: #6d28d9;
+        }
+        .toc {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+        .toc h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 16px;
+        }
+        .toc-list {
+            list-style: none;
+        }
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+        .toc-list a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .toc-list a:hover {
+            color: #7c3aed;
+        }
+        .toc-list .num {
+            width: 24px;
+            height: 24px;
+            background: rgba(124, 58, 237, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #7c3aed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">
+            <span>&larr;</span> Back to Home
+        </a>
+
+        <h1>Getting Started with LMT Assistant</h1>
+        <p class="subtitle">A step-by-step guide to setting up and using your practice management app</p>
+
+        <div class="toc">
+            <h3>In This Tutorial</h3>
+            <ol class="toc-list">
+                <li><a href="#setup"><span class="num">1</span> Initial Setup</a></li>
+                <li><a href="#clients"><span class="num">2</span> Managing Clients</a></li>
+                <li><a href="#appointments"><span class="num">3</span> Scheduling Appointments</a></li>
+                <li><a href="#soap"><span class="num">4</span> Creating SOAP Notes</a></li>
+                <li><a href="#invoices"><span class="num">5</span> Invoicing & Payments</a></li>
+                <li><a href="#expenses"><span class="num">6</span> Tracking Expenses</a></li>
+                <li><a href="#reports"><span class="num">7</span> Reports & Tax Prep</a></li>
+            </ol>
+        </div>
+
+        <div class="tutorial-section" id="setup">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Initial Setup</h2>
+            </div>
+            <div class="section-content">
+                <h4>Create Your Account</h4>
+                <ol>
+                    <li>Download LMT Assistant from the App Store or Google Play</li>
+                    <li>Tap "Sign Up" and enter your email address</li>
+                    <li>Create a strong password (at least 8 characters with numbers and symbols)</li>
+                    <li>Verify your email by clicking the link we send you</li>
+                </ol>
+
+                <h4>Set Up Your Profile</h4>
+                <ol>
+                    <li>Go to Settings > Account Profile</li>
+                    <li>Add your business name and contact information</li>
+                    <li>Set your default service rates</li>
+                    <li>Add your payment handles (Venmo, Zelle, etc.) for invoices</li>
+                </ol>
+
+                <div class="tip-box">
+                    <div class="tip-label">Pro Tip</div>
+                    <p>Add your frequently used locations (office, regular clients' homes) to Saved Locations for faster mileage logging.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tutorial-section" id="clients">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Managing Clients</h2>
+            </div>
+            <div class="section-content">
+                <h4>Add Your First Client</h4>
+                <ol>
+                    <li>Tap the "Clients" tab at the bottom of the screen</li>
+                    <li>Tap the "+" button to add a new client</li>
+                    <li>Enter their name, contact information, and any intake notes</li>
+                    <li>Tap "Save" to create the client profile</li>
+                </ol>
+
+                <h4>What to Include</h4>
+                <ul>
+                    <li><strong>Contact Info:</strong> Phone, email, and address for mobile visits</li>
+                    <li><strong>Intake Notes:</strong> Health history, contraindications, preferences</li>
+                    <li><strong>Tags:</strong> Categorize clients (e.g., "Monthly Regular", "Sports")</li>
+                </ul>
+
+                <div class="warning-box">
+                    <div class="warning-label">Privacy Note</div>
+                    <p>All client information is encrypted for HIPAA compliance. Only you can access your client data.</p>
+                </div>
+
+                <h4>Search & Filter</h4>
+                <p>Use the search bar to quickly find clients by name. You can also filter by tags or sort alphabetically or by most recent appointment.</p>
+            </div>
+        </div>
+
+        <div class="tutorial-section" id="appointments">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Scheduling Appointments</h2>
+            </div>
+            <div class="section-content">
+                <h4>Create an Appointment</h4>
+                <ol>
+                    <li>Go to the Dashboard or Calendar view</li>
+                    <li>Tap "+" to create a new appointment</li>
+                    <li>Select a client (or create a new one)</li>
+                    <li>Choose the date, time, and duration</li>
+                    <li>Select the service type</li>
+                    <li>Add location if it's a mobile appointment</li>
+                </ol>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon">📅</div>
+                        <h5>Calendar View</h5>
+                        <p>See your week at a glance with the calendar view</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔔</div>
+                        <h5>Reminders</h5>
+                        <p>Get notified before appointments</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔁</div>
+                        <h5>Recurring</h5>
+                        <p>Set up weekly or monthly regulars</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📍</div>
+                        <h5>Location</h5>
+                        <p>Track outcall appointments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tutorial-section" id="soap">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Creating SOAP Notes</h2>
+            </div>
+            <div class="section-content">
+                <h4>What is a SOAP Note?</h4>
+                <p>SOAP notes are a standard format for documenting client sessions:</p>
+                <ul>
+                    <li><strong>S - Subjective:</strong> What the client tells you (complaints, goals)</li>
+                    <li><strong>O - Objective:</strong> What you observe and find during assessment</li>
+                    <li><strong>A - Assessment:</strong> Your professional analysis</li>
+                    <li><strong>P - Plan:</strong> Treatment plan, recommendations, follow-up</li>
+                </ul>
+
+                <h4>Create a SOAP Note</h4>
+                <ol>
+                    <li>Open a client's profile</li>
+                    <li>Tap "Add SOAP Note"</li>
+                    <li>Select the associated appointment (if any)</li>
+                    <li>Fill in each section</li>
+                    <li>Add any body diagram markings if needed</li>
+                    <li>Save the note</li>
+                </ol>
+
+                <div class="tip-box">
+                    <div class="tip-label">Pro Tip</div>
+                    <p>You can create SOAP note templates for common treatments to save time on documentation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tutorial-section" id="invoices">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Invoicing & Payments</h2>
+            </div>
+            <div class="section-content">
+                <h4>Create an Invoice</h4>
+                <ol>
+                    <li>Go to the Income Vault tab</li>
+                    <li>Tap "New Invoice"</li>
+                    <li>Select a client</li>
+                    <li>Add line items (services, products)</li>
+                    <li>Set tax rate if applicable</li>
+                    <li>Add any notes or terms</li>
+                    <li>Preview and send to client</li>
+                </ol>
+
+                <h4>Payment Methods</h4>
+                <p>Add your payment handles in Settings so they appear on invoices:</p>
+                <ul>
+                    <li>Venmo</li>
+                    <li>Zelle</li>
+                    <li>Cash App</li>
+                    <li>PayPal</li>
+                </ul>
+
+                <h4>Track Payments</h4>
+                <p>Mark invoices as paid when you receive payment. You can track outstanding invoices and send reminders for overdue payments.</p>
+            </div>
+        </div>
+
+        <div class="tutorial-section" id="expenses">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Tracking Expenses</h2>
+            </div>
+            <div class="section-content">
+                <h4>Log an Expense</h4>
+                <ol>
+                    <li>Go to Expenses tab</li>
+                    <li>Tap "+" to add a new expense</li>
+                    <li>Enter amount, merchant, and date</li>
+                    <li>Select a category (supplies, equipment, marketing, etc.)</li>
+                    <li>Snap a photo of the receipt</li>
+                    <li>Save the expense</li>
+                </ol>
+
+                <h4>Receipt Scanning</h4>
+                <p>Use the camera to scan receipts. LMT Assistant will automatically extract:</p>
+                <ul>
+                    <li>Merchant name</li>
+                    <li>Total amount</li>
+                    <li>Date of purchase</li>
+                </ul>
+
+                <h4>Mileage Tracking</h4>
+                <ol>
+                    <li>Go to the Mileage tab</li>
+                    <li>Tap "+" to log a trip</li>
+                    <li>Enter start and end locations</li>
+                    <li>The app calculates distance automatically</li>
+                    <li>Add notes (which client, purpose)</li>
+                </ol>
+
+                <div class="tip-box">
+                    <div class="tip-label">Tax Tip</div>
+                    <p>The IRS standard mileage rate for 2026 is automatically applied to your mileage logs for accurate deduction tracking.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tutorial-section" id="reports">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">Reports & Tax Prep</h2>
+            </div>
+            <div class="section-content">
+                <h4>Available Reports</h4>
+                <ul>
+                    <li><strong>Income Summary:</strong> Total revenue by month, quarter, or year</li>
+                    <li><strong>Expense Summary:</strong> Expenses categorized for Schedule C</li>
+                    <li><strong>Mileage Log:</strong> Complete trip history with deduction totals</li>
+                    <li><strong>Client Reports:</strong> Session history per client</li>
+                </ul>
+
+                <h4>Export for Tax Season</h4>
+                <ol>
+                    <li>Go to Dashboard > Reports</li>
+                    <li>Select the date range (typically Jan 1 - Dec 31)</li>
+                    <li>Choose which reports to generate</li>
+                    <li>Export as PDF or CSV</li>
+                    <li>Share with your accountant</li>
+                </ol>
+
+                <div class="tip-box">
+                    <div class="tip-label">Pro Tip</div>
+                    <p>Run quarterly reports to estimate your tax obligations and avoid surprises at year end.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="/" class="nav-btn prev">
+                <span>&larr;</span> Back to Home
+            </a>
+            <a href="/faq" class="nav-btn next">
+                View FAQ <span>&rarr;</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
