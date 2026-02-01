@@ -32,23 +32,26 @@
 
         /* Header */
         header {
-            padding: 24px 0;
+            padding: 40px 0 24px;
+            text-align: center;
+        }
+
+        .header-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: block;
         }
 
         .logo {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
-            font-size: 24px;
+            justify-content: center;
+            gap: 8px;
+            font-size: 28px;
             font-weight: 700;
             color: #F8FAFC;
             text-decoration: none;
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
         }
 
         .logo span {
@@ -297,8 +300,8 @@
 <body>
     <header>
         <div class="container">
+            <img src="/logo.png" alt="LMT Assistant Logo" class="header-logo">
             <a href="/" class="logo">
-                <img src="/logo.png" alt="LMT Assistant Logo">
                 LMT <span>Assistant</span>
             </a>
         </div>
