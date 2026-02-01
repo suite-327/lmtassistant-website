@@ -430,14 +430,62 @@
                 <div class="signup-box">
                     <h2>Be the First to Know</h2>
                     <p>Sign up for early access and get notified when we launch.</p>
-                    <form class="email-form" action="https://formspree.io/f/your-form-id" method="POST">
-                        <input type="email" name="email" placeholder="Enter your email" required>
-                        <button type="submit" class="btn btn-primary">Notify Me</button>
+                    <form class="email-form" id="signup-form">
+                        <input type="email" name="email" id="email-input" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary" id="submit-btn">Notify Me</button>
                     </form>
+                    <p id="form-message" style="margin-top: 16px; display: none;"></p>
                 </div>
             </div>
         </section>
     </main>
+
+    <script>
+        const SUPABASE_URL = 'https://oklzhjimuddjhghjrcdw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rbHpoamltdWRkamhnaGpyY2R3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkyNzg4MzksImV4cCI6MjA4NDg1NDgzOX0.4U2CXVwexxr7--L5Ub-g0gZ8g2ZGwiW0slnL28vJeSc';
+
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email-input').value;
+            const submitBtn = document.getElementById('submit-btn');
+            const message = document.getElementById('form-message');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/early_access_signups`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                if (response.ok) {
+                    message.textContent = '🎉 You\'re on the list! We\'ll notify you when we launch.';
+                    message.style.color = '#2DD4BF';
+                    document.getElementById('email-input').value = '';
+                } else if (response.status === 409) {
+                    message.textContent = 'You\'re already signed up! We\'ll be in touch soon.';
+                    message.style.color = '#2DD4BF';
+                } else {
+                    throw new Error('Failed to submit');
+                }
+            } catch (error) {
+                message.textContent = 'Something went wrong. Please try again.';
+                message.style.color = '#EF4444';
+            }
+
+            message.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Notify Me';
+        });
+    </script>
 
     <footer>
         <div class="container">
