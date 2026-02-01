@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LMT Assistant - Practice Management for Massage Therapists</title>
     <meta name="description" content="The all-in-one practice management app for Licensed Massage Therapists. Track clients, appointments, finances, and more.">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="apple-touch-icon" href="/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,9 +36,19 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 24px;
             font-weight: 700;
             color: #f8fafc;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
         }
 
         .logo span {
@@ -284,7 +296,10 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">LMT <span>Assistant</span></div>
+            <a href="/" class="logo">
+                <img src="/logo.png" alt="LMT Assistant Logo">
+                LMT <span>Assistant</span>
+            </a>
         </div>
     </header>
 
@@ -317,6 +332,18 @@
 
                 <div class="features-grid">
                     <div class="feature-card">
+                        <div class="feature-icon">⏱️</div>
+                        <h3>Session Timer</h3>
+                        <p>Beautiful full-screen timer for your sessions. Track time precisely and transition seamlessly between clients.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎵</div>
+                        <h3>Spotify Integration</h3>
+                        <p>Control your massage music directly from the app. Save your favorite playlists and set the perfect ambiance.</p>
+                    </div>
+
+                    <div class="feature-card">
                         <div class="feature-icon">👥</div>
                         <h3>Client Management</h3>
                         <p>Keep detailed client records, intake forms, and session notes all in one secure place with HIPAA-compliant encryption.</p>
@@ -337,7 +364,13 @@
                     <div class="feature-card">
                         <div class="feature-icon">💳</div>
                         <h3>Invoicing & Payments</h3>
-                        <p>Create professional invoices with your payment handles. Share via email or text and get paid faster.</p>
+                        <p>Create professional invoices with multiple payment handles (Venmo, Zelle, CashApp, PayPal). Share via email or text.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🪪</div>
+                        <h3>Digital Business Card</h3>
+                        <p>Create and share a professional digital business card with your services, rates, and contact info.</p>
                     </div>
 
                     <div class="feature-card">
@@ -349,25 +382,43 @@
                     <div class="feature-card">
                         <div class="feature-icon">🚗</div>
                         <h3>Mileage Logging</h3>
-                        <p>Automatic mileage tracking for mobile massage therapists. Log trips and calculate deductions effortlessly.</p>
+                        <p>Automatic mileage calculation for home visits. Complete appointments and log trips in one tap.</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon">📈</div>
-                        <h3>Business Reports</h3>
-                        <p>Understand your business with detailed reports on income, expenses, and client trends.</p>
+                        <h3>Income & Reports</h3>
+                        <p>Track all income sources, generate tax reports, and understand your business with detailed analytics.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Professional Goals</h3>
+                        <p>Set and track your professional development goals. Stay motivated with progress tracking and reminders.</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon">🎓</div>
-                        <h3>CE Tracking</h3>
-                        <p>Track continuing education hours and credentials. Stay on top of license renewals and certifications.</p>
+                        <h3>CE & License Tracking</h3>
+                        <p>Track continuing education hours, state licenses, and certifications. Never miss a renewal deadline.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📍</div>
+                        <h3>Saved Locations</h3>
+                        <p>Save frequently visited client locations and your home address for quick mileage calculations.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <h3>Smart Reminders</h3>
+                        <p>Get notified before appointments. Set custom reminder times and never miss a session.</p>
                     </div>
 
                     <div class="feature-card">
                         <div class="feature-icon">🔒</div>
-                        <h3>Secure & Private</h3>
-                        <p>Your data is encrypted and secure. Built with privacy in mind and HIPAA compliance standards.</p>
+                        <h3>HIPAA Compliant</h3>
+                        <p>End-to-end encryption for all client data. Built with privacy-first architecture and security best practices.</p>
                     </div>
                 </div>
             </div>
