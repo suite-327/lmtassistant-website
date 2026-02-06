@@ -64,7 +64,7 @@
         <a href="/" class="back-link">← Back to Home</a>
 
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated: January 29, 2026</p>
+        <p class="updated">Last updated: February 5, 2026</p>
 
         <h2>Introduction</h2>
         <p>LMT Assistant ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application.</p>
@@ -73,9 +73,12 @@
         <p>We collect information that you provide directly to us, including:</p>
         <ul>
             <li>Account information (name, email address, password)</li>
-            <li>Professional information (business name, license details)</li>
-            <li>Client information that you enter into the app</li>
-            <li>Financial information for invoicing and payments</li>
+            <li>Professional information (business name, license details, continuing education credits)</li>
+            <li>Client information that you enter into the app (names, contact details, addresses)</li>
+            <li>Appointment and session data (scheduling, session notes, SOAP notes)</li>
+            <li>Financial information for invoicing, expense tracking, and payments</li>
+            <li>Mileage and location data for travel tracking (when you choose to use this feature)</li>
+            <li>Therapist network contacts (professional contacts you choose to save)</li>
             <li>Usage data and app analytics</li>
         </ul>
 
@@ -84,13 +87,24 @@
         <ul>
             <li>Provide, maintain, and improve our services</li>
             <li>Process transactions and send related information</li>
-            <li>Send you technical notices and support messages</li>
+            <li>Calculate mileage for business travel deductions</li>
+            <li>Generate reports and business insights</li>
+            <li>Send you technical notices, reminders, and support messages</li>
             <li>Respond to your comments and questions</li>
             <li>Protect against fraudulent or illegal activity</li>
         </ul>
 
-        <h2>Data Security</h2>
-        <p>We implement appropriate technical and organizational measures to protect your personal information. Client health information is encrypted using industry-standard encryption protocols. We follow HIPAA guidelines for handling protected health information (PHI).</p>
+        <h2>Data Security and Encryption</h2>
+        <p>We implement robust technical and organizational measures to protect your personal information:</p>
+        <ul>
+            <li><strong>Encryption:</strong> All Protected Health Information (PHI) including client names, addresses, phone numbers, email addresses, intake notes, and SOAP notes are encrypted using AES-256-CBC encryption with PBKDF2 key derivation</li>
+            <li><strong>Per-User Keys:</strong> Each user's data is encrypted with unique, per-user encryption keys derived from secure random salts</li>
+            <li><strong>Encrypted Backups:</strong> Data exports and backups are fully encrypted before leaving the device</li>
+            <li><strong>Offline Security:</strong> Data queued while offline is encrypted and includes automatic expiration</li>
+            <li><strong>Session Security:</strong> Automatic session timeout after 15 minutes of inactivity</li>
+            <li><strong>Biometric Authentication:</strong> Optional biometric (Face ID/Touch ID) authentication for enhanced security</li>
+        </ul>
+        <p>We follow HIPAA guidelines for handling protected health information (PHI) and maintain audit logging for sensitive operations.</p>
 
         <h2>Data Retention</h2>
         <p>We retain your information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time through the app settings.</p>
@@ -100,7 +114,18 @@
         <ul>
             <li>Supabase (database and authentication)</li>
             <li>Stripe (payment processing)</li>
-            <li>Google Maps (location services)</li>
+            <li>Google Maps and Distance Matrix API (location services and mileage calculation)</li>
+            <li>Spotify (optional music integration for session ambiance - requires separate authorization)</li>
+            <li>Google Vision API (optional receipt scanning for expense tracking)</li>
+        </ul>
+        <p>Each third-party service has its own privacy policy governing the data they receive. Optional integrations like Spotify require explicit authorization and can be disconnected at any time.</p>
+
+        <h2>Therapist Network Data</h2>
+        <p>The App includes a Therapist Network feature for storing professional contacts. When sharing another therapist's contact information:</p>
+        <ul>
+            <li>You are responsible for obtaining permission before sharing a therapist's contact information with clients</li>
+            <li>Contact information you store (name, phone, website, social media) is encrypted on our servers</li>
+            <li>We do not share therapist network data with third parties</li>
         </ul>
 
         <h2>Your Rights</h2>
