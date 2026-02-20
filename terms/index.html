@@ -61,10 +61,10 @@
 </head>
 <body>
     <div class="container">
-        <a href="/" class="back-link">← Back to Home</a>
+        <a href="/" class="back-link">&larr; Back to Home</a>
 
         <h1>Terms of Service</h1>
-        <p class="updated">Last updated: February 5, 2026</p>
+        <p class="updated">Last updated: February 19, 2026</p>
 
         <h2>1. Acceptance of Terms</h2>
         <p>By accessing or using LMT Assistant ("the App"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.</p>
@@ -72,13 +72,19 @@
         <h2>2. Description of Service</h2>
         <p>LMT Assistant is a practice management application designed for licensed massage therapists. The App provides tools for:</p>
         <ul>
-            <li>Client management and scheduling</li>
+            <li>Client management, scheduling, and recurring appointments</li>
             <li>Session timing and SOAP note documentation</li>
-            <li>Invoicing and payment processing</li>
-            <li>Expense and mileage tracking</li>
-            <li>Credentials and continuing education management</li>
-            <li>Therapist network for professional contacts</li>
+            <li>Invoicing with PDF preview and email delivery</li>
+            <li>Expense tracking with AI-powered receipt scanning</li>
+            <li>Income and 1099 tracking with AI document scanning</li>
+            <li>Mileage logging with Google Maps distance calculation and AI booking screenshot scanning</li>
+            <li>Credentials vault for licenses, insurance, CE certifications, and transcripts with AI document scanning</li>
+            <li>State continuing education requirements for all 50 US states</li>
+            <li>Professional goals tracking</li>
+            <li>Booking link generation</li>
+            <li>Therapist network for professional contacts and referrals</li>
             <li>Encrypted data backup and restore</li>
+            <li>Push notifications for credential renewal reminders</li>
             <li>Optional integrations (Spotify for session music)</li>
         </ul>
 
@@ -101,12 +107,28 @@
             <li>Obtaining permission from other therapists before sharing their contact information via the Therapist Network feature</li>
             <li>Regularly backing up your important data using the App's export feature</li>
             <li>Keeping your encryption keys secure and not sharing account credentials</li>
+            <li>Reviewing AI-extracted data for accuracy before saving (AI scanning is provided for convenience and may contain errors)</li>
         </ul>
 
-        <h2>5. Payment Terms</h2>
-        <p>Payment processing is handled by Stripe. By using payment features, you also agree to Stripe's terms of service. We charge a $2.00 platform fee per payment transaction processed through the App.</p>
+        <h2>5. Subscriptions and Payment</h2>
+        <p>The App offers a free tier with essential features and advertisements. A Pro subscription is available that unlocks all features and removes ads. Subscriptions are managed through Apple's App Store or Google Play Store via RevenueCat. By subscribing, you also agree to the terms of the applicable app store.</p>
+        <ul>
+            <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current billing period</li>
+            <li>You can manage or cancel your subscription through your device's app store settings</li>
+            <li>Refunds are handled by Apple or Google according to their respective refund policies</li>
+        </ul>
 
-        <h2>6. Data and Privacy</h2>
+        <h2>6. AI-Powered Document Processing</h2>
+        <p>The App uses artificial intelligence services to extract data from photos and documents you upload (receipts, 1099 forms, credentials, insurance documents, and booking screenshots). By using these scanning features, you acknowledge and agree that:</p>
+        <ul>
+            <li>Images you scan are transmitted to third-party AI services for text extraction (see Section 8 for a list of services)</li>
+            <li>Images may be converted from HEIC to JPEG format before transmission for compatibility</li>
+            <li>AI-extracted data is provided for convenience and may contain inaccuracies — you are responsible for verifying all extracted information before saving</li>
+            <li>You should not scan documents containing information you do not wish to be processed by third-party AI services</li>
+            <li>Images are processed for the sole purpose of text extraction and are not stored by these services beyond the processing request</li>
+        </ul>
+
+        <h2>7. Data and Privacy</h2>
         <p>Your use of the App is also governed by our <a href="/privacy/">Privacy Policy</a>. Key points:</p>
         <ul>
             <li>All Protected Health Information (PHI) is encrypted using AES-256-CBC encryption</li>
@@ -116,32 +138,44 @@
             <li>Past appointments cannot be edited to maintain data integrity</li>
         </ul>
 
-        <h2>7. Third-Party Integrations</h2>
-        <p>The App offers optional integrations with third-party services:</p>
+        <h2>8. Third-Party Integrations</h2>
+        <p>The App integrates with the following third-party services:</p>
         <ul>
-            <li><strong>Spotify:</strong> For playing music during sessions. Requires separate Spotify account and authorization. You can disconnect at any time.</li>
-            <li><strong>Google Maps:</strong> For mileage calculation and address lookup. Location data is used only for the specific features you enable.</li>
-            <li><strong>Stripe:</strong> For payment processing. Subject to Stripe's terms of service.</li>
+            <li><strong>OpenAI (GPT-4o Vision):</strong> For AI-powered scanning of receipts, credentials, tax documents, insurance documents, and booking screenshots</li>
+            <li><strong>AWS Textract:</strong> For OCR processing of tax forms (fallback service)</li>
+            <li><strong>Mindee:</strong> For receipt parsing (fallback service)</li>
+            <li><strong>Google Cloud Vision:</strong> For document OCR (fallback service)</li>
+            <li><strong>Google Maps, Places, and Directions APIs:</strong> For mileage calculation, address lookup, and distance estimation</li>
+            <li><strong>RevenueCat:</strong> For subscription management via Apple App Store and Google Play</li>
+            <li><strong>Google AdMob:</strong> For displaying advertisements in the free tier</li>
+            <li><strong>Supabase:</strong> For database, authentication, and file storage</li>
+            <li><strong>Sentry:</strong> For anonymous crash reporting and error tracking</li>
+            <li><strong>Spotify:</strong> For optional music integration during sessions (requires separate authorization)</li>
+            <li><strong>Apple and Google Sign-In:</strong> For optional authentication</li>
+            <li><strong>Expo Push Notifications:</strong> For credential renewal reminders and appointment alerts</li>
         </ul>
-        <p>These integrations are optional and can be enabled or disabled in App settings.</p>
+        <p>Each third-party service has its own terms of service and privacy policy. Optional integrations (Spotify, sign-in providers) can be enabled or disabled at any time.</p>
 
-        <h2>8. Intellectual Property</h2>
+        <h2>9. Referral Program</h2>
+        <p>The App may offer referral codes that provide benefits to new users. Referral codes are subject to availability and may be modified or discontinued at any time. Abuse of the referral system may result in account suspension.</p>
+
+        <h2>10. Intellectual Property</h2>
         <p>The App and its content are protected by copyright, trademark, and other laws. You may not copy, modify, distribute, or reverse engineer any part of the App without our written permission.</p>
 
-        <h2>9. Limitation of Liability</h2>
-        <p>THE APP IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND. WE ARE NOT LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES ARISING FROM YOUR USE OF THE APP.</p>
+        <h2>11. Limitation of Liability</h2>
+        <p>THE APP IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND. WE ARE NOT LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES ARISING FROM YOUR USE OF THE APP. AI-POWERED SCANNING FEATURES ARE PROVIDED FOR CONVENIENCE AND WE MAKE NO WARRANTY AS TO THE ACCURACY OF EXTRACTED DATA.</p>
 
-        <h2>10. Termination</h2>
-        <p>We may suspend or terminate your access to the App at any time for violation of these terms. You may delete your account at any time through the App settings.</p>
+        <h2>12. Termination</h2>
+        <p>We may suspend or terminate your access to the App at any time for violation of these terms. You may delete your account at any time through the App settings. Upon termination, your subscription will not be renewed but no partial refunds will be issued for the current billing period.</p>
 
-        <h2>11. Changes to Terms</h2>
+        <h2>13. Changes to Terms</h2>
         <p>We may modify these terms at any time. Continued use of the App after changes constitutes acceptance of the new terms.</p>
 
-        <h2>12. Governing Law</h2>
-        <p>These terms are governed by the laws of the State of California, without regard to conflict of law principles.</p>
+        <h2>14. Governing Law</h2>
+        <p>These terms are governed by the laws of the State of Nevada, without regard to conflict of law principles.</p>
 
-        <h2>13. Contact</h2>
-        <p>For questions about these Terms, contact us at: <a href="mailto:admin@suite-327.com">admin@suite-327.com</a></p>
+        <h2>15. Contact</h2>
+        <p>For questions about these Terms, contact us at:<br>Suite 327 Development LLC<br>Email: <a href="mailto:admin@suite-327.com">admin@suite-327.com</a></p>
     </div>
 </body>
 </html>

@@ -61,10 +61,10 @@
 </head>
 <body>
     <div class="container">
-        <a href="/" class="back-link">← Back to Home</a>
+        <a href="/" class="back-link">&larr; Back to Home</a>
 
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated: February 16, 2026</p>
+        <p class="updated">Last updated: February 19, 2026</p>
 
         <h2>Introduction</h2>
         <p>LMT Assistant ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application.</p>
@@ -73,12 +73,16 @@
         <p>We collect information that you provide directly to us, including:</p>
         <ul>
             <li>Account information (name, email address, password)</li>
-            <li>Professional information (business name, license details, continuing education credits)</li>
+            <li>Professional information (business name, license details, insurance policies, continuing education credits)</li>
             <li>Client information that you enter into the app (names, contact details, addresses)</li>
             <li>Appointment and session data (scheduling, session notes, SOAP notes)</li>
-            <li>Financial information for invoicing, expense tracking, and payments</li>
+            <li>Financial information for invoicing, expense tracking, income tracking, and 1099 records</li>
             <li>Mileage and location data for travel tracking (when you choose to use this feature)</li>
+            <li>Photos and images of documents you upload for AI scanning (receipts, credentials, tax forms, insurance documents, booking screenshots)</li>
             <li>Therapist network contacts (professional contacts you choose to save)</li>
+            <li>Subscription and purchase data (managed by RevenueCat through Apple/Google)</li>
+            <li>Push notification tokens (for credential renewal reminders and appointment alerts)</li>
+            <li>Referral code usage</li>
             <li>Usage data and app analytics</li>
         </ul>
 
@@ -87,11 +91,32 @@
         <ul>
             <li>Provide, maintain, and improve our services</li>
             <li>Process transactions and send related information</li>
+            <li>Process uploaded images through AI services to extract text data from receipts, credentials, tax documents, and booking screenshots</li>
             <li>Calculate mileage for business travel deductions</li>
             <li>Generate reports and business insights</li>
+            <li>Send push notifications for credential renewal reminders and appointment alerts</li>
+            <li>Manage your subscription through RevenueCat</li>
+            <li>Display advertisements in the free tier through Google AdMob</li>
             <li>Send you technical notices, reminders, and support messages</li>
             <li>Respond to your comments and questions</li>
             <li>Protect against fraudulent or illegal activity</li>
+        </ul>
+
+        <h2>AI-Powered Document Processing</h2>
+        <p>When you use the App's scanning features (for receipts, 1099 forms, credentials, insurance documents, or booking screenshots), your images are transmitted to third-party AI services for text extraction:</p>
+        <ul>
+            <li><strong>OpenAI (GPT-4o Vision):</strong> Primary service for analyzing all document types and extracting structured data</li>
+            <li><strong>AWS Textract:</strong> Fallback service for OCR processing of tax forms</li>
+            <li><strong>Mindee:</strong> Fallback service for receipt parsing</li>
+            <li><strong>Google Cloud Vision:</strong> Last-resort fallback for general document OCR</li>
+        </ul>
+        <p>Important details about AI processing:</p>
+        <ul>
+            <li>Images are transmitted over HTTPS to these services</li>
+            <li>HEIC images (common on iPhones) may be converted to JPEG format before transmission for compatibility</li>
+            <li>Images are processed solely for text extraction and are not stored by these services beyond the processing request</li>
+            <li>Extracted PHI fields (client names, addresses) are encrypted using AES-256 before being stored in our database</li>
+            <li>AI scanning is optional — you can always enter information manually</li>
         </ul>
 
         <h2>Data Security and Encryption</h2>
@@ -100,25 +125,32 @@
             <li><strong>Encryption:</strong> All Protected Health Information (PHI) including client names, addresses, phone numbers, email addresses, intake notes, and SOAP notes are encrypted using AES-256-CBC encryption with PBKDF2 key derivation</li>
             <li><strong>Per-User Keys:</strong> Each user's data is encrypted with unique, per-user encryption keys derived from secure random salts</li>
             <li><strong>Encrypted Backups:</strong> Data exports and backups are fully encrypted before leaving the device</li>
-            <li><strong>Offline Security:</strong> Data queued while offline is encrypted and includes automatic expiration</li>
+            <li><strong>Offline Security:</strong> Data queued while offline is encrypted per-user with automatic 30-day expiration</li>
             <li><strong>Session Security:</strong> Automatic session timeout after 15 minutes of inactivity</li>
             <li><strong>Biometric Authentication:</strong> Optional biometric (Face ID/Touch ID) authentication for enhanced security</li>
+            <li><strong>Row-Level Security:</strong> Database-level policies ensure users can only access their own data</li>
+            <li><strong>Audit Logging:</strong> Sensitive operations are logged for security monitoring</li>
         </ul>
-        <p>We follow HIPAA guidelines for handling protected health information (PHI) and maintain audit logging for sensitive operations.</p>
+        <p>We follow HIPAA guidelines for handling protected health information (PHI).</p>
 
         <h2>Data Retention</h2>
         <p>We retain your information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time through the app settings.</p>
 
         <h2>Third-Party Services</h2>
-        <p>We may share information with third-party service providers who perform services on our behalf, including:</p>
+        <p>We share information with third-party service providers who perform services on our behalf:</p>
         <ul>
-            <li>Supabase (database and authentication — data stored in the United States)</li>
-            <li>Google Maps, Places, and Directions APIs (location services and mileage calculation)</li>
-            <li>Spotify (optional music integration for session ambiance — requires separate authorization and can be disconnected at any time)</li>
-            <li>Apple and Google Sign-In (optional authentication methods)</li>
-            <li>Sentry (anonymous crash reporting and error tracking — not linked to your identity)</li>
-            <li>RevenueCat (subscription management — processes through Apple's App Store; we do not access your payment details)</li>
-            <li>Google AdMob (displays advertisements in the free tier of the App)</li>
+            <li><strong>Supabase:</strong> Database, authentication, and file storage (data stored in the United States)</li>
+            <li><strong>OpenAI:</strong> AI-powered document scanning and text extraction (see AI Processing section above)</li>
+            <li><strong>AWS Textract:</strong> OCR document processing for tax forms</li>
+            <li><strong>Mindee:</strong> Receipt parsing</li>
+            <li><strong>Google Cloud Vision:</strong> Document OCR</li>
+            <li><strong>Google Maps, Places, and Directions APIs:</strong> Location services, address lookup, and mileage calculation</li>
+            <li><strong>RevenueCat:</strong> Subscription management (processes through Apple's App Store and Google Play; we do not access your payment details)</li>
+            <li><strong>Google AdMob:</strong> Displays advertisements in the free tier of the App</li>
+            <li><strong>Apple and Google Sign-In:</strong> Optional authentication methods</li>
+            <li><strong>Spotify:</strong> Optional music integration for session ambiance (requires separate authorization and can be disconnected at any time)</li>
+            <li><strong>Sentry:</strong> Anonymous crash reporting and error tracking (not linked to your identity)</li>
+            <li><strong>Expo Push Notifications (APNs/FCM):</strong> For delivering credential renewal reminders and appointment alerts</li>
         </ul>
         <p>Each third-party service has its own privacy policy governing the data they receive.</p>
 
@@ -136,8 +168,9 @@
             <li>Access your personal information</li>
             <li>Correct inaccurate information</li>
             <li>Request deletion of your information</li>
-            <li>Export your data</li>
+            <li>Export your data (encrypted backups)</li>
             <li>Opt out of marketing communications</li>
+            <li>Opt out of AI scanning by entering information manually</li>
         </ul>
 
         <h2>Advertising</h2>

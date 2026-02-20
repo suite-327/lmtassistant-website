@@ -144,7 +144,7 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    LMT Assistant is a comprehensive practice management app designed specifically for Licensed Massage Therapists. It helps you manage clients, schedule appointments, create invoices, track expenses, log mileage, and maintain SOAP notes - all in one secure, HIPAA-compliant platform.
+                    LMT Assistant is a comprehensive practice management app designed specifically for Licensed Massage Therapists. It helps you manage clients, schedule appointments, create invoices, track expenses and income, log mileage, store credentials, maintain SOAP notes, and more — all in one secure, HIPAA-compliant platform.
                 </div>
             </div>
 
@@ -164,7 +164,17 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    LMT Assistant offers a free tier with essential features. Premium features are available through our subscription plans. Check our pricing page for current rates and what's included in each plan.
+                    LMT Assistant offers a free tier with essential features and ads. The Pro subscription unlocks all features and removes ads. Subscriptions are managed through the Apple App Store or Google Play Store. You can cancel anytime from your device's subscription settings.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Does the app support languages other than English?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes! LMT Assistant fully supports English and Spanish. You can switch between languages at any time from the Settings menu. All screens, labels, and notifications are translated.
                 </div>
             </div>
         </div>
@@ -180,10 +190,12 @@
                 <div class="faq-answer">
                     Absolutely. We take security seriously:
                     <ul>
-                        <li>All sensitive client information (PHI) is encrypted using AES-256 encryption</li>
+                        <li>All sensitive client information (PHI) is encrypted using AES-256-CBC encryption</li>
+                        <li>Each user has unique, per-user encryption keys derived from secure random salts</li>
                         <li>Data is encrypted both in transit and at rest</li>
-                        <li>We use Supabase with row-level security policies</li>
-                        <li>Your encryption keys are unique to your account</li>
+                        <li>Row-level security policies ensure you can only access your own records</li>
+                        <li>Automatic session timeout after 15 minutes of inactivity</li>
+                        <li>Optional biometric authentication (Face ID / Touch ID)</li>
                         <li>We never share or sell your data</li>
                     </ul>
                 </div>
@@ -195,7 +207,7 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    LMT Assistant is designed with HIPAA compliance in mind. We implement technical safeguards including encryption, access controls, and audit logging. However, HIPAA compliance is a shared responsibility - you should also follow best practices like using strong passwords and keeping your device secure.
+                    LMT Assistant is designed with HIPAA compliance in mind. We implement technical safeguards including AES-256 encryption of all PHI, per-user encryption keys, row-level security, audit logging, automatic session timeouts, and encrypted backups. However, HIPAA compliance is a shared responsibility — you should also follow best practices like using strong passwords and keeping your device secure.
                 </div>
             </div>
 
@@ -205,7 +217,48 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    Yes. You have full control over your data. You can export your data at any time from the Settings menu. If you choose to delete your account, all your data will be permanently removed from our servers.
+                    Yes. You have full control over your data. You can export an encrypted backup of all your data at any time from the Settings menu. Backups are protected with AES-256 encryption and can be restored on any device. If you choose to delete your account, all your data will be permanently removed from our servers.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <div class="section-title">AI Document Scanning</div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How does AI document scanning work?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    LMT Assistant uses AI-powered vision services to extract data from photos of your documents. When you scan a receipt, credential, 1099 form, insurance document, or booking screenshot, the image is securely sent to an AI service that reads the text and returns structured data. The extracted information is pre-filled into the form for you to review and save. Scanning is always optional — you can enter information manually instead.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What types of documents can I scan?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    You can scan several types of documents:
+                    <ul>
+                        <li><strong>Receipts:</strong> Business expense receipts — extracts merchant, amount, date, and category</li>
+                        <li><strong>Credentials:</strong> Massage licenses, insurance certificates, CE certificates, and transcripts — extracts names, numbers, dates, and issuing organizations</li>
+                        <li><strong>1099 Forms:</strong> Tax documents — extracts payer info, amounts, and tax year</li>
+                        <li><strong>Insurance Documents:</strong> Insurance policies and cards — extracts policy details</li>
+                        <li><strong>Booking Screenshots:</strong> Screenshots of appointment bookings — extracts client name, date, time, and location for mileage logging</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is my scanned data stored by the AI service?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    No. Images are transmitted securely over HTTPS and processed solely for text extraction. They are not stored by the AI services beyond the processing request. Once the text is extracted, any PHI fields (like client names or addresses) are encrypted with AES-256 before being stored in our database. For full details, see our <a href="/privacy/">Privacy Policy</a>.
                 </div>
             </div>
         </div>
@@ -219,7 +272,7 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    From a client's profile, tap "Add SOAP Note" to create a new session note. You can document Subjective observations, Objective findings, Assessment, and Plan. SOAP notes are automatically linked to the client and appointment for easy reference.
+                    From a client's profile, tap "Add SOAP Note" to create a new session note. You can document Subjective observations, Objective findings, Assessment, and Plan. SOAP notes are automatically linked to the client and appointment for easy reference. All SOAP note content is encrypted.
                 </div>
             </div>
 
@@ -229,7 +282,7 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    Yes! The mileage tracker lets you log trips for outcall appointments. You can enter addresses manually or use GPS to calculate distances. All mileage is categorized and summarized for easy tax reporting at year end.
+                    Yes! The mileage tracker uses Google Maps to calculate distances between locations. You can enter addresses manually, use saved locations, or scan a booking screenshot to auto-fill trip details. Save your home address and frequent client locations for quick logging. All mileage is categorized and summarized for easy tax reporting.
                 </div>
             </div>
 
@@ -239,7 +292,17 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    Create professional invoices by selecting a client, adding services/line items, and setting payment terms. You can preview invoices as PDFs, share them via email or text, and track payment status. Add your payment handles (Venmo, Zelle, etc.) to display on invoices.
+                    Create professional invoices by selecting a client, adding services or line items, and setting payment terms. You can preview invoices as PDFs, share them via email or text, and track payment status. Add your payment handles (Venmo, Zelle, CashApp, PayPal) to display on invoices for easy client payments.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What is the Credentials Vault?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    The Credentials Vault stores all your professional documents in one place: massage licenses, insurance policies, CE certificates, and school transcripts. You can scan documents with AI to auto-fill details, attach photos or PDFs, and set expiration dates. The app sends push notification reminders before your credentials expire so you never miss a renewal.
                 </div>
             </div>
 
@@ -249,7 +312,17 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    Yes! Use your camera to scan receipts and LMT Assistant will automatically extract the merchant, amount, and date using OCR technology. This makes expense tracking quick and paperless.
+                    Yes! Use your camera to scan receipts and LMT Assistant will use AI to automatically extract the merchant, amount, date, category, and individual line items. You can also batch-scan multiple receipts at once. This makes expense tracking quick and paperless.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Does the app work offline?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes. LMT Assistant works offline for most features. Changes you make while offline are encrypted and queued, then automatically synced when your internet connection is restored. Offline data expires after 30 days for security.
                 </div>
             </div>
         </div>
@@ -269,6 +342,16 @@
 
             <div class="faq-item">
                 <button class="faq-question">
+                    <span>How do I manage my subscription?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Subscriptions are managed through your device's app store. On iOS, go to Settings > Apple ID > Subscriptions. On Android, go to Google Play Store > Payments & subscriptions. You can upgrade, downgrade, or cancel at any time. Refunds are handled by Apple or Google according to their respective policies.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
                     <span>How do I contact support?</span>
                     <span class="faq-icon">+</span>
                 </button>
@@ -283,7 +366,7 @@
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    We love hearing from our users! Use the "Request a Feature" option in Settings, or email us directly. Many of our best features came from user suggestions.
+                    We love hearing from our users! Use the "Request a Feature" option in Settings, or email us directly at <a href="mailto:admin@suite-327.com">admin@suite-327.com</a>. Many of our best features came from user suggestions.
                 </div>
             </div>
         </div>
