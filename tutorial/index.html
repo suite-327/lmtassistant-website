@@ -42,53 +42,6 @@
             font-size: 18px;
             margin-bottom: 40px;
         }
-        .progress-bar {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 48px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-        }
-        .progress-step {
-            flex-shrink: 0;
-            width: 120px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .progress-step:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .progress-step.active {
-            background: rgba(45, 212, 191, 0.15);
-            border-color: #2DD4BF;
-        }
-        .progress-step .step-num {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            line-height: 24px;
-            background: rgba(45, 212, 191, 0.3);
-            border-radius: 50%;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .progress-step.active .step-num {
-            background: #2DD4BF;
-            color: #0F172A;
-        }
-        .progress-step .step-label {
-            font-size: 12px;
-            color: #94A3B8;
-        }
-        .progress-step.active .step-label {
-            color: #F8FAFC;
-        }
         .tutorial-section {
             background: #1E293B;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -113,6 +66,7 @@
             font-size: 20px;
             font-weight: 700;
             color: #0F172A;
+            flex-shrink: 0;
         }
         .section-title {
             font-size: 24px;
@@ -249,9 +203,12 @@
         }
         .toc-list {
             list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
         }
         .toc-list li {
-            margin-bottom: 8px;
+            margin-bottom: 0;
         }
         .toc-list a {
             color: #94A3B8;
@@ -259,6 +216,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            padding: 4px 0;
         }
         .toc-list a:hover {
             color: #2DD4BF;
@@ -271,9 +229,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: #2DD4BF;
+            flex-shrink: 0;
+        }
+        @media (max-width: 640px) {
+            .toc-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -292,13 +256,19 @@
                 <li><a href="#setup"><span class="num">1</span> Initial Setup</a></li>
                 <li><a href="#clients"><span class="num">2</span> Managing Clients</a></li>
                 <li><a href="#appointments"><span class="num">3</span> Scheduling Appointments</a></li>
-                <li><a href="#soap"><span class="num">4</span> Creating SOAP Notes</a></li>
-                <li><a href="#invoices"><span class="num">5</span> Invoicing & Payments</a></li>
-                <li><a href="#expenses"><span class="num">6</span> Tracking Expenses</a></li>
-                <li><a href="#reports"><span class="num">7</span> Reports & Tax Prep</a></li>
+                <li><a href="#sessions"><span class="num">4</span> Session Timer & Spotify</a></li>
+                <li><a href="#soap"><span class="num">5</span> Creating SOAP Notes</a></li>
+                <li><a href="#invoices"><span class="num">6</span> Invoicing & Payments</a></li>
+                <li><a href="#expenses"><span class="num">7</span> Tracking Expenses</a></li>
+                <li><a href="#income"><span class="num">8</span> Income & 1099 Tracking</a></li>
+                <li><a href="#mileage"><span class="num">9</span> Mileage Logging</a></li>
+                <li><a href="#credentials"><span class="num">10</span> Credentials Vault</a></li>
+                <li><a href="#tools"><span class="num">11</span> Practice Tools</a></li>
+                <li><a href="#security"><span class="num">12</span> Security & Backups</a></li>
             </ol>
         </div>
 
+        <!-- 1. Initial Setup -->
         <div class="tutorial-section" id="setup">
             <div class="section-header">
                 <div class="section-number">1</div>
@@ -311,23 +281,29 @@
                     <li>Tap "Sign Up" and enter your email address</li>
                     <li>Create a strong password (at least 8 characters with numbers and symbols)</li>
                     <li>Verify your email by clicking the link we send you</li>
+                    <li>Alternatively, sign in with Apple or Google for faster setup</li>
                 </ol>
 
                 <h4>Set Up Your Profile</h4>
                 <ol>
-                    <li>Go to Settings > Account Profile</li>
-                    <li>Add your business name and contact information</li>
-                    <li>Set your default service rates</li>
-                    <li>Add your payment handles (Venmo, Zelle, etc.) for invoices</li>
+                    <li>Go to Settings (gear icon)</li>
+                    <li>Tap "Account Profile" to add your business name and contact information</li>
+                    <li>Go to "Services &amp; Card" to create your service menu with names, durations, and prices</li>
+                    <li>Go to "Payment Handles" to add your Venmo, Zelle, Cash App, and PayPal info for invoices</li>
+                    <li>Go to "Saved Locations" to add your office and frequent client addresses for mileage logging</li>
                 </ol>
+
+                <h4>Choose Your Language</h4>
+                <p>LMT Assistant supports English and Spanish. Go to Settings to switch languages at any time — all screens, labels, and notifications will update.</p>
 
                 <div class="tip-box">
                     <div class="tip-label">Pro Tip</div>
-                    <p>Add your frequently used locations (office, regular clients' homes) to Saved Locations for faster mileage logging.</p>
+                    <p>Set up your services and payment handles first — they'll appear on invoices and your digital booking card automatically.</p>
                 </div>
             </div>
         </div>
 
+        <!-- 2. Managing Clients -->
         <div class="tutorial-section" id="clients">
             <div class="section-header">
                 <div class="section-number">2</div>
@@ -338,27 +314,31 @@
                 <ol>
                     <li>Tap the "Clients" tab at the bottom of the screen</li>
                     <li>Tap the "+" button to add a new client</li>
-                    <li>Enter their name, contact information, and any intake notes</li>
+                    <li>Enter their first name, last name, and contact information (phone, email)</li>
+                    <li>Add their address if you do mobile/outcall visits</li>
+                    <li>Add any intake notes (health history, contraindications, preferences)</li>
                     <li>Tap "Save" to create the client profile</li>
                 </ol>
 
-                <h4>What to Include</h4>
+                <h4>Client Status</h4>
+                <p>Each client has a status to help you stay organized:</p>
                 <ul>
-                    <li><strong>Contact Info:</strong> Phone, email, and address for mobile visits</li>
-                    <li><strong>Intake Notes:</strong> Health history, contraindications, preferences</li>
-                    <li><strong>Tags:</strong> Categorize clients (e.g., "Monthly Regular", "Sports")</li>
+                    <li><strong>Active:</strong> Current clients you see regularly</li>
+                    <li><strong>Inactive:</strong> Clients who haven't been in recently</li>
+                    <li><strong>Referred Out:</strong> Clients you've referred to another therapist</li>
                 </ul>
+
+                <h4>Search & Filter</h4>
+                <p>Use the search bar to quickly find clients by name, phone number, or email. Filter by status (Active, Inactive, Referred Out) to narrow your list. Clients are paginated so the list stays fast even with hundreds of records.</p>
 
                 <div class="warning-box">
                     <div class="warning-label">Privacy Note</div>
-                    <p>All client information is encrypted for HIPAA compliance. Only you can access your client data.</p>
+                    <p>All client names, addresses, phone numbers, email addresses, and intake notes are encrypted with AES-256 for HIPAA compliance. Only you can access your client data.</p>
                 </div>
-
-                <h4>Search & Filter</h4>
-                <p>Use the search bar to quickly find clients by name. You can also filter by tags or sort alphabetically or by most recent appointment.</p>
             </div>
         </div>
 
+        <!-- 3. Scheduling Appointments -->
         <div class="tutorial-section" id="appointments">
             <div class="section-header">
                 <div class="section-number">3</div>
@@ -367,90 +347,127 @@
             <div class="section-content">
                 <h4>Create an Appointment</h4>
                 <ol>
-                    <li>Go to the Dashboard or Calendar view</li>
-                    <li>Tap "+" to create a new appointment</li>
-                    <li>Select a client (or create a new one)</li>
-                    <li>Choose the date, time, and duration</li>
-                    <li>Select the service type</li>
-                    <li>Add location if it's a mobile appointment</li>
+                    <li>From the Dashboard or Calendar, tap "+" to create a new appointment</li>
+                    <li>Select a client (or create a new one on the spot)</li>
+                    <li>Choose the date, start time, and duration</li>
+                    <li>Select the service type from your service menu</li>
+                    <li>Add a location if it's a mobile/outcall appointment</li>
+                    <li>Optionally set a reminder notification</li>
                 </ol>
+
+                <h4>Recurring Appointments</h4>
+                <p>For regular clients, set up recurring appointments. Choose the frequency (weekly, biweekly, monthly) and the app will generate a preview of all upcoming dates. You can review and confirm before creating the series.</p>
 
                 <div class="feature-grid">
                     <div class="feature-card">
                         <div class="icon">📅</div>
                         <h5>Calendar View</h5>
-                        <p>See your week at a glance with the calendar view</p>
+                        <p>See your schedule at a glance with the calendar view</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">🔔</div>
                         <h5>Reminders</h5>
-                        <p>Get notified before appointments</p>
+                        <p>Push notifications before appointments</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">🔁</div>
                         <h5>Recurring</h5>
-                        <p>Set up weekly or monthly regulars</p>
+                        <p>Set up weekly, biweekly, or monthly regulars</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">📍</div>
                         <h5>Location</h5>
-                        <p>Track outcall appointments</p>
+                        <p>Track outcall addresses with Google Maps</p>
                     </div>
+                </div>
+
+                <h4>Appointment Lifecycle</h4>
+                <p>Appointments move through stages: <strong>Scheduled</strong> &rarr; <strong>In Progress</strong> &rarr; <strong>Completed</strong>. You can also mark appointments as <strong>Cancelled</strong> or <strong>No-Show</strong>. Completed appointments cannot be edited to maintain data integrity.</p>
+            </div>
+        </div>
+
+        <!-- 4. Session Timer & Spotify -->
+        <div class="tutorial-section" id="sessions">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Session Timer & Spotify</h2>
+            </div>
+            <div class="section-content">
+                <h4>Using the Session Timer</h4>
+                <ol>
+                    <li>Start a session from an appointment or from the Timer tab</li>
+                    <li>The full-screen timer shows elapsed time and session duration</li>
+                    <li>Your screen stays awake during the session</li>
+                    <li>End the session when you're done — the app will record the actual duration</li>
+                </ol>
+
+                <h4>Spotify Integration</h4>
+                <p>Connect your Spotify account to control music during sessions directly from the app:</p>
+                <ol>
+                    <li>Go to Settings > Spotify and tap "Connect"</li>
+                    <li>Authorize LMT Assistant to access your Spotify account</li>
+                    <li>During a session, browse your playlists and control playback</li>
+                    <li>You can disconnect Spotify at any time from Settings</li>
+                </ol>
+
+                <div class="tip-box">
+                    <div class="tip-label">Pro Tip</div>
+                    <p>Create dedicated massage playlists in Spotify so you can start the right ambiance with one tap when a session begins.</p>
                 </div>
             </div>
         </div>
 
+        <!-- 5. SOAP Notes -->
         <div class="tutorial-section" id="soap">
             <div class="section-header">
-                <div class="section-number">4</div>
+                <div class="section-number">5</div>
                 <h2 class="section-title">Creating SOAP Notes</h2>
             </div>
             <div class="section-content">
                 <h4>What is a SOAP Note?</h4>
                 <p>SOAP notes are a standard format for documenting client sessions:</p>
                 <ul>
-                    <li><strong>S - Subjective:</strong> What the client tells you (complaints, goals)</li>
+                    <li><strong>S - Subjective:</strong> What the client tells you (complaints, goals, pain levels)</li>
                     <li><strong>O - Objective:</strong> What you observe and find during assessment</li>
-                    <li><strong>A - Assessment:</strong> Your professional analysis</li>
-                    <li><strong>P - Plan:</strong> Treatment plan, recommendations, follow-up</li>
+                    <li><strong>A - Assessment:</strong> Your professional analysis of the condition</li>
+                    <li><strong>P - Plan:</strong> Treatment plan, recommendations, follow-up schedule</li>
                 </ul>
 
                 <h4>Create a SOAP Note</h4>
                 <ol>
-                    <li>Open a client's profile</li>
-                    <li>Tap "Add SOAP Note"</li>
-                    <li>Select the associated appointment (if any)</li>
-                    <li>Fill in each section</li>
-                    <li>Add any body diagram markings if needed</li>
-                    <li>Save the note</li>
+                    <li>Open a client's profile and tap "Add SOAP Note"</li>
+                    <li>Select the associated appointment (if applicable)</li>
+                    <li>Fill in each section — Subjective, Objective, Assessment, and Plan</li>
+                    <li>Save the note — it's automatically linked to the client and encrypted</li>
                 </ol>
 
-                <div class="tip-box">
-                    <div class="tip-label">Pro Tip</div>
-                    <p>You can create SOAP note templates for common treatments to save time on documentation.</p>
+                <div class="warning-box">
+                    <div class="warning-label">Privacy Note</div>
+                    <p>All SOAP note content is encrypted with AES-256 before being stored. Only you can view your session notes.</p>
                 </div>
             </div>
         </div>
 
+        <!-- 6. Invoicing & Payments -->
         <div class="tutorial-section" id="invoices">
             <div class="section-header">
-                <div class="section-number">5</div>
+                <div class="section-number">6</div>
                 <h2 class="section-title">Invoicing & Payments</h2>
             </div>
             <div class="section-content">
                 <h4>Create an Invoice</h4>
                 <ol>
-                    <li>Go to the Income Vault tab</li>
+                    <li>Go to the Finances tab and select "Invoices"</li>
                     <li>Tap "New Invoice"</li>
                     <li>Select a client</li>
-                    <li>Add line items (services, products)</li>
-                    <li>Set tax rate if applicable</li>
+                    <li>Add line items — choose from your service menu or enter custom items</li>
+                    <li>Set tax rate if applicable (percentage-based)</li>
                     <li>Add any notes or terms</li>
-                    <li>Preview and send to client</li>
+                    <li>Preview the invoice as a PDF, then share via email or text</li>
                 </ol>
 
-                <h4>Payment Methods</h4>
-                <p>Add your payment handles in Settings so they appear on invoices:</p>
+                <h4>Payment Handles</h4>
+                <p>Your payment handles appear on invoices so clients know how to pay you. Set these up in Settings > Payment Handles:</p>
                 <ul>
                     <li>Venmo</li>
                     <li>Zelle</li>
@@ -459,76 +476,225 @@
                 </ul>
 
                 <h4>Track Payments</h4>
-                <p>Mark invoices as paid when you receive payment. You can track outstanding invoices and send reminders for overdue payments.</p>
+                <p>Mark invoices as paid when you receive payment. Track outstanding invoices from the Income tab to see who still owes you.</p>
+
+                <div class="tip-box">
+                    <div class="tip-label">Pro Tip</div>
+                    <p>You can also record quick payments directly from a completed appointment without creating a full invoice.</p>
+                </div>
             </div>
         </div>
 
+        <!-- 7. Tracking Expenses -->
         <div class="tutorial-section" id="expenses">
             <div class="section-header">
-                <div class="section-number">6</div>
+                <div class="section-number">7</div>
                 <h2 class="section-title">Tracking Expenses</h2>
             </div>
             <div class="section-content">
                 <h4>Log an Expense</h4>
                 <ol>
-                    <li>Go to Expenses tab</li>
+                    <li>Go to the Finances tab and select "Expenses"</li>
                     <li>Tap "+" to add a new expense</li>
-                    <li>Enter amount, merchant, and date</li>
-                    <li>Select a category (supplies, equipment, marketing, etc.)</li>
-                    <li>Snap a photo of the receipt</li>
+                    <li>Enter the amount, merchant, and date</li>
+                    <li>Select a category (Supplies, Equipment, Marketing, Education, etc.)</li>
+                    <li>Optionally snap a photo of the receipt</li>
                     <li>Save the expense</li>
                 </ol>
 
-                <h4>Receipt Scanning</h4>
-                <p>Use the camera to scan receipts. LMT Assistant will automatically extract:</p>
+                <h4>AI Receipt Scanning</h4>
+                <p>Instead of entering details manually, use your camera to scan a receipt. The AI will automatically extract:</p>
                 <ul>
                     <li>Merchant name</li>
-                    <li>Total amount</li>
                     <li>Date of purchase</li>
+                    <li>Total amount, subtotal, tax, and shipping</li>
+                    <li>Expense category (auto-classified)</li>
+                    <li>Individual line items with quantities and prices</li>
+                    <li>Order number (if visible)</li>
+                    <li>Whether it's a recurring/subscription charge</li>
                 </ul>
+                <p>You can also batch-scan multiple receipts at once — the AI processes each one individually.</p>
 
-                <h4>Mileage Tracking</h4>
+                <div class="tip-box">
+                    <div class="tip-label">Pro Tip</div>
+                    <p>Scan receipts right when you get them so you never lose track of business expenses. The AI handles most of the data entry for you — just review and save.</p>
+                </div>
+
+                <h4>Expense Categories</h4>
+                <p>Expenses are organized by category for easy tax reporting: Supplies, Equipment, Marketing, Education, Insurance, Rent, Utilities, Software, Travel, and more. The monthly chart on the Expenses screen shows your spending trends at a glance.</p>
+            </div>
+        </div>
+
+        <!-- 8. Income & 1099 Tracking -->
+        <div class="tutorial-section" id="income">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2 class="section-title">Income & 1099 Tracking</h2>
+            </div>
+            <div class="section-content">
+                <h4>Track Session Income</h4>
+                <p>Record income from each session, organized by payment platform (Cash, Venmo, Zelle, Cash App, PayPal, Check, Insurance, etc.). The Income tab shows your total earnings broken down by source.</p>
+
+                <h4>1099 Document Scanning</h4>
+                <p>At tax time, scan your 1099 forms with AI to quickly log income:</p>
                 <ol>
-                    <li>Go to the Mileage tab</li>
-                    <li>Tap "+" to log a trip</li>
-                    <li>Enter start and end locations</li>
-                    <li>The app calculates distance automatically</li>
-                    <li>Add notes (which client, purpose)</li>
+                    <li>Go to the Income tab</li>
+                    <li>Tap the scan icon to photograph a 1099 form</li>
+                    <li>The AI extracts the payer name, amounts, and tax year</li>
+                    <li>Review the extracted data and save</li>
                 </ol>
 
                 <div class="tip-box">
                     <div class="tip-label">Tax Tip</div>
-                    <p>The IRS standard mileage rate for 2026 is automatically applied to your mileage logs for accurate deduction tracking.</p>
+                    <p>Keep your income records up to date throughout the year. When tax season arrives, you'll have all your 1099 data in one place, organized and ready for your accountant.</p>
                 </div>
             </div>
         </div>
 
-        <div class="tutorial-section" id="reports">
+        <!-- 9. Mileage Logging -->
+        <div class="tutorial-section" id="mileage">
             <div class="section-header">
-                <div class="section-number">7</div>
-                <h2 class="section-title">Reports & Tax Prep</h2>
+                <div class="section-number">9</div>
+                <h2 class="section-title">Mileage Logging</h2>
             </div>
             <div class="section-content">
-                <h4>Available Reports</h4>
+                <h4>Log a Trip</h4>
+                <ol>
+                    <li>Go to the Finances tab and select "Mileage"</li>
+                    <li>Tap "+" to log a new trip</li>
+                    <li>Enter your start and end locations (or select from Saved Locations)</li>
+                    <li>The app uses Google Maps to calculate the exact distance</li>
+                    <li>Select the client and add any notes</li>
+                    <li>Toggle round-trip if you're returning to the same starting point</li>
+                </ol>
+
+                <h4>Booking Screenshot Scanning</h4>
+                <p>If you receive appointment confirmations from booking platforms (Schedulicity, Acuity, MassageBook, etc.), you can scan a screenshot to auto-fill mileage entries:</p>
+                <ol>
+                    <li>Tap the scan icon in Mileage</li>
+                    <li>Take a photo or select a screenshot of your booking confirmation</li>
+                    <li>The AI extracts the client name, date, time, and location</li>
+                    <li>Review and save — the distance is calculated automatically</li>
+                </ol>
+
+                <h4>Saved Locations</h4>
+                <p>Save your home address, office, and frequent client locations in Settings > Saved Locations. When logging mileage, you can select these with one tap instead of typing addresses each time.</p>
+
+                <div class="tip-box">
+                    <div class="tip-label">Tax Tip</div>
+                    <p>The IRS standard mileage rate is automatically applied to your trip logs. Your total mileage deduction is calculated and ready for tax reporting.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. Credentials Vault -->
+        <div class="tutorial-section" id="credentials">
+            <div class="section-header">
+                <div class="section-number">10</div>
+                <h2 class="section-title">Credentials Vault</h2>
+            </div>
+            <div class="section-content">
+                <h4>Store Your Professional Credentials</h4>
+                <p>The Credentials Vault keeps all your professional documents organized in one secure place:</p>
                 <ul>
-                    <li><strong>Income Summary:</strong> Total revenue by month, quarter, or year</li>
-                    <li><strong>Expense Summary:</strong> Expenses categorized for Schedule C</li>
-                    <li><strong>Mileage Log:</strong> Complete trip history with deduction totals</li>
-                    <li><strong>Client Reports:</strong> Session history per client</li>
+                    <li><strong>Licenses:</strong> State massage therapy licenses with license numbers and expiration dates</li>
+                    <li><strong>Insurance:</strong> Liability insurance policies with policy numbers and coverage details</li>
+                    <li><strong>CE Certificates:</strong> Continuing education certificates with hours completed and course details</li>
+                    <li><strong>Transcripts:</strong> School transcripts with total hours completed</li>
                 </ul>
 
-                <h4>Export for Tax Season</h4>
+                <h4>AI Document Scanning</h4>
+                <p>Instead of entering credential details manually, scan your documents with AI:</p>
                 <ol>
-                    <li>Go to Dashboard > Reports</li>
-                    <li>Select the date range (typically Jan 1 - Dec 31)</li>
-                    <li>Choose which reports to generate</li>
-                    <li>Export as PDF or CSV</li>
-                    <li>Share with your accountant</li>
+                    <li>Tap "Add Credential" and choose the credential type</li>
+                    <li>Take a photo or select an image of the document</li>
+                    <li>The AI reads the document and extracts names, numbers, dates, issuing organizations, and hours</li>
+                    <li>Review the extracted data, make any corrections, and save</li>
                 </ol>
+
+                <h4>Renewal Reminders</h4>
+                <p>Set expiration dates on your credentials and the app will send you push notifications before they expire — so you never miss a renewal deadline.</p>
+
+                <div class="warning-box">
+                    <div class="warning-label">Important</div>
+                    <p>Always review AI-extracted data for accuracy before saving. AI scanning is provided for convenience and may occasionally misread text.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11. Practice Tools -->
+        <div class="tutorial-section" id="tools">
+            <div class="section-header">
+                <div class="section-number">11</div>
+                <h2 class="section-title">Practice Tools</h2>
+            </div>
+            <div class="section-content">
+                <h4>Digital Booking Card</h4>
+                <p>Create a shareable digital business card that includes your services, rates, contact info, and booking details. Share it with clients via text, email, or social media to make booking easy.</p>
+
+                <h4>Therapist Network</h4>
+                <p>Store professional contacts for client referrals. Save other therapists' names, phone numbers, websites, and social media profiles. When a client needs a referral, you have your network at your fingertips.</p>
+
+                <h4>Professional Goals</h4>
+                <p>Set and track your professional development goals. Whether it's completing CE hours, growing your client base, or hitting income targets, the Goals tracker helps you stay focused and motivated.</p>
+
+                <h4>State CE Requirements</h4>
+                <p>Look up continuing education requirements for all 50 US states. See how many hours are required, what topics are mandatory, and when your renewal cycle ends — so you know exactly what CE courses you need.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon">🪪</div>
+                        <h5>Booking Card</h5>
+                        <p>Shareable digital business card with your services</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🤝</div>
+                        <h5>Therapist Network</h5>
+                        <p>Professional contacts for client referrals</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎯</div>
+                        <h5>Goals</h5>
+                        <p>Track your professional development</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🎓</div>
+                        <h5>CE Requirements</h5>
+                        <p>State-by-state continuing education info</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12. Security & Backups -->
+        <div class="tutorial-section" id="security">
+            <div class="section-header">
+                <div class="section-number">12</div>
+                <h2 class="section-title">Security & Backups</h2>
+            </div>
+            <div class="section-content">
+                <h4>Biometric Authentication</h4>
+                <p>Add an extra layer of security by enabling Face ID or Touch ID. Go to Settings and toggle on biometric authentication. Each time you open the app, you'll need to verify your identity.</p>
+
+                <h4>Automatic Session Timeout</h4>
+                <p>If you're inactive for 15 minutes, the app automatically locks and requires you to sign in again. This protects your client data if you leave your phone unattended.</p>
+
+                <h4>Encrypted Backups</h4>
+                <p>Regularly back up your data for safekeeping:</p>
+                <ol>
+                    <li>Go to Settings > Backup &amp; Restore</li>
+                    <li>Tap "Export Backup" to create an encrypted backup file</li>
+                    <li>The backup is encrypted with AES-256 before leaving your device</li>
+                    <li>Save the file to your preferred location (iCloud, Google Drive, etc.)</li>
+                    <li>To restore, tap "Import Backup" and select your backup file</li>
+                </ol>
+
+                <h4>Offline Mode</h4>
+                <p>LMT Assistant works even without an internet connection. Changes you make offline are encrypted and queued, then automatically synced when connectivity is restored. For security, offline data expires after 30 days.</p>
 
                 <div class="tip-box">
                     <div class="tip-label">Pro Tip</div>
-                    <p>Run quarterly reports to estimate your tax obligations and avoid surprises at year end.</p>
+                    <p>Create a backup before switching devices or making major changes to your data. Your encrypted backup can be restored on any device where you sign in with your account.</p>
                 </div>
             </div>
         </div>
