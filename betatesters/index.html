@@ -179,6 +179,19 @@
             margin-bottom: 4px;
         }
 
+        .inline-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            border-radius: 6px;
+            background: rgba(45, 212, 191, 0.14);
+            border: 1px solid rgba(45, 212, 191, 0.30);
+            margin: 0 2px;
+            vertical-align: -5px;
+        }
+        .inline-icon svg { display: block; }
+
         .pill-row {
             display: flex; flex-wrap: wrap; gap: 8px;
             margin-top: 18px;
@@ -415,7 +428,11 @@
                     </li>
                     <li>
                         <strong>Public booking page</strong>
-                        Settings → Online Booking. Enable booking, pick a slug, hit Preview. Try booking yourself a fake appointment from the public link in Safari. Confirm the booking shows up in your appointments list inside the app.
+                        From the <strong style="color: var(--cream); font-family: inherit; font-size: inherit;">Appts</strong> tab, tap the globe icon
+                        <span class="inline-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        </span>
+                        in the top right to open Online Booking. Enable booking, pick a slug, hit Preview. Try booking yourself a fake appointment from the public link in Safari. Confirm the booking shows up in your appointments list inside the app.
                     </li>
                     <li>
                         <strong>Settings + Privacy</strong>
