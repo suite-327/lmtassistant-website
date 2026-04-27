@@ -390,6 +390,51 @@
 
         <section>
             <div class="container">
+                <h2>Send feedback</h2>
+                <p class="section-sub">Anything goes, bugs, confusing screens, missing features, "I wish it did X."</p>
+
+                <form id="feedback-form" novalidate>
+                    <div class="row-2">
+                        <div class="field">
+                            <label for="tester_email">Your email (optional, so I can follow up)</label>
+                            <input type="email" id="tester_email" name="tester_email" autocomplete="email" inputmode="email" placeholder="you@example.com">
+                        </div>
+                        <div class="field">
+                            <label for="category">Category</label>
+                            <select id="category" name="category">
+                                <option value="bug">Bug, something doesn't work</option>
+                                <option value="confusing">Confusing, works but I got stuck</option>
+                                <option value="idea">Idea, feature or improvement</option>
+                                <option value="praise">Praise, something I like</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="title">Short summary</label>
+                        <input type="text" id="title" name="title" required maxlength="200" placeholder="e.g. Calendar doesn't scroll past December">
+                    </div>
+
+                    <div class="field">
+                        <label for="description">Details</label>
+                        <textarea id="description" name="description" required maxlength="5000" placeholder="What were you doing? What happened? What did you expect to happen?"></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label for="device_info">Device + iOS version (optional)</label>
+                        <input type="text" id="device_info" name="device_info" maxlength="200" placeholder="iPhone 15 Pro, iOS 18.2">
+                    </div>
+
+                    <button type="submit" id="submit-btn">Send feedback</button>
+
+                    <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
                 <h2>Two ways to send feedback</h2>
                 <p class="section-sub">Pick whichever is easier in the moment.</p>
 
@@ -475,50 +520,6 @@
             </div>
         </section>
 
-        <section>
-            <div class="container">
-                <h2>Send feedback</h2>
-                <p class="section-sub">Anything goes, bugs, confusing screens, missing features, "I wish it did X."</p>
-
-                <form id="feedback-form" novalidate>
-                    <div class="row-2">
-                        <div class="field">
-                            <label for="tester_email">Your email (optional, so I can follow up)</label>
-                            <input type="email" id="tester_email" name="tester_email" autocomplete="email" inputmode="email" placeholder="you@example.com">
-                        </div>
-                        <div class="field">
-                            <label for="category">Category</label>
-                            <select id="category" name="category">
-                                <option value="bug">Bug, something doesn't work</option>
-                                <option value="confusing">Confusing, works but I got stuck</option>
-                                <option value="idea">Idea, feature or improvement</option>
-                                <option value="praise">Praise, something I like</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label for="title">Short summary</label>
-                        <input type="text" id="title" name="title" required maxlength="200" placeholder="e.g. Calendar doesn't scroll past December">
-                    </div>
-
-                    <div class="field">
-                        <label for="description">Details</label>
-                        <textarea id="description" name="description" required maxlength="5000" placeholder="What were you doing? What happened? What did you expect to happen?"></textarea>
-                    </div>
-
-                    <div class="field">
-                        <label for="device_info">Device + iOS version (optional)</label>
-                        <input type="text" id="device_info" name="device_info" maxlength="200" placeholder="iPhone 15 Pro, iOS 18.2">
-                    </div>
-
-                    <button type="submit" id="submit-btn">Send feedback</button>
-
-                    <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
-                </form>
-            </div>
-        </section>
     </main>
 
     <footer>
