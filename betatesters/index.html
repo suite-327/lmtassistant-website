@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beta Testers · LMT Assistant</title>
+    <meta name="description" content="Welcome to the LMT Assistant beta. Here's what to test and how to send feedback.">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F172A;
+            --ink-deep: #0A1120;
+            --cream: #F8FAFC;
+            --cream-dim: #CBD5E1;
+            --clay: #2DD4BF;
+            --clay-hover: #5EEAD4;
+            --sage: #94A3B8;
+            --stone: #1E293B;
+            --stone-hi: #263548;
+            --line: rgba(248, 250, 252, 0.10);
+            --line-strong: rgba(248, 250, 252, 0.22);
+            --muted: #64748B;
+            --warn: #F59E0B;
+            --good: #34D399;
+            --bad: #F87171;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ink);
+            color: var(--cream);
+            min-height: 100vh;
+            line-height: 1.6;
+            letter-spacing: -0.005em;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: ""; position: fixed; inset: 0;
+            pointer-events: none; z-index: 100;
+            opacity: 0.05; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
+        }
+
+        body::after {
+            content: ""; position: fixed; top: -30%; right: -20%;
+            width: 70vw; height: 70vw;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.08) 0%, transparent 60%);
+            pointer-events: none; z-index: 0;
+        }
+
+        .page-header {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+            z-index: 110;
+        }
+
+        .page-header-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 60;
+            font-size: 22px; font-weight: 500;
+            color: var(--cream); text-decoration: none;
+            letter-spacing: -0.02em; line-height: 1;
+        }
+        .logo img { height: 36px; width: auto; }
+        .logo em { font-style: normal; color: var(--clay); font-weight: 500; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            color: var(--cream-dim); text-decoration: none;
+            font-size: 14px; letter-spacing: 0.02em;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--clay); }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative; z-index: 1;
+        }
+
+        .hero {
+            padding: 80px 0 56px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .eyebrow {
+            font-size: 11px;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 24px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .eyebrow::before {
+            content: ""; width: 36px; height: 1px; background: var(--sage);
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
+            font-size: clamp(40px, 6vw, 56px);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 22px;
+        }
+        h1 em { color: var(--clay); font-style: italic; font-weight: 500; }
+
+        .lede {
+            color: var(--cream-dim);
+            font-size: 17px;
+            max-width: 600px;
+            line-height: 1.65;
+        }
+
+        section {
+            padding: 56px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        section:last-of-type { border-bottom: none; }
+
+        h2 {
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        h2 + .section-sub {
+            color: var(--cream-dim);
+            font-size: 15px;
+            margin-bottom: 28px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            display: flex; flex-direction: column; gap: 14px;
+        }
+        .checklist li {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.55), rgba(20, 31, 47, 0.55));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px 22px;
+            font-size: 15px;
+            color: var(--cream-dim);
+        }
+        .checklist li strong {
+            display: block;
+            color: var(--cream);
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 60;
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 4px;
+        }
+
+        .pill-row {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-top: 18px;
+        }
+        .pill {
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 100px;
+            border: 1px solid var(--line);
+            color: var(--cream-dim);
+        }
+        .pill-good { border-color: rgba(52, 211, 153, 0.35); color: var(--good); }
+        .pill-warn { border-color: rgba(245, 158, 11, 0.35); color: var(--warn); }
+
+        .info-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.55), rgba(20, 31, 47, 0.55));
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px 26px;
+            color: var(--cream-dim);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+        .info-card strong { color: var(--cream); font-weight: 500; }
+        .info-card + .info-card { margin-top: 14px; }
+
+        /* Form */
+        form { display: flex; flex-direction: column; gap: 16px; }
+        .field { display: flex; flex-direction: column; gap: 8px; }
+        .field label {
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--sage);
+            font-weight: 500;
+        }
+        .field input,
+        .field textarea,
+        .field select {
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            color: var(--cream);
+            font-family: inherit;
+            font-size: 15px;
+            padding: 14px 16px;
+            transition: border-color 0.2s ease, background 0.2s ease;
+            width: 100%;
+        }
+        .field textarea {
+            min-height: 130px;
+            line-height: 1.55;
+            resize: vertical;
+        }
+        .field input::placeholder,
+        .field textarea::placeholder { color: var(--muted); }
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: var(--clay);
+            background: var(--ink-deep);
+        }
+
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 600px) { .row-2 { grid-template-columns: 1fr; } }
+
+        button[type="submit"] {
+            background: var(--cream);
+            color: var(--ink);
+            border: 1px solid var(--cream);
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 60;
+            font-weight: 500;
+            cursor: pointer;
+            min-height: 52px;
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 4px;
+        }
+        button[type="submit"]:hover:not(:disabled) {
+            background: var(--clay);
+            border-color: var(--clay);
+            transform: translateY(-1px);
+            box-shadow: 0 14px 34px -12px rgba(45, 212, 191, 0.55);
+        }
+        button[type="submit"]:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .form-status {
+            font-size: 14px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            display: none;
+        }
+        .form-status.show { display: block; }
+        .form-status.ok { background: rgba(52, 211, 153, 0.10); border: 1px solid rgba(52, 211, 153, 0.35); color: var(--good); }
+        .form-status.err { background: rgba(248, 113, 113, 0.10); border: 1px solid rgba(248, 113, 113, 0.35); color: var(--bad); }
+
+        footer {
+            padding: 40px 0 60px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+            border-top: 1px solid var(--line);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="page-header">
+        <div class="page-header-inner">
+            <a href="/" class="logo">
+                <img src="../logo.png" alt="">
+                LMT <em>Assistant</em>
+            </a>
+            <a href="/" class="back-link">← Home</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="eyebrow">Beta Testers</div>
+                <h1>Thanks for testing <em>LMT Assistant</em>.</h1>
+                <p class="lede">
+                    Your feedback shapes what ships. Below is a short walkthrough of what to try, plus a form to send any bugs, questions, or feature ideas straight to me.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Two ways to send feedback</h2>
+                <p class="section-sub">Pick whichever is easier in the moment.</p>
+
+                <div class="info-card">
+                    <strong>1. Inside TestFlight (best for bugs with screenshots).</strong>
+                    Take a screenshot of the bug. TestFlight pops up a "Send Beta Feedback" sheet automatically. Type a short note, tap Send. The screenshot + your comment go straight to me.
+                </div>
+                <div class="info-card">
+                    <strong>2. The form on this page (best for general thoughts, ideas, or anything that's not a single screen).</strong>
+                    Fill it out below. It lands in my inbox the same way.
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>What to test first</h2>
+                <p class="section-sub">A 10-minute walkthrough that hits the most important paths.</p>
+
+                <ul class="checklist">
+                    <li>
+                        <strong>Sign up + onboarding</strong>
+                        Create your account, walk through the wizard, set your business name + license + at least one service. Skip anything you don't use; I want to know if any step is confusing.
+                    </li>
+                    <li>
+                        <strong>Add a client + create an appointment</strong>
+                        Try both a studio appointment and an outcall (mobile) appointment with an address. Open the calendar, scroll a few months, tap a day.
+                    </li>
+                    <li>
+                        <strong>Run a session timer</strong>
+                        Start a session from the timer tab. Try landscape mode. Try Spotify if you use it (open a saved playlist). Let it run for a few minutes, then end.
+                    </li>
+                    <li>
+                        <strong>Write a SOAP note</strong>
+                        After ending a session, write a SOAP note. Try the body-diagram, the area-treated picker, and the pressure level. Save it, reopen the client, confirm the note is there.
+                    </li>
+                    <li>
+                        <strong>Send an invoice</strong>
+                        Make an invoice for a client. Add a line item or two. Preview it as a PDF, then either share it or send it via your phone's Mail / Messages.
+                    </li>
+                    <li>
+                        <strong>Track an expense + a mileage trip</strong>
+                        Snap a receipt photo (the AI scanner should pull merchant + total). Log a trip from address A to address B; verify the mileage looks right.
+                    </li>
+                    <li>
+                        <strong>Public booking page</strong>
+                        Settings → Online Booking. Enable booking, pick a slug, hit Preview. Try booking yourself a fake appointment from the public link in Safari. Confirm the booking shows up in your appointments list inside the app.
+                    </li>
+                    <li>
+                        <strong>Settings + Privacy</strong>
+                        Toggle dark/light theme. Try Face ID lock if you want it. Glance at "Privacy & Security" — none of it should look broken.
+                    </li>
+                </ul>
+
+                <div class="pill-row">
+                    <span class="pill pill-good">Test on cellular and Wi-Fi</span>
+                    <span class="pill pill-good">Test in landscape (the timer especially)</span>
+                    <span class="pill pill-warn">Heads-up: subscription is in TestFlight sandbox mode</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Send feedback</h2>
+                <p class="section-sub">Anything goes — bugs, confusing screens, missing features, "I wish it did X."</p>
+
+                <form id="feedback-form" novalidate>
+                    <div class="row-2">
+                        <div class="field">
+                            <label for="tester_email">Your email (optional, so I can follow up)</label>
+                            <input type="email" id="tester_email" name="tester_email" autocomplete="email" inputmode="email" placeholder="you@example.com">
+                        </div>
+                        <div class="field">
+                            <label for="category">Category</label>
+                            <select id="category" name="category">
+                                <option value="bug">Bug — something doesn't work</option>
+                                <option value="confusing">Confusing — works, but I got stuck</option>
+                                <option value="idea">Idea — feature or improvement</option>
+                                <option value="praise">Praise — something I like</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="title">Short summary</label>
+                        <input type="text" id="title" name="title" required maxlength="200" placeholder="e.g. Calendar doesn't scroll past December">
+                    </div>
+
+                    <div class="field">
+                        <label for="description">Details</label>
+                        <textarea id="description" name="description" required maxlength="5000" placeholder="What were you doing? What happened? What did you expect to happen?"></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label for="device_info">Device + iOS version (optional)</label>
+                        <input type="text" id="device_info" name="device_info" maxlength="200" placeholder="iPhone 15 Pro, iOS 18.2">
+                    </div>
+
+                    <button type="submit" id="submit-btn">Send feedback</button>
+
+                    <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Suite 327 Development LLC · <a href="/privacy" style="color: var(--cream-dim); text-decoration: none;">Privacy</a> · <a href="/terms" style="color: var(--cream-dim); text-decoration: none;">Terms</a>
+    </footer>
+
+    <script>
+        // Public Supabase project + anon key. Both are safe to expose in
+        // browser code by design (the anon role can only do what RLS lets
+        // it — in this case, INSERT into beta_feedback only).
+        const SUPABASE_URL = 'https://oklzhjimuddjhghjrcdw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rbHpoamltdWRkamhnaGpyY2R3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkyNzg4MzksImV4cCI6MjA4NDg1NDgzOX0.4U2CXVwexxr7--L5Ub-g0gZ8g2ZGwiW0slnL28vJeSc';
+
+        const form = document.getElementById('feedback-form');
+        const status = document.getElementById('form-status');
+        const submitBtn = document.getElementById('submit-btn');
+
+        function setStatus(kind, text) {
+            status.textContent = text;
+            status.classList.remove('ok', 'err');
+            status.classList.add('show', kind);
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const data = {
+                tester_email: form.tester_email.value.trim() || null,
+                category: form.category.value,
+                title: form.title.value.trim(),
+                description: form.description.value.trim(),
+                device_info: form.device_info.value.trim() || null,
+                user_agent: navigator.userAgent,
+            };
+
+            if (!data.title || !data.description) {
+                setStatus('err', 'Please fill in the summary and the details.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending…';
+            status.classList.remove('show');
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/beta_feedback`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (!res.ok) {
+                    const errBody = await res.text().catch(() => '');
+                    throw new Error(`HTTP ${res.status} ${errBody}`);
+                }
+
+                form.reset();
+                setStatus('ok', 'Got it — thank you. I read every one of these.');
+            } catch (err) {
+                console.error('Feedback submit failed:', err);
+                setStatus('err', "Couldn't send. Please try again, or email admin@suite-327.com directly.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send feedback';
+            }
+        });
+    </script>
+</body>
+
+</html>
