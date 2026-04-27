@@ -374,7 +374,7 @@
                     </li>
                     <li>
                         <strong>Settings + Privacy</strong>
-                        Toggle dark/light theme. Try Face ID lock if you want it. Glance at "Privacy & Security" — none of it should look broken.
+                        Toggle dark/light theme. Try Face ID lock if you want it. Glance at "Privacy & Security", none of it should look broken.
                     </li>
                 </ul>
 
@@ -389,7 +389,7 @@
         <section>
             <div class="container">
                 <h2>Send feedback</h2>
-                <p class="section-sub">Anything goes — bugs, confusing screens, missing features, "I wish it did X."</p>
+                <p class="section-sub">Anything goes, bugs, confusing screens, missing features, "I wish it did X."</p>
 
                 <form id="feedback-form" novalidate>
                     <div class="row-2">
@@ -400,10 +400,10 @@
                         <div class="field">
                             <label for="category">Category</label>
                             <select id="category" name="category">
-                                <option value="bug">Bug — something doesn't work</option>
-                                <option value="confusing">Confusing — works, but I got stuck</option>
-                                <option value="idea">Idea — feature or improvement</option>
-                                <option value="praise">Praise — something I like</option>
+                                <option value="bug">Bug, something doesn't work</option>
+                                <option value="confusing">Confusing, works but I got stuck</option>
+                                <option value="idea">Idea, feature or improvement</option>
+                                <option value="praise">Praise, something I like</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
@@ -439,7 +439,7 @@
     <script>
         // Public Supabase project + anon key. Both are safe to expose in
         // browser code by design (the anon role can only do what RLS lets
-        // it — in this case, INSERT into beta_feedback only).
+        // it (in this case, INSERT into beta_feedback only).
         const SUPABASE_URL = 'https://oklzhjimuddjhghjrcdw.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rbHpoamltdWRkamhnaGpyY2R3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkyNzg4MzksImV4cCI6MjA4NDg1NDgzOX0.4U2CXVwexxr7--L5Ub-g0gZ8g2ZGwiW0slnL28vJeSc';
 
@@ -492,7 +492,7 @@
                 }
 
                 form.reset();
-                setStatus('ok', 'Got it — thank you. I read every one of these.');
+                setStatus('ok', 'Got it, thank you. I read every one of these.');
             } catch (err) {
                 console.error('Feedback submit failed:', err);
                 setStatus('err', "Couldn't send. Please try again, or email admin@suite-327.com directly.");
