@@ -3,183 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - LMT Assistant</title>
-    <link rel="icon" type="image/png" href="/logo.png">
+    <title>Privacy Policy · LMT Assistant</title>
+    <meta name="description" content="How LMT Assistant collects, uses and protects information about therapists and their clients.">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="apple-touch-icon" href="../logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --ink: #0F172A;
+            --cream: #F8FAFC;
+            --cream-dim: #CBD5E1;
+            --clay: #2DD4BF;
+            --sage: #94A3B8;
+            --stone: #1E293B;
+            --line: rgba(248, 250, 252, 0.10);
+            --line-strong: rgba(248, 250, 252, 0.22);
+            --muted: #64748B;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0F172A;
-            color: #F8FAFC;
+            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ink);
+            color: var(--cream);
             line-height: 1.7;
+            letter-spacing: -0.005em;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 24px;
+        .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+        header { padding: 28px 0; border-bottom: 1px solid var(--line); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500;
+            color: var(--cream); text-decoration: none; letter-spacing: -0.02em;
         }
+        .logo img { height: 36px; width: auto; }
+        .logo em { font-style: normal; color: var(--clay); }
+        .header-inner nav a { color: var(--cream-dim); text-decoration: none; font-size: 14px; margin-left: 24px; }
+        .header-inner nav a:hover { color: var(--clay); }
+        main { padding: 64px 0 80px; }
+        .eyebrow { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); margin-bottom: 16px; }
         h1 {
-            font-size: 36px;
-            margin-bottom: 8px;
+            font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(36px, 7vw, 52px);
+            line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px;
         }
-        .updated {
-            color: #64748B;
-            margin-bottom: 40px;
-        }
+        .updated { color: var(--muted); font-size: 14px; margin-bottom: 40px; }
+        .lede { color: var(--cream-dim); font-size: 18px; margin-bottom: 8px; }
         h2 {
-            font-size: 24px;
-            margin: 40px 0 16px;
-            color: #2DD4BF;
+            font-family: 'Fraunces', serif; font-weight: 500; font-size: 26px; letter-spacing: -0.01em;
+            margin: 48px 0 14px; padding-top: 24px; border-top: 1px solid var(--line);
         }
-        p, li {
-            color: #94A3B8;
-            margin-bottom: 16px;
+        h3 { font-size: 17px; font-weight: 600; margin: 28px 0 8px; color: var(--cream); }
+        p, li { color: var(--sage); margin-bottom: 14px; }
+        strong { color: var(--cream-dim); font-weight: 600; }
+        ul { margin: 0 0 16px 22px; }
+        a { color: var(--clay); }
+        .note {
+            border: 1px solid var(--line-strong); border-left: 3px solid var(--clay);
+            background: var(--stone); padding: 18px 20px; border-radius: 6px; margin: 24px 0;
         }
-        ul {
-            margin-left: 24px;
-            margin-bottom: 16px;
-        }
-        a {
-            color: #2DD4BF;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 40px;
-            color: #2DD4BF;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
+        .note p:last-child { margin-bottom: 0; }
+        .table-wrap { overflow-x: auto; margin: 8px 0 20px; }
+        table { width: 100%; border-collapse: collapse; font-size: 15px; }
+        th, td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
+        th { color: var(--cream-dim); font-weight: 600; }
+        td { color: var(--sage); }
+        td:first-child { color: var(--cream-dim); white-space: nowrap; }
+        details { border-bottom: 1px solid var(--line); padding: 16px 0; }
+        summary { cursor: pointer; font-weight: 600; color: var(--cream); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: "+"; color: var(--clay); font-size: 20px; line-height: 1; }
+        details[open] summary::after { content: "\2212"; }
+        details > *:not(summary) { margin-top: 12px; }
+        footer { padding: 40px 0 56px; border-top: 1px solid var(--line); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 12px; }
+        footer a { color: var(--cream-dim); text-decoration: none; font-size: 13px; }
+        footer a:hover { color: var(--clay); }
+        .copyright { color: var(--muted); font-size: 12px; }
+        @media (max-width: 560px) {
+            .header-inner nav { display: none; }
+            main { padding: 44px 0 64px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-link">&larr; Back to Home</a>
-
+    <header>
+        <div class="container header-inner">
+            <a href="../index.html" class="logo"><img src="../logo.png" alt="">LMT <em>Assistant</em></a>
+            <nav aria-label="Primary">
+                <a href="../index.html#features">Features</a>
+                <a href="../faq/index.html">FAQ</a>
+                <a href="mailto:admin@suite-327.com">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <p class="eyebrow">Legal</p>
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated: February 19, 2026</p>
+        <p class="updated">Last updated October 27, 2026</p>
 
-        <h2>Introduction</h2>
-        <p>LMT Assistant ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application.</p>
+        <p class="lede">How LMT Assistant handles your information, and the information you keep about your clients.</p>
+        <p>LMT Assistant is made by Suite 327 Development LLC ("we", "us"). This policy covers the LMT Assistant app and the online booking pages it publishes at book.lmtassistant.com. It applies to two groups of people: <strong>therapists</strong> who use the app, and the <strong>clients</strong> whose details therapists keep in it or who use a therapist's booking page.</p>
 
-        <h2>Information We Collect</h2>
-        <p>We collect information that you provide directly to us, including:</p>
+        <div class="note">
+            <p><strong>About HIPAA.</strong> We do not currently sign Business Associate Agreements (BAAs). If your practice is a HIPAA covered entity, for example because you bill health insurance electronically, LMT Assistant is not yet the right place to keep protected health information.</p>
+        </div>
+
+        <h2>What we collect</h2>
+        <h3>From therapists</h3>
         <ul>
-            <li>Account information (name, email address, password)</li>
-            <li>Professional information (business name, license details, insurance policies, continuing education credits)</li>
-            <li>Client information that you enter into the app (names, contact details, addresses)</li>
-            <li>Appointment and session data (scheduling, session notes, SOAP notes)</li>
-            <li>Financial information for invoicing, expense tracking, income tracking, and 1099 records</li>
-            <li>Mileage and location data for travel tracking (when you choose to use this feature)</li>
-            <li>Photos and images of documents you upload for AI scanning (receipts, credentials, tax forms, insurance documents, booking screenshots)</li>
-            <li>Therapist network contacts (professional contacts you choose to save)</li>
-            <li>Subscription and purchase data (managed by RevenueCat through Apple/Google)</li>
-            <li>Push notification tokens (for credential renewal reminders and appointment alerts)</li>
-            <li>Referral code usage</li>
-            <li>Usage data and app analytics</li>
+            <li><strong>Account details:</strong> your name, email address and password, or your Apple or Google sign-in.</li>
+            <li><strong>Business details:</strong> business name, services, prices, hours, locations, payment handles and booking-page settings.</li>
+            <li><strong>Records you keep:</strong> clients, appointments, intake and consent forms, SOAP notes, invoices, income, expenses, mileage, credentials, professional contacts, and the photos and documents you upload.</li>
+            <li><strong>Subscription status:</strong> whether you have an active subscription, from Apple through RevenueCat. We never see your payment card.</li>
+            <li><strong>Technical data:</strong> a push notification token for your device, and crash reports.</li>
+        </ul>
+        <h3>About clients</h3>
+        <ul>
+            <li><strong>What a therapist enters:</strong> for example a client's name, contact details, address, intake answers, consent records and session notes.</li>
+            <li><strong>What a client sends through a booking page:</strong> their name, phone number, email address, a visit address for mobile sessions, notes for the therapist, signed consent, and messages sent with the Contact form. This goes to the therapist whose page it is.</li>
+        </ul>
+        <p>We do not use advertising or analytics tracking in the app, and we do not sell anyone's information.</p>
+
+        <h2>How we use it</h2>
+        <ul>
+            <li>To run the app: store and sync your records, show your booking page, and deliver requests from it to you.</li>
+            <li>To send notifications you have turned on, such as booking alerts and credential renewal reminders.</li>
+            <li>To read documents you choose to scan, as described below.</li>
+            <li>To manage your subscription, answer support requests, and keep the service secure, including investigating misuse.</li>
+        </ul>
+        <p>We do not use client information for any purpose of our own.</p>
+
+        <h2>How client details are protected</h2>
+        <ul>
+            <li>Client names, contact details, addresses, intake notes, SOAP notes and booking-page messages are encrypted with AES-256 before they are stored.</li>
+            <li>Everything travels between the app, booking pages and our servers over encrypted (HTTPS) connections.</li>
+            <li>Each account can reach only its own records. This is enforced in the database itself, not only in the app.</li>
+            <li>The app locks after 15 minutes without use, can require Face ID or a fingerprint to open, and supports a second sign-in step with an authenticator app.</li>
+            <li>We keep a log of sign-ins and of when client records are viewed, changed or exported. Entries cannot be edited or deleted.</li>
+            <li>Signed SOAP notes and signed client forms cannot be changed afterwards. Corrections are added as dated amendments.</li>
+        </ul>
+        <p>To be plain about one point: this encryption keeps readable client details out of our database tables, but it is not end-to-end encryption. Our systems can derive the keys, which is how, for example, a booking request can be saved into your account while you are offline.</p>
+
+        <h2>Scanning, dictation and AI</h2>
+        <p>Where your phone supports it, the app reads documents on the phone itself. This includes booking screenshots, scanned intake forms and voice dictation, which never leave your device for this purpose.</p>
+        <p>If the phone cannot read a receipt, tax form, credential or insurance document, the app asks you first. Only with your permission does it send that one image to OpenAI to read. The request is made with storage turned off. Under OpenAI's API terms it is not used to train their models, and OpenAI may keep it for up to 30 days to monitor for abuse. You can always type the details in instead.</p>
+        <p>AI results can be wrong. Check what the app fills in before you save it.</p>
+
+        <h2>Companies that handle data for us</h2>
+        <p>We use these service providers. Each receives only what it needs for its job.</p>
+        <div class="table-wrap">
+        <table>
+            <thead><tr><th>Provider</th><th>What it does</th><th>What it receives</th></tr></thead>
+            <tbody>
+                <tr><td>Supabase</td><td>Database, sign-in, file storage and server functions, hosted in the United States</td><td>Everything you store, with client details encrypted as described above</td></tr>
+                <tr><td>OpenAI</td><td>Reading documents the phone could not read</td><td>Only images you agree to send</td></tr>
+                <tr><td>Google Maps</td><td>Address search, driving distances and trip maps</td><td>The addresses you search for or log a trip between</td></tr>
+                <tr><td>Apple</td><td>App Store, subscriptions, Sign in with Apple, iPhone notifications</td><td>Your subscription, your sign-in, and notification text</td></tr>
+                <tr><td>Google</td><td>Sign in with Google</td><td>Your sign-in, if you choose it</td></tr>
+                <tr><td>Expo</td><td>Android notifications</td><td>Notification text</td></tr>
+                <tr><td>Twilio</td><td>Booking text messages, where turned on</td><td>The phone number and the message, which gives the date and time but no client details</td></tr>
+                <tr><td>RevenueCat</td><td>Subscription management</td><td>Your subscription status and an account identifier</td></tr>
+                <tr><td>Sentry</td><td>Crash reports</td><td>Technical details of a crash, with personal data switched off and client text removed</td></tr>
+            </tbody>
+        </table>
+        </div>
+        <p>Notifications never include a client's name or details. We may also disclose information if the law requires it, or to protect the safety of a person or the security of the service.</p>
+
+        <h2>How long we keep it</h2>
+        <ul>
+            <li>Your records are kept for as long as your account exists. Cancelling your subscription does not delete them.</li>
+            <li>Deleting your account (Settings) permanently deletes your records and uploaded files. Copies can remain in our hosting provider's backups until those backups expire on their regular schedule.</li>
+            <li>The security log of sign-ins and record access is kept for up to seven years, including after an account is deleted. It holds no client names or session notes.</li>
         </ul>
 
-        <h2>How We Use Your Information</h2>
-        <p>We use the information we collect to:</p>
+        <h2>Your choices and rights</h2>
         <ul>
-            <li>Provide, maintain, and improve our services</li>
-            <li>Process transactions and send related information</li>
-            <li>Process uploaded images through AI services to extract text data from receipts, credentials, tax documents, and booking screenshots</li>
-            <li>Calculate mileage for business travel deductions</li>
-            <li>Generate reports and business insights</li>
-            <li>Send push notifications for credential renewal reminders and appointment alerts</li>
-            <li>Manage your subscription through RevenueCat</li>
-            <li>Send you technical notices, reminders, and support messages</li>
-            <li>Respond to your comments and questions</li>
-            <li>Protect against fraudulent or illegal activity</li>
+            <li><strong>See and export:</strong> client charts as PDFs, client lists and financial reports as spreadsheets, and full backups, all from inside the app.</li>
+            <li><strong>Correct:</strong> edit your records in the app at any time.</li>
+            <li><strong>Delete:</strong> delete individual records, or your whole account from Settings.</li>
+            <li><strong>Limit:</strong> turn notifications off, and decline sending any document to OpenAI.</li>
         </ul>
+        <p>Depending on where you live, including Washington, Nevada and California, you may have further rights over your personal or health-related information. Email <a href="mailto:admin@suite-327.com">admin@suite-327.com</a> to use them. We will not treat you differently for doing so.</p>
 
-        <h2>AI-Powered Document Processing</h2>
-        <p>When you use the App's scanning features (for receipts, 1099 forms, credentials, insurance documents, or booking screenshots), your images are transmitted to third-party AI services for text extraction:</p>
-        <ul>
-            <li><strong>OpenAI (GPT-4o Vision):</strong> Primary service for analyzing all document types and extracting structured data</li>
-            <li><strong>AWS Textract:</strong> Fallback service for OCR processing of tax forms</li>
-            <li><strong>Mindee:</strong> Fallback service for receipt parsing</li>
-            <li><strong>Google Cloud Vision:</strong> Last-resort fallback for general document OCR</li>
-        </ul>
-        <p>Important details about AI processing:</p>
-        <ul>
-            <li>Images are transmitted over HTTPS to these services</li>
-            <li>HEIC images (common on iPhones) may be converted to JPEG format before transmission for compatibility</li>
-            <li>Images are processed solely for text extraction and are not stored by these services beyond the processing request</li>
-            <li>Extracted PHI fields (client names, addresses) are encrypted using AES-256 before being stored in our database</li>
-            <li>AI scanning is optional. You can always enter information manually</li>
-        </ul>
+        <h2>If you are a therapist's client</h2>
+        <p>Your therapist decides what is recorded about you and controls those records. To see, correct or delete them, contact your therapist. If you cannot reach them, email us and we will pass your request on and help them respond.</p>
 
-        <h2>Data Security and Encryption</h2>
-        <p>We implement robust technical and organizational measures to protect your personal information:</p>
-        <ul>
-            <li><strong>Encryption:</strong> All Protected Health Information (PHI) including client names, addresses, phone numbers, email addresses, intake notes, and SOAP notes are encrypted using AES-256-CBC encryption with PBKDF2 key derivation</li>
-            <li><strong>Per-User Keys:</strong> Each user's data is encrypted with unique, per-user encryption keys derived from secure random salts</li>
-            <li><strong>Encrypted Backups:</strong> Data exports and backups are fully encrypted before leaving the device</li>
-            <li><strong>Offline Security:</strong> Data queued while offline is encrypted per-user with automatic 30-day expiration</li>
-            <li><strong>Session Security:</strong> Automatic session timeout after 15 minutes of inactivity</li>
-            <li><strong>Biometric Authentication:</strong> Optional biometric (Face ID/Touch ID) authentication for enhanced security</li>
-            <li><strong>Row-Level Security:</strong> Database-level policies ensure users can only access their own data</li>
-            <li><strong>Audit Logging:</strong> Sensitive operations are logged for security monitoring</li>
-        </ul>
-        <p>We follow HIPAA guidelines for handling protected health information (PHI).</p>
+        <h2>Children</h2>
+        <p>The app is for licensed professionals and is not meant for anyone under 18. We do not knowingly collect information from children through the app. A therapist may keep records about clients who are minors, with the consent their practice requires.</p>
 
-        <h2>Data Retention</h2>
-        <p>We retain your information for as long as your account is active or as needed to provide you services. You can request deletion of your account and associated data at any time through the app settings.</p>
+        <h2>Security incidents</h2>
+        <p>If we learn of a breach that affects your information, we will tell you, and anyone else we are required to, as the law requires.</p>
 
-        <h2>Third-Party Services</h2>
-        <p>We share information with third-party service providers who perform services on our behalf:</p>
-        <ul>
-            <li><strong>Supabase:</strong> Database, authentication, and file storage (data stored in the United States)</li>
-            <li><strong>OpenAI:</strong> AI-powered document scanning and text extraction (see AI Processing section above)</li>
-            <li><strong>AWS Textract:</strong> OCR document processing for tax forms</li>
-            <li><strong>Mindee:</strong> Receipt parsing</li>
-            <li><strong>Google Cloud Vision:</strong> Document OCR</li>
-            <li><strong>Google Maps, Places, and Directions APIs:</strong> Location services, address lookup, and mileage calculation</li>
-            <li><strong>RevenueCat:</strong> Subscription management (processes through the Apple App Store; we do not access your payment details)</li>
-            <li><strong>Sign in with Apple and Sign in with Google:</strong> Optional authentication methods</li>
-            <li><strong>Spotify:</strong> Optional music integration for session ambiance (requires separate authorization and can be disconnected at any time)</li>
-            <li><strong>Sentry:</strong> Anonymous crash reporting and error tracking (not linked to your identity)</li>
-            <li><strong>Expo Push Notifications (APNs/FCM):</strong> For delivering credential renewal reminders and appointment alerts</li>
-        </ul>
-        <p>Each third-party service has its own privacy policy governing the data they receive.</p>
+        <h2>Changes to this policy</h2>
+        <p>We will post any change here and update the date at the top. If a change is significant, we will also tell you in the app or by email before it takes effect.</p>
 
-        <h2>Therapist Network Data</h2>
-        <p>The App includes a Therapist Network feature for storing professional contacts. When sharing another therapist's contact information:</p>
-        <ul>
-            <li>You are responsible for obtaining permission before sharing a therapist's contact information with clients</li>
-            <li>Contact information you store (name, phone, website, social media) is encrypted on our servers</li>
-            <li>We do not share therapist network data with third parties</li>
-        </ul>
+        <h2>Contact</h2>
+        <p>Suite 327 Development LLC<br><a href="mailto:admin@suite-327.com">admin@suite-327.com</a></p>
 
-        <h2>Your Rights</h2>
-        <p>You have the right to:</p>
-        <ul>
-            <li>Access your personal information</li>
-            <li>Correct inaccurate information</li>
-            <li>Request deletion of your information</li>
-            <li>Export your data (encrypted backups)</li>
-            <li>Opt out of marketing communications</li>
-            <li>Opt out of AI scanning by entering information manually</li>
-        </ul>
-
-        <h2>Children's Privacy</h2>
-        <p>The App is designed for licensed massage therapy professionals and is not intended for use by children under 17. We do not knowingly collect information from children.</p>
-
-        <h2>Contact Us</h2>
-        <p>If you have questions about this Privacy Policy, please contact us at:</p>
-        <p>Suite 327 Development LLC<br>Email: <a href="mailto:admin@suite-327.com">admin@suite-327.com</a></p>
-
-        <h2>Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
-    </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../faq/index.html">FAQ</a>
+                <a href="../privacy/index.html">Privacy Policy</a>
+                <a href="../terms/index.html">Terms of Service</a>
+                <a href="mailto:admin@suite-327.com">Contact</a>
+            </div>
+            <p class="copyright">&copy; 2026 Suite 327 Development LLC</p>
+        </div>
+    </footer>
 </body>
 </html>
