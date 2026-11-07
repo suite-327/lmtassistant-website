@@ -2,21 +2,97 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/faq", "destination": "/faq/index.html" },
-    { "source": "/privacy", "destination": "/privacy/index.html" },
-    { "source": "/terms", "destination": "/terms/index.html" }
+    {
+      "source": "/faq",
+      "destination": "/faq/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy/index.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms/index.html"
+    }
   ],
   "redirects": [
-    { "source": "/tutorial", "destination": "/", "permanent": false },
-    { "source": "/tutorial/(.*)", "destination": "/", "permanent": false }
+    {
+      "source": "/tutorial",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial/(.*)",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/betatesters",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/betatesters/(.*)",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/confirm-email",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/confirm-email/(.*)",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/payment-success",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/payment-success/(.*)",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/payment-cancelled",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/payment-cancelled/(.*)",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/stripe-callback",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/stripe-callback/(.*)",
+      "destination": "/",
+      "permanent": false
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
   ]
