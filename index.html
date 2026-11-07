@@ -1,38 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMT Assistant - Practice Management for Massage Therapists</title>
-    <meta name="description" content="The all-in-one practice management app for Licensed Massage Therapists. Track clients, appointments, finances, and more.">
-    <link rel="icon" type="image/png" href="/logo.png">
-    <link rel="apple-touch-icon" href="/logo.png">
+    <title>LMT Assistant · Practice Management for Massage Therapists</title>
+    <meta name="description"
+        content="The all-in-one practice management app for Licensed Massage Therapists. Track clients, appointments, finances, and more.">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --ink: #0F172A;
+            --ink-deep: #0A1120;
+            --cream: #F8FAFC;
+            --cream-dim: #CBD5E1;
+            --clay: #2DD4BF;
+            --clay-hover: #5EEAD4;
+            --sage: #94A3B8;
+            --stone: #1E293B;
+            --stone-hi: #263548;
+            --line: rgba(248, 250, 252, 0.10);
+            --line-strong: rgba(248, 250, 252, 0.22);
+            --muted: #64748B;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0F172A;
+            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ink);
             min-height: 100vh;
-            color: #F8FAFC;
+            color: var(--cream);
+            letter-spacing: -0.005em;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.06;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
+        }
+
+        /* Ambient glow */
+        body::after {
+            content: "";
+            position: fixed;
+            top: -30%;
+            right: -20%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.10) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 32px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Header */
         header {
-            padding: 24px 0;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+            z-index: 110;
         }
 
         .header-inner {
@@ -44,70 +98,202 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 60;
             font-size: 24px;
-            font-weight: 700;
-            color: #F8FAFC;
+            font-weight: 500;
+            color: var(--cream);
             text-decoration: none;
+            letter-spacing: -0.02em;
+            line-height: 1;
         }
 
         .logo img {
-            height: 36px;
+            height: 40px;
             width: auto;
         }
 
-        .logo span {
-            color: #2DD4BF;
+        .logo em {
+            font-style: normal;
+            color: var(--clay);
+            font-weight: 500;
         }
 
         .header-links {
             display: flex;
-            gap: 24px;
+            gap: 32px;
+            align-items: center;
         }
 
         .header-links a {
-            color: #94A3B8;
+            color: var(--cream-dim);
             text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            position: relative;
+            transition: color 0.25s ease;
+        }
+
+        .header-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -4px;
+            height: 1px;
+            background: var(--clay);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .header-links a:hover {
-            color: #2DD4BF;
+            color: var(--cream);
         }
 
-        /* Hero Section */
+        .header-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Mobile hamburger: hidden on desktop */
+        .nav-toggle {
+            display: none;
+            width: 44px; height: 44px;
+            background: transparent; border: 0;
+            padding: 0; cursor: pointer;
+            align-items: center; justify-content: center;
+            margin-right: -10px;
+            position: relative;
+            z-index: 110;
+        }
+        .nav-toggle-bars {
+            position: relative;
+            width: 22px; height: 14px;
+        }
+        .nav-toggle-bars span {
+            position: absolute; left: 0; right: 0;
+            height: 1.5px; background: var(--cream);
+            border-radius: 1px;
+            transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1),
+                        opacity 0.2s ease,
+                        top 0.25s ease 0.15s;
+        }
+        .nav-toggle-bars span:nth-child(1) { top: 0; }
+        .nav-toggle-bars span:nth-child(2) { top: 6px; }
+        .nav-toggle-bars span:nth-child(3) { top: 12px; }
+        body.menu-open .nav-toggle-bars span {
+            transition: top 0.25s ease, transform 0.35s cubic-bezier(0.2,0.8,0.2,1) 0.2s,
+                        opacity 0.2s ease;
+        }
+        body.menu-open .nav-toggle-bars span:nth-child(1) { top: 6px; transform: rotate(45deg); }
+        body.menu-open .nav-toggle-bars span:nth-child(2) { opacity: 0; }
+        body.menu-open .nav-toggle-bars span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            position: fixed; inset: 0;
+            background: rgba(10, 17, 32, 0.98);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 100;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 28px; padding: 24px;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        body.menu-open .mobile-menu {
+            opacity: 1; pointer-events: auto;
+        }
+        .mobile-menu a {
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
+            font-size: 36px; font-weight: 500;
+            color: var(--cream); text-decoration: none;
+            letter-spacing: -0.03em; line-height: 1;
+            opacity: 0; transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2,0.8,0.2,1), color 0.25s ease;
+        }
+        body.menu-open .mobile-menu a {
+            opacity: 1; transform: translateY(0);
+        }
+        body.menu-open .mobile-menu a:nth-child(1) { transition-delay: 0.08s; }
+        body.menu-open .mobile-menu a:nth-child(2) { transition-delay: 0.14s; }
+        body.menu-open .mobile-menu a:nth-child(3) { transition-delay: 0.20s; }
+        body.menu-open .mobile-menu a:nth-child(4) { transition-delay: 0.26s; }
+        body.menu-open .mobile-menu a:nth-child(5) { transition-delay: 0.32s; }
+        .mobile-menu a:hover { color: var(--clay); }
+        body.menu-open { overflow: hidden; }
+
+        /* Hero: asymmetric editorial */
         .hero {
-            text-align: center;
-            padding: 100px 0 80px;
+            padding: 120px 0 140px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: end;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: fadeUp 0.8s ease 0.1s both;
+        }
+
+        .hero-eyebrow::before {
+            content: "";
+            width: 36px;
+            height: 1px;
+            background: var(--sage);
         }
 
         h1 {
-            font-size: clamp(36px, 6vw, 56px);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 24px;
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144, "SOFT" 50;
+            font-size: clamp(56px, 9vw, 124px);
+            font-weight: 400;
+            line-height: 0.92;
+            letter-spacing: -0.035em;
+            margin-bottom: 0;
+            animation: fadeUp 1s ease 0.2s both;
         }
 
-        h1 span {
-            background: linear-gradient(135deg, #2DD4BF, #5EEAD4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--clay);
+            font-variation-settings: "opsz" 144;
         }
 
-        .subtitle {
-            font-size: 18px;
-            color: #94A3B8;
-            max-width: 560px;
-            margin: 0 auto 48px;
-            line-height: 1.6;
+        .hero-right {
+            padding-bottom: 12px;
+            animation: fadeUp 1s ease 0.4s both;
+        }
+
+        .hero-sub {
+            font-size: 17px;
+            color: var(--cream-dim);
+            line-height: 1.55;
+            margin-bottom: 36px;
+            max-width: 440px;
         }
 
         .store-badges {
             display: flex;
-            gap: 16px;
-            justify-content: center;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
@@ -115,24 +301,31 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            padding: 14px 28px;
-            border-radius: 12px;
-            background: #1E293B;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 14px 22px;
+            border-radius: 2px;
+            background: var(--cream);
+            border: 1px solid var(--cream);
             text-decoration: none;
-            color: #F8FAFC;
-            transition: all 0.2s;
+            color: var(--ink);
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+        }
+
+        .store-badge.secondary {
+            background: transparent;
+            border-color: var(--line-strong);
+            color: var(--cream);
         }
 
         .store-badge:hover {
-            background: #263548;
-            border-color: rgba(45, 212, 191, 0.4);
             transform: translateY(-2px);
+            background: var(--clay);
+            color: var(--cream);
+            border-color: var(--clay);
         }
 
         .store-badge svg {
-            width: 28px;
-            height: 28px;
+            width: 22px;
+            height: 22px;
             flex-shrink: 0;
         }
 
@@ -141,284 +334,819 @@
         }
 
         .store-badge-label {
-            font-size: 11px;
-            color: #94A3B8;
+            font-size: 10px;
+            opacity: 0.7;
             line-height: 1;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .store-badge-store {
-            font-size: 18px;
-            font-weight: 600;
+            font-family: 'Fraunces', serif;
+            font-size: 16px;
+            font-weight: 500;
             line-height: 1.2;
+            margin-top: 3px;
         }
 
-        .store-badge-caption {
-            margin-top: 14px;
-            text-align: center;
-            font-size: 13px;
-            color: #94A3B8;
-            letter-spacing: 0.02em;
+        /* Section title */
+        .section-head {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: baseline;
+            margin-bottom: 72px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--line);
         }
 
-        /* Features Grid */
+        .section-label {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--sage);
+        }
+
+        .section-title h2 {
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
+            font-size: clamp(36px, 5.5vw, 64px);
+            font-weight: 400;
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+        }
+
+        .section-title h2 em {
+            font-style: italic;
+            color: var(--clay);
+        }
+
+        .section-title .section-kicker {
+            color: var(--cream-dim);
+            font-size: 17px;
+            margin-top: 18px;
+            max-width: 520px;
+            line-height: 1.5;
+        }
+
+        /* Features: editorial numbered rows */
         .features {
             padding: 80px 0;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .section-title p {
-            color: #94A3B8;
-            font-size: 18px;
-        }
-
-        .features-grid {
+        .features-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
         }
 
-        .feature-card {
-            background: #1E293B;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.2s;
+        .feature-row {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 28px;
+            padding: 36px 32px;
+            border-top: 1px solid var(--line);
+            border-right: 1px solid var(--line);
+            transition: background 0.35s ease;
+            position: relative;
         }
 
-        .feature-card:hover {
-            background: #263548;
-            border-color: rgba(45, 212, 191, 0.4);
-            transform: translateY(-4px);
+        .feature-row:nth-child(2n) {
+            border-right: none;
         }
 
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(45, 212, 191, 0.15);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
+        .feature-row:nth-last-child(-n+2):not(:nth-child(2n)) {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .feature-row:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .feature-row:hover {
+            background: var(--stone);
+        }
+
+        .feature-row:hover .feature-num {
+            color: var(--clay);
+        }
+
+        .feature-num {
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
+            font-style: italic;
+            font-size: 28px;
+            color: var(--sage);
+            font-weight: 400;
+            line-height: 1;
+            padding-top: 4px;
+            transition: color 0.35s ease;
+        }
+
+        .feature-body h3 {
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
             font-size: 24px;
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 12px;
-            color: #F8FAFC;
+            color: var(--cream);
+            letter-spacing: -0.015em;
+            line-height: 1.15;
         }
 
-        .feature-card p {
-            color: #94A3B8;
+        .feature-body p {
+            color: var(--cream-dim);
             line-height: 1.6;
+            font-size: 15px;
+            max-width: 440px;
         }
 
-        /* Highlights strip */
+        /* Pricing */
+        .pricing {
+            padding: 120px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--line);
+        }
+
+        .pricing-card {
+            padding: 48px 44px;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .pricing-card:first-child {
+            border-right: 1px solid var(--line);
+        }
+
+        .pricing-card.featured {
+            background: var(--cream);
+            color: var(--ink);
+        }
+
+        .pricing-card.featured h3,
+        .pricing-card.featured .pricing-price .amount {
+            color: var(--ink);
+        }
+
+        .pricing-card.featured .pricing-features li {
+            color: var(--ink-deep);
+        }
+
+        .pricing-card.featured .pricing-divider {
+            border-color: rgba(15, 23, 42, 0.12);
+        }
+
+        .pricing-card.featured .pricing-price .period {
+            color: rgba(15, 23, 42, 0.55);
+        }
+
+        .pricing-card.featured .pricing-savings {
+            color: var(--clay);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            background: var(--clay);
+            color: var(--cream);
+            font-size: 10px;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-family: 'Instrument Sans', sans-serif;
+        }
+
+        .pricing-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 12px;
+        }
+
+        .pricing-card.featured .pricing-label {
+            color: rgba(15, 23, 42, 0.55);
+        }
+
+        .pricing-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .pricing-price {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .pricing-price .amount {
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
+            font-size: 56px;
+            font-weight: 400;
+            letter-spacing: -0.035em;
+            line-height: 1;
+        }
+
+        .pricing-price .period {
+            font-size: 16px;
+            color: var(--cream-dim);
+        }
+
+        .pricing-savings {
+            font-size: 14px;
+            color: var(--clay);
+            margin-bottom: 28px;
+            min-height: 20px;
+            font-style: italic;
+            font-family: 'Fraunces', serif;
+        }
+
+        .pricing-divider {
+            border: none;
+            border-top: 1px solid var(--line);
+            margin: 28px 0;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--cream-dim);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .pricing-features li::before {
+            content: "→";
+            color: var(--clay);
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .pricing-trial {
+            text-align: center;
+            margin-top: 48px;
+            color: var(--cream-dim);
+            font-size: 15px;
+        }
+
+        .pricing-trial em {
+            color: var(--clay);
+            font-style: italic;
+            font-family: 'Fraunces', serif;
+        }
+
+        /* Highlights: horizontal ticker feel */
         .highlights {
-            padding: 60px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 80px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: var(--ink-deep);
         }
 
         .highlights-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            text-align: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .highlight-item {
+            padding: 8px 32px;
+            border-right: 1px solid var(--line);
+        }
+
+        .highlight-item:last-child {
+            border-right: none;
         }
 
         .highlight-item h4 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: #2DD4BF;
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--cream);
+            letter-spacing: -0.015em;
         }
 
         .highlight-item p {
-            color: #94A3B8;
+            color: var(--cream-dim);
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.55;
+        }
+
+        /* Scope: what it is, what it isn't */
+        .scope {
+            padding: 110px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .scope .section-head {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .scope .section-label {
+            color: var(--sage);
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .scope-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .scope-card {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 36px 32px;
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.45) 0%, rgba(20, 31, 47, 0.45) 100%);
+        }
+
+        .scope-card h3 {
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            color: var(--cream);
+            margin-bottom: 14px;
+        }
+
+        .scope-card h3 em {
+            font-style: italic;
+            color: var(--clay);
+            font-weight: 500;
+        }
+
+        .scope-card p {
+            color: var(--cream-dim);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .scope-card p + p {
+            margin-top: 10px;
         }
 
         /* CTA */
         .cta {
-            padding: 80px 0;
+            padding: 140px 0 120px;
         }
 
         .cta-box {
-            background: rgba(45, 212, 191, 0.08);
-            border: 1px solid rgba(45, 212, 191, 0.2);
-            border-radius: 24px;
-            padding: 60px 40px;
+            border: 1px solid var(--line-strong);
+            padding: 80px 60px;
             text-align: center;
+            position: relative;
+            background:
+                radial-gradient(ellipse at top, rgba(45, 212, 191, 0.12) 0%, transparent 70%),
+                var(--stone);
+        }
+
+        .cta-label {
+            font-size: 11px;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 24px;
         }
 
         .cta-box h2 {
-            font-size: 28px;
-            margin-bottom: 16px;
-        }
-
-        .cta-box p {
-            color: #94A3B8;
-            margin-bottom: 32px;
-            max-width: 480px;
+            font-family: 'Fraunces', serif;
+            font-variation-settings: "opsz" 144;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            max-width: 620px;
             margin-left: auto;
             margin-right: auto;
         }
 
+        .cta-box h2 em {
+            font-style: italic;
+            color: var(--clay);
+        }
+
+        .cta-box p {
+            color: var(--cream-dim);
+            margin-bottom: 40px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 16px;
+            line-height: 1.55;
+        }
+
         .cta-badges {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         /* Footer */
         footer {
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 48px 0 60px;
+            border-top: 1px solid var(--line);
         }
 
-        footer p {
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        footer a {
-            color: #94A3B8;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #2DD4BF;
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: center;
         }
 
         .footer-links {
             display: flex;
-            gap: 24px;
-            justify-content: center;
-            margin-bottom: 16px;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: var(--cream-dim);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--clay);
+        }
+
+        footer .copyright {
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .section-head {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-row {
+                border-right: none !important;
+            }
+
+            .feature-row:not(:last-child) {
+                border-bottom: none;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card:first-child {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .highlight-item {
+                padding: 20px 24px;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .highlight-item:nth-child(2n) {
+                border-right: none;
+            }
+
+            .scope {
+                padding: 80px 0;
+            }
+
+            .scope-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .scope-card {
+                padding: 28px 24px;
+            }
+
+            .scope-card h3 {
+                font-size: 24px;
+            }
         }
 
         @media (max-width: 640px) {
-            .hero {
-                padding: 60px 0 40px;
+            .container {
+                padding: 0 22px;
             }
 
-            .features {
-                padding: 60px 0;
+            .hero {
+                padding: 72px 0 80px;
+            }
+
+            .cta {
+                padding: 80px 0;
             }
 
             .cta-box {
-                padding: 40px 24px;
+                padding: 52px 28px;
             }
 
             .header-links {
                 display: none;
             }
 
-            .features-grid {
+            .nav-toggle {
+                display: inline-flex;
+            }
+
+            .logo {
+                font-size: 20px;
+                gap: 8px;
+            }
+
+            .logo img {
+                height: 34px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+                justify-items: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            .highlights-grid {
                 grid-template-columns: 1fr;
             }
+
+            .highlight-item {
+                border-right: none;
+            }
         }
+            .feature-link { display: inline-block; margin-top: 10px; color: var(--clay); font-weight: 600; text-decoration: none; }
+        .feature-link:hover { color: var(--clay-hover); }
     </style>
 </head>
+
 <body>
     <header>
         <div class="container">
             <div class="header-inner">
-                <a href="/" class="logo">
-                    <img src="/logo.png" alt="LMT Assistant Logo">
-                    LMT <span>Assistant</span>
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="LMT Assistant">
+                    LMT <em>Assistant</em>
                 </a>
-                <nav class="header-links">
+                <nav class="header-links" aria-label="Primary">
                     <a href="#features">Features</a>
-                    <a href="/faq">FAQ</a>
-                    <a href="/tutorial">Tutorial</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="faq/index.html">FAQ</a>
                     <a href="mailto:admin@suite-327.com">Contact</a>
                 </nav>
+                <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="nav-toggle-bars" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </span>
+                </button>
             </div>
         </div>
     </header>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="faq/index.html">FAQ</a>
+        <a href="mailto:admin@suite-327.com">Contact</a>
+    </nav>
+    <script>
+        (function(){
+            var toggle = document.querySelector('.nav-toggle');
+            var menu = document.getElementById('mobile-menu');
+            if (!toggle || !menu) return;
+            function setOpen(open){
+                document.body.classList.toggle('menu-open', open);
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            }
+            toggle.addEventListener('click', function(){
+                setOpen(!document.body.classList.contains('menu-open'));
+            });
+            menu.addEventListener('click', function(e){
+                // Close on link tap OR on empty-space tap (target === menu itself).
+                if (e.target.tagName === 'A' || e.target === menu) setOpen(false);
+            });
+            document.addEventListener('keydown', function(e){
+                if (e.key === 'Escape') setOpen(false);
+            });
+        })();
+    </script>
 
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Practice Management<br><span>Made Simple</span></h1>
-                <p class="subtitle">
-                    The all-in-one app for Licensed Massage Therapists.
-                    Manage clients, schedule appointments, track finances, and stay organized, all in one secure place.
-                </p>
-                <div class="store-badges">
-                    <a href="#" class="store-badge">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                        <div class="store-badge-text">
-                            <div class="store-badge-label">Download on the</div>
-                            <div class="store-badge-store">App Store</div>
+                <div class="hero-grid">
+                    <div>
+                        <div class="hero-eyebrow">For Licensed Massage Therapists</div>
+                        <h1>Our tools.<br>Your clients.<br><em>Your money.</em></h1>
+                    </div>
+                    <div class="hero-right">
+                        <p class="hero-sub">
+                            Clients, scheduling, SOAP notes, finances, credentials, and online booking. All in one secure app built for solo practitioners.
+                        </p>
+                        <div class="store-badges">
+                            <a href="https://apps.apple.com/app/id6759268672" class="store-badge" aria-label="Download on the App Store">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                                </svg>
+                                <div class="store-badge-text">
+                                    <div class="store-badge-label">Download on</div>
+                                    <div class="store-badge-store">App Store</div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <p class="store-badge-caption">Available for iPhone and iPad</p>
             </div>
         </section>
 
         <section class="features" id="features">
             <div class="container">
-                <div class="section-title">
-                    <h2>Everything You Need</h2>
-                    <p>Built specifically for massage therapy professionals</p>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">👥</div>
-                        <h3>Clients & Scheduling</h3>
-                        <p>Manage client records, schedule appointments with recurring options, send reminders, and keep intake forms and session history organized.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">📝</div>
-                        <h3>SOAP Notes & Session Timer</h3>
-                        <p>Document sessions with professional SOAP notes, use the full-screen session timer, and optionally connect Spotify for session music.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">💰</div>
-                        <h3>Finances & Tax Tracking</h3>
-                        <p>Track income and expenses, scan receipts and 1099 forms with AI, log mileage with Google Maps, and generate invoices with PDF preview.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🪪</div>
-                        <h3>Credentials Vault</h3>
-                        <p>Store licenses, insurance policies, CE certificates, and transcripts. Scan documents with AI and get push notification reminders before expiration.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
-                        <h3>HIPAA-Compliant Security</h3>
-                        <p>AES-256 encryption for all PHI, per-user encryption keys, biometric authentication, automatic session timeouts, and encrypted backups.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🛠️</div>
-                        <h3>Practice Tools</h3>
-                        <p>Digital booking cards, therapist referral network, professional goals tracker, state CE requirements for all 50 states, and bilingual support.</p>
+                <div class="section-head">
+                    <div class="section-label">Features</div>
+                    <div class="section-title">
+                        <h2>Everything you need, <em>nothing you don't.</em></h2>
+                        <p class="section-kicker">Purpose-built for massage therapy professionals. Every feature earns its place.</p>
                     </div>
                 </div>
+
+                <div class="features-list">
+                    <article class="feature-row">
+                        <div class="feature-num">01</div>
+                        <div class="feature-body">
+                            <h3>Clients &amp; Scheduling</h3>
+                            <p>Manage client records, schedule recurring appointments, send reminders, and keep intake forms and session history organized.</p>
+                        </div>
+                    </article>
+
+                    <article class="feature-row">
+                        <div class="feature-num">02</div>
+                        <div class="feature-body">
+                            <h3>SOAP Notes &amp; Timer</h3>
+                            <p>Document sessions with professional SOAP notes, use the full-screen session timer, and keep your session playlists one tap away.</p>
+                        </div>
+                    </article>
+
+                    <article class="feature-row">
+                        <div class="feature-num">03</div>
+                        <div class="feature-body">
+                            <h3>Finances &amp; Tax Tracking</h3>
+                            <p>Track income and expenses, scan receipts, PDFs, and 1099s with AI, log mileage with Google Maps, and generate invoices with PDF preview.</p>
+                        </div>
+                    </article>
+
+                    <article class="feature-row">
+                        <div class="feature-num">04</div>
+                        <div class="feature-body">
+                            <h3>Credentials Vault</h3>
+                            <p>Store licenses, insurance policies, CE certificates, and transcripts. Scan documents with AI and get reminders before expiration.</p>
+                        </div>
+                    </article>
+
+                    <article class="feature-row">
+                        <div class="feature-num">05</div>
+                        <div class="feature-body">
+                            <h3>Private by Design</h3>
+                            <p>Client records are encrypted with AES-256 before they are stored, using a key unique to your account, and walled off from every other account. Face ID lock, two-step sign-in, automatic timeouts, and a log of every view and export that cannot be edited. No ads, no tracking, and your data is never sold.</p>
+                            <a class="feature-link" href="/faq#security">How we protect your clients&nbsp;&rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="feature-row">
+                        <div class="feature-num">06</div>
+                        <div class="feature-body">
+                            <h3>Online Booking</h3>
+                            <p>Share a branded booking link. Clients choose studio or mobile visits, see travel fees upfront, sign consent, and submit intake notes. Approve pending requests with one tap.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <div class="section-head">
+                    <div class="section-label">Pricing</div>
+                    <div class="section-title">
+                        <h2>Simple, <em>transparent</em> pricing.</h2>
+                        <p class="section-kicker">Start with a free 7-day trial. No credit card required.</p>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-label">Monthly</div>
+                        <h3>Flexible billing</h3>
+                        <div class="pricing-price">
+                            <span class="amount">$9.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <div class="pricing-savings">&nbsp;</div>
+                        <hr class="pricing-divider">
+                        <ul class="pricing-features">
+                            <li>Unlimited clients &amp; appointments</li>
+                            <li>SOAP notes &amp; session timer</li>
+                            <li>Expense tracking &amp; receipt scanning</li>
+                            <li>Mileage logging with Google Maps</li>
+                            <li>Invoice generation</li>
+                            <li>Credentials vault with reminders</li>
+                            <li>Encrypted client records</li>
+                            <li>Cancel anytime</li>
+                        </ul>
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">Best Value</div>
+                        <div class="pricing-label">Annual</div>
+                        <h3>Full year, 33% off</h3>
+                        <div class="pricing-price">
+                            <span class="amount">$79.99</span>
+                            <span class="period">/year</span>
+                        </div>
+                        <div class="pricing-savings">Just $6.67 / month</div>
+                        <hr class="pricing-divider">
+                        <ul class="pricing-features">
+                            <li>All features included</li>
+                            <li>Billed once per year</li>
+                            <li>Save over $40 vs. monthly</li>
+                            <li>Subscription is tax-deductible</li>
+                            <li>Auto-logged as a business expense</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="pricing-trial">Every new account starts with a <em>free 7-day trial</em>. No credit card required.</p>
             </div>
         </section>
 
@@ -427,19 +1155,39 @@
                 <div class="highlights-grid">
                     <div class="highlight-item">
                         <h4>AI Document Scanning</h4>
-                        <p>Snap a photo to extract data from receipts, credentials, and tax forms</p>
+                        <p>Snap a photo to extract data from receipts, credentials, and tax forms.</p>
                     </div>
                     <div class="highlight-item">
                         <h4>Works Offline</h4>
-                        <p>Keep working without internet - changes sync when you're back online</p>
+                        <p>Keep working without internet. Changes sync when you're back online.</p>
                     </div>
                     <div class="highlight-item">
-                        <h4>7-Day Free Trial</h4>
-                        <p>Try every Pro feature free for 7 days, then subscribe monthly or annually</p>
+                        <h4>Push Notifications</h4>
+                        <p>Reminders for appointments, booking requests, and credential expirations.</p>
                     </div>
                     <div class="highlight-item">
-                        <h4>English & Spanish</h4>
-                        <p>Full bilingual support with one-tap language switching</p>
+                        <h4>English &amp; Spanish</h4>
+                        <p>Full bilingual support with one-tap language switching.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="scope">
+            <div class="container">
+                <div class="section-head">
+                    <div class="section-label">A note on scope</div>
+                </div>
+                <div class="scope-grid">
+                    <div class="scope-card">
+                        <h3>A tool you <em>use.</em></h3>
+                        <p>LMT Assistant is not a marketplace. We don't send clients your way or list you in a directory. Your booking page is a link you share with the people who already know you.</p>
+                        <p>Clients find you through your own channels: word of mouth, social, referrals, your website. The app's job is to make the work around those clients easier once they're yours.</p>
+                    </div>
+                    <div class="scope-card">
+                        <h3>Payments stay <em>yours.</em></h3>
+                        <p>We don't process payments. When a client pays you by Venmo, Cash App, Zelle, Stripe, Apple Pay, cash, or anything else, the money moves directly between you and them.</p>
+                        <p>The app records what was paid and how, so your books stay clean. It never touches the transaction, holds funds, or takes a cut.</p>
                     </div>
                 </div>
             </div>
@@ -448,18 +1196,20 @@
         <section class="cta">
             <div class="container">
                 <div class="cta-box">
-                    <h2>Ready to Simplify Your Practice?</h2>
-                    <p>Download LMT Assistant and start managing your massage therapy business more efficiently today.</p>
+                    <div class="cta-label">Get Started</div>
+                    <h2>Ready to simplify <em>your practice?</em></h2>
+                    <p>Download LMT Assistant and start running your massage therapy business with less friction.</p>
                     <div class="cta-badges">
-                        <a href="#" class="store-badge">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        <a href="https://apps.apple.com/app/id6759268672" class="store-badge" aria-label="Download on the App Store">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                            </svg>
                             <div class="store-badge-text">
-                                <div class="store-badge-label">Download on the</div>
+                                <div class="store-badge-label">Download on</div>
                                 <div class="store-badge-store">App Store</div>
                             </div>
                         </a>
                     </div>
-                    <p class="store-badge-caption">Available for iPhone and iPad</p>
                 </div>
             </div>
         </section>
@@ -467,15 +1217,17 @@
 
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="/tutorial">Tutorial</a>
-                <a href="/faq">FAQ</a>
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms of Service</a>
-                <a href="mailto:admin@suite-327.com">Contact</a>
+            <div class="footer-inner">
+                <div class="footer-links">
+                    <a href="faq/index.html">FAQ</a>
+                    <a href="privacy/index.html">Privacy Policy</a>
+                    <a href="terms/index.html">Terms of Service</a>
+                    <a href="mailto:admin@suite-327.com">Contact</a>
+                </div>
+                <p class="copyright">&copy; 2026 Suite 327 Development LLC</p>
             </div>
-            <p>&copy; 2026 Suite 327 Development LLC. All rights reserved.</p>
         </div>
     </footer>
 </body>
+
 </html>

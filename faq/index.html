@@ -3,387 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - LMT Assistant</title>
-    <meta name="description" content="Frequently asked questions about LMT Assistant - the practice management app for massage therapists.">
-    <link rel="icon" type="image/png" href="/logo.png">
+    <title>Questions, answered · LMT Assistant</title>
+    <meta name="description" content="Answers to common questions about LMT Assistant.">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="apple-touch-icon" href="../logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --ink: #0F172A;
+            --cream: #F8FAFC;
+            --cream-dim: #CBD5E1;
+            --clay: #2DD4BF;
+            --sage: #94A3B8;
+            --stone: #1E293B;
+            --line: rgba(248, 250, 252, 0.10);
+            --line-strong: rgba(248, 250, 252, 0.22);
+            --muted: #64748B;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0F172A;
-            min-height: 100vh;
-            color: #F8FAFC;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 24px;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #2DD4BF;
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 32px;
-        }
-        .back-link:hover { text-decoration: underline; }
-        h1 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .subtitle {
-            color: #94A3B8;
-            font-size: 18px;
-            margin-bottom: 40px;
-        }
-        .faq-section {
-            margin-bottom: 40px;
-        }
-        .section-title {
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #2DD4BF;
-            margin-bottom: 16px;
-        }
-        .faq-item {
-            background: #1E293B;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            margin-bottom: 12px;
-            overflow: hidden;
-        }
-        .faq-question {
-            width: 100%;
-            padding: 20px;
-            text-align: left;
-            background: none;
-            border: none;
-            color: #F8FAFC;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-question:hover { background: rgba(255, 255, 255, 0.02); }
-        .faq-icon {
-            font-size: 20px;
-            color: #2DD4BF;
-            transition: transform 0.2s;
-        }
-        .faq-item.open .faq-icon { transform: rotate(45deg); }
-        .faq-answer {
-            display: none;
-            padding: 0 20px 20px;
-            color: #94A3B8;
+            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ink);
+            color: var(--cream);
             line-height: 1.7;
+            letter-spacing: -0.005em;
         }
-        .faq-item.open .faq-answer { display: block; }
-        .faq-answer a {
-            color: #2DD4BF;
-            text-decoration: none;
+        .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+        header { padding: 28px 0; border-bottom: 1px solid var(--line); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500;
+            color: var(--cream); text-decoration: none; letter-spacing: -0.02em;
         }
-        .faq-answer a:hover { text-decoration: underline; }
-        .faq-answer ul {
-            margin: 12px 0;
-            padding-left: 24px;
+        .logo img { height: 36px; width: auto; }
+        .logo em { font-style: normal; color: var(--clay); }
+        .header-inner nav a { color: var(--cream-dim); text-decoration: none; font-size: 14px; margin-left: 24px; }
+        .header-inner nav a:hover { color: var(--clay); }
+        main { padding: 64px 0 80px; }
+        .eyebrow { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); margin-bottom: 16px; }
+        h1 {
+            font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(36px, 7vw, 52px);
+            line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px;
         }
-        .faq-answer li { margin-bottom: 8px; }
-        .contact-box {
-            background: rgba(45, 212, 191, 0.1);
-            border: 1px solid rgba(45, 212, 191, 0.2);
-            border-radius: 16px;
-            padding: 32px;
-            text-align: center;
-            margin-top: 48px;
+        .updated { color: var(--muted); font-size: 14px; margin-bottom: 40px; }
+        .lede { color: var(--cream-dim); font-size: 18px; margin-bottom: 8px; }
+        h2 {
+            font-family: 'Fraunces', serif; font-weight: 500; font-size: 26px; letter-spacing: -0.01em;
+            margin: 48px 0 14px; padding-top: 24px; border-top: 1px solid var(--line);
         }
-        .contact-box h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
+        h3 { font-size: 17px; font-weight: 600; margin: 28px 0 8px; color: var(--cream); }
+        p, li { color: var(--sage); margin-bottom: 14px; }
+        strong { color: var(--cream-dim); font-weight: 600; }
+        ul { margin: 0 0 16px 22px; }
+        a { color: var(--clay); }
+        .note {
+            border: 1px solid var(--line-strong); border-left: 3px solid var(--clay);
+            background: var(--stone); padding: 18px 20px; border-radius: 6px; margin: 24px 0;
         }
-        .contact-box p {
-            color: #94A3B8;
-            margin-bottom: 20px;
+        .note p:last-child { margin-bottom: 0; }
+        .table-wrap { overflow-x: auto; margin: 8px 0 20px; }
+        table { width: 100%; border-collapse: collapse; font-size: 15px; }
+        th, td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
+        th { color: var(--cream-dim); font-weight: 600; }
+        td { color: var(--sage); }
+        td:first-child { color: var(--cream-dim); white-space: nowrap; }
+        details { border-bottom: 1px solid var(--line); padding: 16px 0; }
+        summary { cursor: pointer; font-weight: 600; color: var(--cream); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: "+"; color: var(--clay); font-size: 20px; line-height: 1; }
+        details[open] summary::after { content: "\2212"; }
+        details > *:not(summary) { margin-top: 12px; }
+        footer { padding: 40px 0 56px; border-top: 1px solid var(--line); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 12px; }
+        footer a { color: var(--cream-dim); text-decoration: none; font-size: 13px; }
+        footer a:hover { color: var(--clay); }
+        .copyright { color: var(--muted); font-size: 12px; }
+        @media (max-width: 560px) {
+            .header-inner nav { display: none; }
+            main { padding: 44px 0 64px; }
         }
-        .contact-btn {
-            display: inline-block;
-            background: #2DD4BF;
-            color: #0F172A;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .contact-btn:hover { background: #14B8A6; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-link">
-            <span>&larr;</span> Back to Home
-        </a>
-
-        <h1>Frequently Asked Questions</h1>
-        <p class="subtitle">Find answers to common questions about LMT Assistant</p>
-
-        <div class="faq-section">
-            <div class="section-title">Getting Started</div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>What is LMT Assistant?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    LMT Assistant is a comprehensive practice management app designed specifically for Licensed Massage Therapists. It helps you manage clients, schedule appointments, create invoices, track expenses and income, log mileage, store credentials, maintain SOAP notes, and more - all in one secure, HIPAA-compliant platform.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>What devices does LMT Assistant support?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    LMT Assistant is available for iPhone and iPad on the App Store. An Android version is not currently available.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How much does LMT Assistant cost?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    LMT Assistant offers a 7-day free trial that unlocks every Pro feature. After the trial, continue with a Pro subscription — $9.99/month or $79.99/year (about $6.67/month, ~33% off). Subscriptions are managed through the Apple App Store. You can cancel anytime from your device's subscription settings.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Does the app support languages other than English?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    Yes! LMT Assistant fully supports English and Spanish. You can switch between languages at any time from the Settings menu. All screens, labels, and notifications are translated.
-                </div>
-            </div>
+    <header>
+        <div class="container header-inner">
+            <a href="../index.html" class="logo"><img src="../logo.png" alt="">LMT <em>Assistant</em></a>
+            <nav aria-label="Primary">
+                <a href="../index.html#features">Features</a>
+                <a href="../faq/index.html">FAQ</a>
+                <a href="mailto:admin@suite-327.com">Contact</a>
+            </nav>
         </div>
+    </header>
+    <main class="container">
+        <p class="eyebrow">FAQ</p>
+        <h1>Questions, answered</h1>
+        <p class="updated">Updated November 7, 2026</p>
+        <h2>Getting started</h2>
+        <details>
+            <summary>What is LMT Assistant?</summary>
+            <p>Practice-management software for licensed massage therapists: clients, scheduling, SOAP notes, intake and consent forms, online booking, invoices, income, expenses, mileage, credentials, and reports, in one app built for solo practitioners.</p>
+        </details>
 
-        <div class="faq-section">
-            <div class="section-title">Privacy & Security</div>
+        <details>
+            <summary>Which devices does it run on?</summary>
+            <p>iPhone and iPad, from the App Store. There is no Android version on the Play Store yet.</p>
+        </details>
 
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Is my client data secure?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    Absolutely. We take security seriously:
-                    <ul>
-                        <li>All sensitive client information (PHI) is encrypted using AES-256-CBC encryption</li>
-                        <li>Each user has unique, per-user encryption keys derived from secure random salts</li>
-                        <li>Data is encrypted both in transit and at rest</li>
-                        <li>Row-level security policies ensure you can only access your own records</li>
-                        <li>Automatic session timeout after 15 minutes of inactivity</li>
-                        <li>Optional biometric authentication (Face ID / Touch ID)</li>
-                        <li>We never share or sell your data</li>
-                    </ul>
-                </div>
+        <details>
+            <summary>How much does it cost?</summary>
+            <p>Every new account starts with a free 7-day trial of all Pro features, with no credit card required. After that, Pro is $9.99 a month or $79.99 a year. Subscriptions are managed through the App Store and you can cancel at any time.</p>
+        </details>
+
+        <details>
+            <summary>Is it available in Spanish?</summary>
+            <p>Yes. The app is available in English and Spanish, and you can switch at any time in Settings.</p>
+        </details>
+
+        <h2>Privacy and security</h2>
+        <details id="security">
+            <summary>How secure is my client data?</summary>
+            <p>Security is built into how LMT Assistant stores every record, not added on afterwards.</p>
+            <ul>
+                <li><strong>Encrypted before it is stored.</strong> Client names, contact details, addresses, intake notes, SOAP notes and booking-page messages are encrypted with AES-256, using a key unique to your account.</li>
+                <li><strong>Walled off by account.</strong> Each account can reach only its own records. This is enforced in the database itself, not only in the app.</li>
+                <li><strong>Locked on your phone.</strong> The app locks after 15 minutes without use, can require Face ID or a fingerprint to open, and supports two-step sign-in with an authenticator app.</li>
+                <li><strong>Every access on record.</strong> Sign-ins, and each time a client record is viewed, changed or exported, are logged, and the log cannot be edited or deleted.</li>
+                <li><strong>Signed means signed.</strong> Signed SOAP notes and client forms cannot be changed. Corrections are added as dated amendments.</li>
+                <li><strong>Encrypted in transit and offline.</strong> Everything travels over HTTPS, and changes made offline are stored encrypted on your phone until they sync.</li>
+                <li><strong>Your data is not the product.</strong> No ads, no tracking, and we never sell anyone's information. Documents go to an AI service only when you say yes.</li>
+            </ul>
+            <p>See the <a href="../privacy/index.html">Privacy Policy</a> for the full details, including what to know if your practice needs a Business Associate Agreement.</p>
+        </details>
+
+        <details>
+            <summary>Can I export or delete my data?</summary>
+            <p>Yes. You can export client charts as PDFs, client lists and financial reports as spreadsheets, and a full backup of your records. Deleting your account in Settings permanently deletes your records and files.</p>
+        </details>
+
+        <h2>Scanning and AI</h2>
+        <details>
+            <summary>How does document scanning work?</summary>
+            <p>Point your camera at a receipt, tax form, credential, insurance document, intake form or booking screenshot, and the app fills in the details for you to check. Where your phone supports it, the reading happens on the phone. If it cannot read a receipt, tax form, credential or insurance document, the app asks before sending that image to OpenAI. Booking screenshots and intake forms are read only on the phone.</p>
+        </details>
+
+        <details>
+            <summary>Does the AI service keep my images?</summary>
+            <p>Images are sent to OpenAI only with your permission, with storage turned off. Under OpenAI's API terms they are not used for training, and may be kept for up to 30 days for abuse monitoring. You can always type the details in instead.</p>
+        </details>
+
+        <h2>Features</h2>
+        <details>
+            <summary>How do I write a SOAP note?</summary>
+            <p>Open a client and add a SOAP note, or start one from an appointment. Notes are encrypted. Once you sign a note it is locked, and later corrections are added as dated amendments.</p>
+        </details>
+
+        <details>
+            <summary>Can I track mileage for mobile sessions?</summary>
+            <p>Yes. Enter addresses or pick a saved location, and Google Maps works out the driving distance. Your trips are summarized for tax time.</p>
+        </details>
+
+        <details>
+            <summary>How do invoices work?</summary>
+            <p>Pick a client, add services or line items, preview the invoice as a PDF, and share it by email or text. Add your payment handles, such as Venmo, Zelle, Cash App or PayPal, to show them on the invoice. LMT Assistant does not process payments.</p>
+        </details>
+
+        <details>
+            <summary>What is the Credentials Vault?</summary>
+            <p>One place for your licenses, insurance, CE certificates and transcripts, with photos or PDFs attached and reminders before anything expires.</p>
+        </details>
+
+        <details>
+            <summary>Does the app work offline?</summary>
+            <p>Most features do. Changes made offline are stored encrypted on your phone and sync when you are back online. Unsynced offline changes expire after 30 days.</p>
+        </details>
+
+        <h2>Account and support</h2>
+        <details>
+            <summary>How do I reset my password?</summary>
+            <p>On the sign-in screen, tap Forgot Password and follow the link we email you.</p>
+        </details>
+
+        <details>
+            <summary>How do I manage my subscription?</summary>
+            <p>On your iPhone or iPad, go to Settings, then your name, then Subscriptions. Refunds are handled by Apple.</p>
+        </details>
+
+        <details>
+            <summary>How do I contact support or suggest a feature?</summary>
+            <p>Email <a href="mailto:admin@suite-327.com">admin@suite-327.com</a>. We read every message.</p>
+        </details>
+
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../faq/index.html">FAQ</a>
+                <a href="../privacy/index.html">Privacy Policy</a>
+                <a href="../terms/index.html">Terms of Service</a>
+                <a href="mailto:admin@suite-327.com">Contact</a>
             </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Is LMT Assistant HIPAA compliant?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    LMT Assistant is designed with HIPAA compliance in mind. We implement technical safeguards including AES-256 encryption of all PHI, per-user encryption keys, row-level security, audit logging, automatic session timeouts, and encrypted backups. However, HIPAA compliance is a shared responsibility - you should also follow best practices like using strong passwords and keeping your device secure.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Can I export or delete my data?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    Yes. You have full control over your data. You can export an encrypted backup of all your data at any time from the Settings menu. Backups are protected with AES-256 encryption and can be restored on any device. If you choose to delete your account, all your data will be permanently removed from our servers.
-                </div>
-            </div>
+            <p class="copyright">&copy; 2026 Suite 327 Development LLC</p>
         </div>
-
-        <div class="faq-section">
-            <div class="section-title">AI Document Scanning</div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How does AI document scanning work?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    LMT Assistant uses AI-powered vision services to extract data from photos of your documents. When you scan a receipt, credential, 1099 form, insurance document, or booking screenshot, the image is securely sent to an AI service that reads the text and returns structured data. The extracted information is pre-filled into the form for you to review and save. Scanning is always optional - you can enter information manually instead.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>What types of documents can I scan?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    You can scan several types of documents:
-                    <ul>
-                        <li><strong>Receipts:</strong> Business expense receipts - extracts merchant, amount, date, and category</li>
-                        <li><strong>Credentials:</strong> Massage licenses, insurance certificates, CE certificates, and transcripts - extracts names, numbers, dates, and issuing organizations</li>
-                        <li><strong>1099 Forms:</strong> Tax documents - extracts payer info, amounts, and tax year</li>
-                        <li><strong>Insurance Documents:</strong> Insurance policies and cards - extracts policy details</li>
-                        <li><strong>Booking Screenshots:</strong> Screenshots of appointment bookings - extracts client name, date, time, and location for mileage logging</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Is my scanned data stored by the AI service?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    No. Images are transmitted securely over HTTPS and processed solely for text extraction. They are not stored by the AI services beyond the processing request. Once the text is extracted, any PHI fields (like client names or addresses) are encrypted with AES-256 before being stored in our database. For full details, see our <a href="/privacy/">Privacy Policy</a>.
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-section">
-            <div class="section-title">Features</div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How do I create SOAP notes?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    From a client's profile, tap "Add SOAP Note" to create a new session note. You can document Subjective observations, Objective findings, Assessment, and Plan. SOAP notes are automatically linked to the client and appointment for easy reference. All SOAP note content is encrypted.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Can I track mileage for mobile massage?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    Yes! The mileage tracker uses Google Maps to calculate distances between locations. You can enter addresses manually, use saved locations, or scan a booking screenshot to auto-fill trip details. Save your home address and frequent client locations for quick logging. All mileage is categorized and summarized for easy tax reporting.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How do invoices work?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    Create professional invoices by selecting a client, adding services or line items, and setting payment terms. You can preview invoices as PDFs, share them via email or text, and track payment status. Add your payment handles (Venmo, Zelle, CashApp, PayPal) to display on invoices for easy client payments.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>What is the Credentials Vault?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    The Credentials Vault stores all your professional documents in one place: massage licenses, insurance policies, CE certificates, and school transcripts. You can scan documents with AI to auto-fill details, attach photos or PDFs, and set expiration dates. The app sends push notification reminders before your credentials expire so you never miss a renewal.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Can I scan receipts for expenses?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    Yes! Use your camera to scan receipts and LMT Assistant will use AI to automatically extract the merchant, amount, date, category, and individual line items. You can also batch-scan multiple receipts at once. This makes expense tracking quick and paperless.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Does the app work offline?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    Yes. LMT Assistant works offline for most features. Changes you make while offline are encrypted and queued, then automatically synced when your internet connection is restored. Offline data expires after 30 days for security.
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-section">
-            <div class="section-title">Account & Support</div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How do I reset my password?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    On the login screen, tap "Forgot Password" and enter your email address. You'll receive a link to reset your password. For security reasons, the link expires after 24 hours.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How do I manage my subscription?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    Subscriptions are managed through the App Store. On your iPhone or iPad, go to Settings > [your name] > Subscriptions. You can upgrade, downgrade, or cancel at any time. Refunds are handled by Apple according to their policies.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How do I contact support?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    You can reach our support team at <a href="mailto:admin@suite-327.com">admin@suite-327.com</a>. We typically respond within 24-48 hours. You can also use the "Contact Support" option in the app's Settings menu.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Can I suggest new features?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    We love hearing from our users! Use the "Request a Feature" option in Settings, or email us directly at <a href="mailto:admin@suite-327.com">admin@suite-327.com</a>. Many of our best features came from user suggestions.
-                </div>
-            </div>
-        </div>
-
-        <div class="contact-box">
-            <h3>Still have questions?</h3>
-            <p>Our support team is here to help you get the most out of LMT Assistant.</p>
-            <a href="mailto:admin@suite-327.com" class="contact-btn">Contact Support</a>
-        </div>
-    </div>
-
-    <script>
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.querySelector('.faq-question').addEventListener('click', () => {
-                item.classList.toggle('open');
-            });
-        });
-    </script>
+    </footer>
+<script>
+    if (location.hash === "#security") { var d = document.getElementById("security"); if (d) d.open = true; }
+</script>
 </body>
 </html>

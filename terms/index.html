@@ -3,178 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - LMT Assistant</title>
-    <link rel="icon" type="image/png" href="/logo.png">
+    <title>Terms of Service · LMT Assistant</title>
+    <meta name="description" content="The terms for using LMT Assistant.">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="apple-touch-icon" href="../logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --ink: #0F172A;
+            --cream: #F8FAFC;
+            --cream-dim: #CBD5E1;
+            --clay: #2DD4BF;
+            --sage: #94A3B8;
+            --stone: #1E293B;
+            --line: rgba(248, 250, 252, 0.10);
+            --line-strong: rgba(248, 250, 252, 0.22);
+            --muted: #64748B;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0F172A;
-            color: #F8FAFC;
+            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--ink);
+            color: var(--cream);
             line-height: 1.7;
+            letter-spacing: -0.005em;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 24px;
+        .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+        header { padding: 28px 0; border-bottom: 1px solid var(--line); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500;
+            color: var(--cream); text-decoration: none; letter-spacing: -0.02em;
         }
+        .logo img { height: 36px; width: auto; }
+        .logo em { font-style: normal; color: var(--clay); }
+        .header-inner nav a { color: var(--cream-dim); text-decoration: none; font-size: 14px; margin-left: 24px; }
+        .header-inner nav a:hover { color: var(--clay); }
+        main { padding: 64px 0 80px; }
+        .eyebrow { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); margin-bottom: 16px; }
         h1 {
-            font-size: 36px;
-            margin-bottom: 8px;
+            font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(36px, 7vw, 52px);
+            line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px;
         }
-        .updated {
-            color: #64748B;
-            margin-bottom: 40px;
-        }
+        .updated { color: var(--muted); font-size: 14px; margin-bottom: 40px; }
+        .lede { color: var(--cream-dim); font-size: 18px; margin-bottom: 8px; }
         h2 {
-            font-size: 24px;
-            margin: 40px 0 16px;
-            color: #2DD4BF;
+            font-family: 'Fraunces', serif; font-weight: 500; font-size: 26px; letter-spacing: -0.01em;
+            margin: 48px 0 14px; padding-top: 24px; border-top: 1px solid var(--line);
         }
-        p, li {
-            color: #94A3B8;
-            margin-bottom: 16px;
+        h3 { font-size: 17px; font-weight: 600; margin: 28px 0 8px; color: var(--cream); }
+        p, li { color: var(--sage); margin-bottom: 14px; }
+        strong { color: var(--cream-dim); font-weight: 600; }
+        ul { margin: 0 0 16px 22px; }
+        a { color: var(--clay); }
+        .note {
+            border: 1px solid var(--line-strong); border-left: 3px solid var(--clay);
+            background: var(--stone); padding: 18px 20px; border-radius: 6px; margin: 24px 0;
         }
-        ul {
-            margin-left: 24px;
-            margin-bottom: 16px;
-        }
-        a {
-            color: #2DD4BF;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 40px;
-            color: #2DD4BF;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
+        .note p:last-child { margin-bottom: 0; }
+        .table-wrap { overflow-x: auto; margin: 8px 0 20px; }
+        table { width: 100%; border-collapse: collapse; font-size: 15px; }
+        th, td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
+        th { color: var(--cream-dim); font-weight: 600; }
+        td { color: var(--sage); }
+        td:first-child { color: var(--cream-dim); white-space: nowrap; }
+        details { border-bottom: 1px solid var(--line); padding: 16px 0; }
+        summary { cursor: pointer; font-weight: 600; color: var(--cream); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: "+"; color: var(--clay); font-size: 20px; line-height: 1; }
+        details[open] summary::after { content: "\2212"; }
+        details > *:not(summary) { margin-top: 12px; }
+        footer { padding: 40px 0 56px; border-top: 1px solid var(--line); }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 12px; }
+        footer a { color: var(--cream-dim); text-decoration: none; font-size: 13px; }
+        footer a:hover { color: var(--clay); }
+        .copyright { color: var(--muted); font-size: 12px; }
+        @media (max-width: 560px) {
+            .header-inner nav { display: none; }
+            main { padding: 44px 0 64px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-link">&larr; Back to Home</a>
-
+    <header>
+        <div class="container header-inner">
+            <a href="../index.html" class="logo"><img src="../logo.png" alt="">LMT <em>Assistant</em></a>
+            <nav aria-label="Primary">
+                <a href="../index.html#features">Features</a>
+                <a href="../faq/index.html">FAQ</a>
+                <a href="mailto:admin@suite-327.com">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <p class="eyebrow">Legal</p>
         <h1>Terms of Service</h1>
-        <p class="updated">Last updated: February 19, 2026</p>
+        <p class="updated">Last updated October 27, 2026</p>
 
-        <h2>1. Acceptance of Terms</h2>
-        <p>By accessing or using LMT Assistant ("the App"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.</p>
+        <p class="lede">The agreement between you and Suite 327 Development LLC for using LMT Assistant.</p>
 
-        <h2>2. Description of Service</h2>
-        <p>LMT Assistant is a practice management application designed for licensed massage therapists. The App provides tools for:</p>
+        <h2>1. Agreeing to these terms</h2>
+        <p>By creating an account or using LMT Assistant (the "App"), including the booking pages it publishes, you agree to these Terms and to our <a href="../privacy/index.html">Privacy Policy</a>. If you do not agree, do not use the App.</p>
+
+        <h2>2. The service</h2>
+        <p>LMT Assistant is practice-management software for licensed massage therapists. It includes client records, scheduling, SOAP notes, intake and consent forms, online booking pages, invoicing, income, expense and mileage tracking, a credentials vault, reports, and backups. Features change over time, and we may add, change or remove them.</p>
+
+        <h2>3. Your account</h2>
         <ul>
-            <li>Client management, scheduling, and recurring appointments</li>
-            <li>Session timing and SOAP note documentation</li>
-            <li>Invoicing with PDF preview and email delivery</li>
-            <li>Expense tracking with AI-powered receipt scanning</li>
-            <li>Income and 1099 tracking with AI document scanning</li>
-            <li>Mileage logging with Google Maps distance calculation and AI booking screenshot scanning</li>
-            <li>Credentials vault for licenses, insurance, CE certifications, and transcripts with AI document scanning</li>
-            <li>State continuing education requirements for all 50 US states</li>
-            <li>Professional goals tracking</li>
-            <li>Booking link generation</li>
-            <li>Therapist network for professional contacts and referrals</li>
-            <li>Encrypted data backup and restore</li>
-            <li>Push notifications for credential renewal reminders</li>
-            <li>Optional integrations (Spotify for session music)</li>
+            <li>You must be at least 18 and give accurate account information.</li>
+            <li>Keep your password and devices secure. We recommend turning on two-step sign-in.</li>
+            <li>You are responsible for activity under your account. Tell us promptly at <a href="mailto:admin@suite-327.com">admin@suite-327.com</a> if you suspect someone else has used it.</li>
         </ul>
 
-        <h2>3. Account Registration</h2>
-        <p>To use the App, you must:</p>
+        <h2>4. Your responsibilities</h2>
         <ul>
-            <li>Be at least 18 years old</li>
-            <li>Provide accurate and complete registration information</li>
-            <li>Maintain the security of your account credentials</li>
-            <li>Notify us immediately of any unauthorized access</li>
+            <li>Hold the licenses your work requires, and follow the laws and professional rules that apply to your practice, including record-keeping and client privacy rules.</li>
+            <li>Get any consent you need from clients before recording their information, and make sure the consent forms and booking-page content you publish are accurate and suitable for your practice.</li>
+            <li>Get permission before sharing another therapist's contact details.</li>
+            <li>Check anything the App fills in automatically, including scanned documents and totals, before relying on it. The App does not give tax, legal or medical advice.</li>
+            <li>Keep your own copies of records you are required to keep. The App provides exports and backups for this.</li>
         </ul>
 
-        <h2>4. User Responsibilities</h2>
-        <p>You are responsible for:</p>
+        <h2>5. HIPAA</h2>
+        <p>We do not currently sign Business Associate Agreements. If you are a HIPAA covered entity, you must not use the App to create, receive, keep or send protected health information. You are responsible for deciding whether HIPAA applies to your practice.</p>
+
+        <h2>6. Subscriptions</h2>
         <ul>
-            <li>All activity that occurs under your account</li>
-            <li>Ensuring your use complies with applicable laws and regulations</li>
-            <li>Maintaining appropriate licenses for your profession</li>
-            <li>Obtaining necessary consents from clients before storing their information</li>
-            <li>Obtaining permission from other therapists before sharing their contact information via the Therapist Network feature</li>
-            <li>Regularly backing up your important data using the App's export feature</li>
-            <li>Keeping your encryption keys secure and not sharing account credentials</li>
-            <li>Reviewing AI-extracted data for accuracy before saving (AI scanning is provided for convenience and may contain errors)</li>
+            <li>New accounts get a free 7-day trial of Pro features. After that, Pro features need a monthly or annual subscription bought through the Apple App Store.</li>
+            <li>Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. You can manage or cancel them in your device's App Store settings.</li>
+            <li>Payment and refunds are handled by Apple under its terms. We do not issue partial refunds for an unused period.</li>
+            <li>We may change prices for future periods. Apple will tell you before a change applies to you.</li>
+            <li>If your subscription ends, your records are not deleted.</li>
         </ul>
 
-        <h2>5. Subscriptions and Payment</h2>
-        <p>The App offers a 7-day free trial that unlocks all Pro features. After the trial, continued access to Pro features requires an active Pro subscription (available as a monthly or annual auto-renewing subscription). Subscriptions are managed through the Apple App Store via RevenueCat. By subscribing, you also agree to the terms of the Apple App Store.</p>
-        <ul>
-            <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current billing period</li>
-            <li>You can manage or cancel your subscription through your device's app store settings</li>
-            <li>Refunds are handled by Apple or Google according to their respective refund policies</li>
-        </ul>
+        <h2>7. Your content</h2>
+        <p>You own the records and files you put in the App. You give us permission to store, process and display them only as needed to provide the App to you, as described in the Privacy Policy. We do not claim any other rights in your content.</p>
 
-        <h2>6. AI-Powered Document Processing</h2>
-        <p>The App uses artificial intelligence services to extract data from photos and documents you upload (receipts, 1099 forms, credentials, insurance documents, and booking screenshots). By using these scanning features, you acknowledge and agree that:</p>
-        <ul>
-            <li>Images you scan are transmitted to third-party AI services for text extraction (see Section 8 for a list of services)</li>
-            <li>Images may be converted from HEIC to JPEG format before transmission for compatibility</li>
-            <li>AI-extracted data is provided for convenience and may contain inaccuracies. You are responsible for verifying all extracted information before saving</li>
-            <li>You should not scan documents containing information you do not wish to be processed by third-party AI services</li>
-            <li>Images are processed for the sole purpose of text extraction and are not stored by these services beyond the processing request</li>
-        </ul>
+        <h2>8. Document reading and AI</h2>
+        <p>The App reads documents on your phone where it can. If it cannot, it asks before sending a document to OpenAI, as described in the Privacy Policy. Results from automatic reading can be wrong, and you are responsible for checking them.</p>
 
-        <h2>7. Data and Privacy</h2>
-        <p>Your use of the App is also governed by our <a href="/privacy/">Privacy Policy</a>. Key points:</p>
-        <ul>
-            <li>All Protected Health Information (PHI) is encrypted using AES-256-CBC encryption</li>
-            <li>The App supports offline functionality; data queued offline is encrypted and synced when connectivity is restored</li>
-            <li>You are responsible for complying with HIPAA and other applicable regulations regarding client health information</li>
-            <li>Exported backup files are encrypted and should be stored securely</li>
-            <li>Past appointments cannot be edited to maintain data integrity</li>
-        </ul>
+        <h2>9. Acceptable use</h2>
+        <p>Do not misuse the App. That includes trying to reach another account's data, interfering with the service or its security, using booking pages to send spam or unlawful content, or copying, reselling or reverse-engineering the App except as the law allows.</p>
 
-        <h2>8. Third-Party Integrations</h2>
-        <p>The App integrates with the following third-party services:</p>
-        <ul>
-            <li><strong>OpenAI (GPT-4o Vision):</strong> For AI-powered scanning of receipts, credentials, tax documents, insurance documents, and booking screenshots</li>
-            <li><strong>AWS Textract:</strong> For OCR processing of tax forms (fallback service)</li>
-            <li><strong>Mindee:</strong> For receipt parsing (fallback service)</li>
-            <li><strong>Google Cloud Vision:</strong> For document OCR (fallback service)</li>
-            <li><strong>Google Maps, Places, and Directions APIs:</strong> For mileage calculation, address lookup, and distance estimation</li>
-            <li><strong>RevenueCat:</strong> For subscription management via the Apple App Store</li>
-            <li><strong>Supabase:</strong> For database, authentication, and file storage</li>
-            <li><strong>Sentry:</strong> For anonymous crash reporting and error tracking</li>
-            <li><strong>Spotify:</strong> For optional music integration during sessions (requires separate authorization)</li>
-            <li><strong>Apple and Google Sign-In:</strong> For optional authentication</li>
-            <li><strong>Expo Push Notifications:</strong> For credential renewal reminders and appointment alerts</li>
-        </ul>
-        <p>Each third-party service has its own terms of service and privacy policy. Optional integrations (Spotify, sign-in providers) can be enabled or disabled at any time.</p>
+        <h2>10. Third-party services</h2>
+        <p>The App relies on the providers listed in the Privacy Policy, such as Apple, Google Maps and OpenAI. Their own terms apply to your use of their services.</p>
 
-        <h2>9. Referral Program</h2>
-        <p>The App may offer referral codes that provide benefits to new users. Referral codes are subject to availability and may be modified or discontinued at any time. Abuse of the referral system may result in account suspension.</p>
+        <h2>11. Referral codes and discounts</h2>
+        <p>Referral codes and offers depend on availability and may change or end at any time. We may cancel benefits obtained by abusing them.</p>
 
-        <h2>10. Intellectual Property</h2>
-        <p>The App and its content are protected by copyright, trademark, and other laws. You may not copy, modify, distribute, or reverse engineer any part of the App without our written permission.</p>
+        <h2>12. Ending your use</h2>
+        <p>You can delete your account at any time in Settings. We may suspend or end an account that breaks these Terms, and will tell you why unless the law or the security of the service prevents it. Before we end an account for any reason other than abuse, we will give you a reasonable chance to export your records.</p>
 
-        <h2>11. Limitation of Liability</h2>
-        <p>THE APP IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND. WE ARE NOT LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES ARISING FROM YOUR USE OF THE APP. AI-POWERED SCANNING FEATURES ARE PROVIDED FOR CONVENIENCE AND WE MAKE NO WARRANTY AS TO THE ACCURACY OF EXTRACTED DATA.</p>
+        <h2>13. Disclaimers</h2>
+        <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTIES OF ANY KIND, TO THE EXTENT THE LAW ALLOWS. WE DO NOT PROMISE THAT THE APP WILL ALWAYS BE AVAILABLE OR ERROR-FREE, OR THAT AUTOMATICALLY EXTRACTED OR CALCULATED INFORMATION WILL BE ACCURATE.</p>
 
-        <h2>12. Termination</h2>
-        <p>We may suspend or terminate your access to the App at any time for violation of these terms. You may delete your account at any time through the App settings. Upon termination, your subscription will not be renewed but no partial refunds will be issued for the current billing period.</p>
+        <h2>14. Limitation of liability</h2>
+        <p>TO THE EXTENT THE LAW ALLOWS, WE ARE NOT LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES, OR FOR LOST PROFITS OR DATA, ARISING FROM YOUR USE OF THE APP. OUR TOTAL LIABILITY FOR ANY CLAIM IS LIMITED TO THE AMOUNT YOU PAID FOR THE APP IN THE 12 MONTHS BEFORE THE CLAIM.</p>
 
-        <h2>13. Changes to Terms</h2>
-        <p>We may modify these terms at any time. Continued use of the App after changes constitutes acceptance of the new terms.</p>
+        <h2>15. Changes to these terms</h2>
+        <p>We may update these Terms. We will post changes here and update the date at the top, and tell you in the App or by email before a significant change takes effect. If you keep using the App after a change takes effect, the new Terms apply.</p>
 
-        <h2>14. Governing Law</h2>
-        <p>These terms are governed by the laws of the State of Nevada, without regard to conflict of law principles.</p>
+        <h2>16. Governing law</h2>
+        <p>These Terms are governed by the laws of the State of Nevada, without regard to its conflict-of-law rules.</p>
 
-        <h2>15. Contact</h2>
-        <p>For questions about these Terms, contact us at:<br>Suite 327 Development LLC<br>Email: <a href="mailto:admin@suite-327.com">admin@suite-327.com</a></p>
-    </div>
+        <h2>17. Contact</h2>
+        <p>Suite 327 Development LLC<br><a href="mailto:admin@suite-327.com">admin@suite-327.com</a></p>
+
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../faq/index.html">FAQ</a>
+                <a href="../privacy/index.html">Privacy Policy</a>
+                <a href="../terms/index.html">Terms of Service</a>
+                <a href="mailto:admin@suite-327.com">Contact</a>
+            </div>
+            <p class="copyright">&copy; 2026 Suite 327 Development LLC</p>
+        </div>
+    </footer>
 </body>
 </html>
