@@ -149,6 +149,8 @@
         <h2>Scanning, dictation and AI</h2>
         <p>Where your phone supports it, the app reads documents on the phone itself. This includes booking screenshots, scanned intake forms and voice dictation, which never leave your device for this purpose.</p>
         <p>If the phone cannot read a receipt, tax form, credential or insurance document, the app asks you first. Only with your permission does it send that one image to OpenAI to read. The request is made with storage turned off. Under OpenAI's API terms it is not used to train their models, and OpenAI may keep it for up to 30 days to monitor for abuse. You can always type the details in instead.</p>
+        <p>The Therapist Assistant on the Home screen files documents and runs commands on the phone itself where it can. Questions about massage practice, and requests to write a document, go to our AWS account to be answered. Names, phone numbers, emails and street addresses are removed from the question before it is sent.</p>
+        <p>The safety (SOS) button's emergency contact is stored only in your phone's secure Keychain. It is never sent to our servers. The location shown in an SOS text is added by your phone and goes through your own Messages app.</p>
         <p>AI results can be wrong. Check what the app fills in before you save it.</p>
 
         <h2>Companies that handle data for us</h2>
@@ -159,7 +161,9 @@
             <tbody>
                 <tr><td>Supabase</td><td>Database, sign-in, file storage and server functions, hosted in the United States</td><td>Everything you store, with client details encrypted as described above</td></tr>
                 <tr><td>OpenAI</td><td>Reading documents the phone could not read</td><td>Only images you agree to send</td></tr>
-                <tr><td>Google Maps</td><td>Address search, driving distances and trip maps</td><td>The addresses you search for or log a trip between</td></tr>
+                <tr><td>Apple Maps (iPhone)</td><td>Address search, driving distances, trip maps and the "Leave by" time for your next mobile appointment</td><td>The addresses you search for or log a trip between. For "Leave by", your phone's location and the appointment address, only if you allow location access</td></tr>
+                <tr><td>Google Maps (Android)</td><td>Address search, driving distances and trip maps</td><td>The addresses you search for or log a trip between</td></tr>
+                <tr><td>Amazon Web Services (Bedrock)</td><td>Answers to massage questions typed or spoken into the assistant, and the assistant's document writing</td><td>Your question, with names, phone numbers, emails and street addresses removed first</td></tr>
                 <tr><td>Apple</td><td>App Store, subscriptions, Sign in with Apple, iPhone notifications</td><td>Your subscription, your sign-in, and notification text</td></tr>
                 <tr><td>Google</td><td>Sign in with Google</td><td>Your sign-in, if you choose it</td></tr>
                 <tr><td>Expo</td><td>Android notifications</td><td>Notification text</td></tr>
