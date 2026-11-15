@@ -34,7 +34,7 @@ jobs:
         run: |
           git clone --mirror "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" repo.git
           git -C repo.git bundle create ../repo.bundle --all
-          git bundle verify repo.bundle
+          git -C repo.git bundle verify ../repo.bundle
 
       - name: Get AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
