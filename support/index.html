@@ -12,18 +12,20 @@
     <link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
     <link rel="stylesheet" href="/assets/site.css">
     <style>
-        .support-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 8px 0 12px; }
-        .help-link { display: flex; gap: 14px; align-items: flex-start; text-decoration: none; color: var(--text-main); }
-        .help-link:hover { border-color: var(--border-control); }
-        .help-link .icon-disc { margin: 0; width: 44px; height: 44px; flex: none; }
-        .help-link .icon-disc .ic { width: 22px; height: 22px; }
-        .help-link b { display: block; font-size: 17px; line-height: 22px; }
-        .help-link span.d { display: block; margin-top: 4px; font-size: 15px; line-height: 21px; color: var(--text-sub); }
-        .contact-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; margin: 8px 0 8px; }
-        .contact-card h2 { margin: 0 !important; padding: 0 !important; border: 0 !important; }
-        .contact-card p { margin: 6px 0 0 !important; }
-        .doc .card { margin-bottom: 0; }
-        @media (max-width: 640px) { .support-grid { grid-template-columns: 1fr; } .contact-card .btn { width: 100%; } }
+        .contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; padding: 28px 0; margin: 28px 0 8px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .contact .big { font-size: clamp(22px, 3.4vw, 30px); line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; color: var(--text-main); text-decoration: none; word-break: break-word; }
+        .contact .big:hover { color: var(--primary-text); }
+        .contact p { margin: 6px 0 0 !important; }
+        .help-list { list-style: none; margin: 0 0 16px !important; border-top: 1px solid var(--border); }
+        .help-list li { margin: 0 !important; border-bottom: 1px solid var(--border); }
+        .help-list a { display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 12px 4px; text-decoration: none; color: var(--text-main); }
+        .help-list a:hover b { color: var(--primary-text); }
+        .help-list .ic { width: 22px; height: 22px; color: var(--primary-text); }
+        .help-list .txt { flex: 1; }
+        .help-list b { display: block; font-size: 17px; line-height: 22px; font-weight: 600; }
+        .help-list .d { display: block; margin-top: 2px; font-size: 15px; line-height: 20px; color: var(--text-muted); }
+        .help-list .chev { width: 18px; height: 18px; color: var(--text-muted); }
+        @media (max-width: 640px) { .contact .btn { width: 100%; } }
     </style>
 </head>
 <body>
@@ -57,10 +59,10 @@
         <h1>How can we help?</h1>
         <p class="lede">Most answers are a tap away below. If not, email us and a real person will reply.</p>
 
-        <div class="card contact-card">
+        <div class="contact">
             <div>
-                <h2>Email support</h2>
-                <p><a href="mailto:support@lmtassistant.com">support@lmtassistant.com</a>. We read every message.</p>
+                <a class="big" href="mailto:support@lmtassistant.com">support@lmtassistant.com</a>
+                <p>Email us any time. We read every message.</p>
             </div>
             <a class="btn btn-primary" href="mailto:support@lmtassistant.com?subject=LMT%20Assistant%20support">
                 <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
@@ -69,32 +71,14 @@
         </div>
 
         <h2>Quick help</h2>
-        <div class="support-grid">
-            <a class="card help-link" href="/faq#password">
-                <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg></span></div>
-                <div><b>Sign-in and password</b><span class="d">Reset your password or get back into your account.</span></div>
-            </a>
-            <a class="card help-link" href="/faq#subscription">
-                <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></span></div>
-                <div><b>Subscription and billing</b><span class="d">Change plans, cancel, or see what you pay.</span></div>
-            </a>
-            <a class="card help-link" href="/faq#your-data">
-                <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span></div>
-                <div><b>Export or delete your data</b><span class="d">Download your records, or delete your account for good.</span></div>
-            </a>
-            <a class="card help-link" href="/faq#security">
-                <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
-                <div><b>Privacy and security</b><span class="d">How client records are encrypted and protected.</span></div>
-            </a>
-            <a class="card help-link" href="/faq#scanning">
-                <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg></span></div>
-                <div><b>Scanning documents</b><span class="d">Receipts, credentials and tax forms.</span></div>
-            </a>
-            <a class="card help-link" href="/faq#offline">
-                <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg></span></div>
-                <div><b>Offline and syncing</b><span class="d">What works without internet and when it syncs.</span></div>
-            </a>
-        </div>
+        <ul class="help-list">
+            <li><a href="/faq#password"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg></span><span class="txt"><b>Sign-in and password</b><span class="d">Reset your password or get back into your account.</span></span><span class="ic chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+            <li><a href="/faq#subscription"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></span><span class="txt"><b>Subscription and billing</b><span class="d">Change plans, cancel, or see what you pay.</span></span><span class="ic chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+            <li><a href="/faq#your-data"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg></span><span class="txt"><b>Export or delete your data</b><span class="d">Download your records, or delete your account for good.</span></span><span class="ic chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+            <li><a href="/faq#security"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="txt"><b>Privacy and security</b><span class="d">How client records are encrypted and protected.</span></span><span class="ic chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+            <li><a href="/faq#scanning"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg></span><span class="txt"><b>Scanning documents</b><span class="d">Receipts, credentials and tax forms.</span></span><span class="ic chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+            <li><a href="/faq#offline"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg></span><span class="txt"><b>Offline and syncing</b><span class="d">What works without internet and when it syncs.</span></span><span class="ic chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span></a></li>
+        </ul>
         <p><a href="/faq">See all questions</a></p>
 
         <h2>Billing through Apple</h2>
