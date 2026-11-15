@@ -1,0 +1,50 @@
+# Backs up the full repo (all branches, tags and history) to S3
+# every time main changes, plus once a day.
+#
+# Setup (once per repo): Settings -> Secrets and variables -> Actions -> Variables
+#   BACKUP_BUCKET        name of the S3 bucket
+#   AWS_BACKUP_ROLE_ARN  IAM role GitHub is allowed to assume (OIDC, no stored keys)
+#   AWS_REGION           optional, defaults to us-west-2
+#
+# Restore: aws s3 cp s3://BUCKET/REPO/latest.bundle . && git clone latest.bundle restored-repo
+
+name: Backup to S3
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 11 * * *" # daily, ~3am Pacific
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    if: ${{ vars.BACKUP_BUCKET != '' && vars.AWS_BACKUP_ROLE_ARN != '' }}
+    steps:
+      - name: Mirror the repository
+        run: |
+          git clone --mirror "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" repo.git
+          git -C repo.git bundle create ../repo.bundle --all
+          git bundle verify repo.bundle
+
+      - name: Get AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_BACKUP_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION || 'us-west-2' }}
+
+      - name: Upload snapshot
+        run: |
+          name="${GITHUB_REPOSITORY#*/}"
+          stamp="$(date -u +%Y/%m/%d/%H%M%S)-${GITHUB_SHA::7}"
+          aws s3 cp repo.bundle "s3://${{ vars.BACKUP_BUCKET }}/$name/$stamp.bundle"
+          aws s3 cp repo.bundle "s3://${{ vars.BACKUP_BUCKET }}/$name/latest.bundle"
