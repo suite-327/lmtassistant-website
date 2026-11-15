@@ -1,1233 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMT Assistant · Practice Management for Massage Therapists</title>
-    <meta name="description"
-        content="The all-in-one practice management app for Licensed Massage Therapists. Track clients, appointments, finances, and more.">
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ink: #0F172A;
-            --ink-deep: #0A1120;
-            --cream: #F8FAFC;
-            --cream-dim: #CBD5E1;
-            --clay: #2DD4BF;
-            --clay-hover: #5EEAD4;
-            --sage: #94A3B8;
-            --stone: #1E293B;
-            --stone-hi: #263548;
-            --line: rgba(248, 250, 252, 0.10);
-            --line-strong: rgba(248, 250, 252, 0.22);
-            --muted: #64748B;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--ink);
-            min-height: 100vh;
-            color: var(--cream);
-            letter-spacing: -0.005em;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Grain overlay */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 100;
-            opacity: 0.06;
-            mix-blend-mode: overlay;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
-        }
-
-        /* Ambient glow */
-        body::after {
-            content: "";
-            position: fixed;
-            top: -30%;
-            right: -20%;
-            width: 70vw;
-            height: 70vw;
-            background: radial-gradient(circle, rgba(45, 212, 191, 0.10) 0%, transparent 60%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 32px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Header */
-        header {
-            padding: 32px 0;
-            border-bottom: 1px solid var(--line);
-            position: relative;
-            z-index: 110;
-        }
-
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 60;
-            font-size: 24px;
-            font-weight: 500;
-            color: var(--cream);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            line-height: 1;
-        }
-
-        .logo img {
-            height: 40px;
-            width: auto;
-        }
-
-        .logo em {
-            font-style: normal;
-            color: var(--clay);
-            font-weight: 500;
-        }
-
-        .header-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .header-links a {
-            color: var(--cream-dim);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            position: relative;
-            transition: color 0.25s ease;
-        }
-
-        .header-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -4px;
-            height: 1px;
-            background: var(--clay);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .header-links a:hover {
-            color: var(--cream);
-        }
-
-        .header-links a:hover::after {
-            transform: scaleX(1);
-        }
-
-        /* Mobile hamburger: hidden on desktop */
-        .nav-toggle {
-            display: none;
-            width: 44px; height: 44px;
-            background: transparent; border: 0;
-            padding: 0; cursor: pointer;
-            align-items: center; justify-content: center;
-            margin-right: -10px;
-            position: relative;
-            z-index: 110;
-        }
-        .nav-toggle-bars {
-            position: relative;
-            width: 22px; height: 14px;
-        }
-        .nav-toggle-bars span {
-            position: absolute; left: 0; right: 0;
-            height: 1.5px; background: var(--cream);
-            border-radius: 1px;
-            transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1),
-                        opacity 0.2s ease,
-                        top 0.25s ease 0.15s;
-        }
-        .nav-toggle-bars span:nth-child(1) { top: 0; }
-        .nav-toggle-bars span:nth-child(2) { top: 6px; }
-        .nav-toggle-bars span:nth-child(3) { top: 12px; }
-        body.menu-open .nav-toggle-bars span {
-            transition: top 0.25s ease, transform 0.35s cubic-bezier(0.2,0.8,0.2,1) 0.2s,
-                        opacity 0.2s ease;
-        }
-        body.menu-open .nav-toggle-bars span:nth-child(1) { top: 6px; transform: rotate(45deg); }
-        body.menu-open .nav-toggle-bars span:nth-child(2) { opacity: 0; }
-        body.menu-open .nav-toggle-bars span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
-
-        /* Mobile menu overlay */
-        .mobile-menu {
-            position: fixed; inset: 0;
-            background: rgba(10, 17, 32, 0.98);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            z-index: 100;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            gap: 28px; padding: 24px;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.35s ease;
-        }
-        body.menu-open .mobile-menu {
-            opacity: 1; pointer-events: auto;
-        }
-        .mobile-menu a {
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 144;
-            font-size: 36px; font-weight: 500;
-            color: var(--cream); text-decoration: none;
-            letter-spacing: -0.03em; line-height: 1;
-            opacity: 0; transform: translateY(12px);
-            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2,0.8,0.2,1), color 0.25s ease;
-        }
-        body.menu-open .mobile-menu a {
-            opacity: 1; transform: translateY(0);
-        }
-        body.menu-open .mobile-menu a:nth-child(1) { transition-delay: 0.08s; }
-        body.menu-open .mobile-menu a:nth-child(2) { transition-delay: 0.14s; }
-        body.menu-open .mobile-menu a:nth-child(3) { transition-delay: 0.20s; }
-        body.menu-open .mobile-menu a:nth-child(4) { transition-delay: 0.26s; }
-        body.menu-open .mobile-menu a:nth-child(5) { transition-delay: 0.32s; }
-        .mobile-menu a:hover { color: var(--clay); }
-        body.menu-open { overflow: hidden; }
-
-        /* Hero: asymmetric editorial */
-        .hero {
-            padding: 120px 0 140px;
-            position: relative;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: end;
-        }
-
-        .hero-eyebrow {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 12px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--sage);
-            margin-bottom: 32px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            animation: fadeUp 0.8s ease 0.1s both;
-        }
-
-        .hero-eyebrow::before {
-            content: "";
-            width: 36px;
-            height: 1px;
-            background: var(--sage);
-        }
-
-        h1 {
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 144, "SOFT" 50;
-            font-size: clamp(56px, 9vw, 124px);
-            font-weight: 400;
-            line-height: 0.92;
-            letter-spacing: -0.035em;
-            margin-bottom: 0;
-            animation: fadeUp 1s ease 0.2s both;
-        }
-
-        h1 em {
-            font-style: italic;
-            font-weight: 400;
-            color: var(--clay);
-            font-variation-settings: "opsz" 144;
-        }
-
-        .hero-right {
-            padding-bottom: 12px;
-            animation: fadeUp 1s ease 0.4s both;
-        }
-
-        .hero-sub {
-            font-size: 17px;
-            color: var(--cream-dim);
-            line-height: 1.55;
-            margin-bottom: 36px;
-            max-width: 440px;
-        }
-
-        .store-badges {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .store-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 22px;
-            border-radius: 2px;
-            background: var(--cream);
-            border: 1px solid var(--cream);
-            text-decoration: none;
-            color: var(--ink);
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
-        }
-
-        .store-badge.secondary {
-            background: transparent;
-            border-color: var(--line-strong);
-            color: var(--cream);
-        }
-
-        .store-badge:hover {
-            transform: translateY(-2px);
-            background: var(--clay);
-            color: var(--cream);
-            border-color: var(--clay);
-        }
-
-        .store-badge svg {
-            width: 22px;
-            height: 22px;
-            flex-shrink: 0;
-        }
-
-        .store-badge-text {
-            text-align: left;
-        }
-
-        .store-badge-label {
-            font-size: 10px;
-            opacity: 0.7;
-            line-height: 1;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .store-badge-store {
-            font-family: 'Fraunces', serif;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1.2;
-            margin-top: 3px;
-        }
-
-        /* Section title */
-        .section-head {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            align-items: baseline;
-            margin-bottom: 72px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .section-label {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 11px;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: var(--sage);
-        }
-
-        .section-title h2 {
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 144;
-            font-size: clamp(36px, 5.5vw, 64px);
-            font-weight: 400;
-            line-height: 1.0;
-            letter-spacing: -0.03em;
-        }
-
-        .section-title h2 em {
-            font-style: italic;
-            color: var(--clay);
-        }
-
-        .section-title .section-kicker {
-            color: var(--cream-dim);
-            font-size: 17px;
-            margin-top: 18px;
-            max-width: 520px;
-            line-height: 1.5;
-        }
-
-        /* Features: editorial numbered rows */
-        .features {
-            padding: 80px 0;
-        }
-
-        .features-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-        }
-
-        .feature-row {
-            display: grid;
-            grid-template-columns: 60px 1fr;
-            gap: 28px;
-            padding: 36px 32px;
-            border-top: 1px solid var(--line);
-            border-right: 1px solid var(--line);
-            transition: background 0.35s ease;
-            position: relative;
-        }
-
-        .feature-row:nth-child(2n) {
-            border-right: none;
-        }
-
-        .feature-row:nth-last-child(-n+2):not(:nth-child(2n)) {
-            border-bottom: 1px solid var(--line);
-        }
-
-        .feature-row:last-child {
-            border-bottom: 1px solid var(--line);
-        }
-
-        .feature-row:hover {
-            background: var(--stone);
-        }
-
-        .feature-row:hover .feature-num {
-            color: var(--clay);
-        }
-
-        .feature-num {
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 144;
-            font-style: italic;
-            font-size: 28px;
-            color: var(--sage);
-            font-weight: 400;
-            line-height: 1;
-            padding-top: 4px;
-            transition: color 0.35s ease;
-        }
-
-        .feature-body h3 {
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 144;
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 12px;
-            color: var(--cream);
-            letter-spacing: -0.015em;
-            line-height: 1.15;
-        }
-
-        .feature-body p {
-            color: var(--cream-dim);
-            line-height: 1.6;
-            font-size: 15px;
-            max-width: 440px;
-        }
-
-        /* Pricing */
-        .pricing {
-            padding: 120px 0;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            max-width: 900px;
-            margin: 0 auto;
-            border: 1px solid var(--line);
-        }
-
-        .pricing-card {
-            padding: 48px 44px;
-            position: relative;
-            transition: background 0.3s ease;
-        }
-
-        .pricing-card:first-child {
-            border-right: 1px solid var(--line);
-        }
-
-        .pricing-card.featured {
-            background: var(--cream);
-            color: var(--ink);
-        }
-
-        .pricing-card.featured h3,
-        .pricing-card.featured .pricing-price .amount {
-            color: var(--ink);
-        }
-
-        .pricing-card.featured .pricing-features li {
-            color: var(--ink-deep);
-        }
-
-        .pricing-card.featured .pricing-divider {
-            border-color: rgba(15, 23, 42, 0.12);
-        }
-
-        .pricing-card.featured .pricing-price .period {
-            color: rgba(15, 23, 42, 0.55);
-        }
-
-        .pricing-card.featured .pricing-savings {
-            color: var(--clay);
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: 24px;
-            right: 28px;
-            background: var(--clay);
-            color: var(--cream);
-            font-size: 10px;
-            font-weight: 500;
-            padding: 5px 12px;
-            border-radius: 2px;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            font-family: 'Instrument Sans', sans-serif;
-        }
-
-        .pricing-label {
-            font-size: 11px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--sage);
-            margin-bottom: 12px;
-        }
-
-        .pricing-card.featured .pricing-label {
-            color: rgba(15, 23, 42, 0.55);
-        }
-
-        .pricing-card h3 {
-            font-family: 'Fraunces', serif;
-            font-size: 28px;
-            font-weight: 500;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-        }
-
-        .pricing-price {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: baseline;
-            gap: 4px;
-        }
-
-        .pricing-price .amount {
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 144;
-            font-size: 56px;
-            font-weight: 400;
-            letter-spacing: -0.035em;
-            line-height: 1;
-        }
-
-        .pricing-price .period {
-            font-size: 16px;
-            color: var(--cream-dim);
-        }
-
-        .pricing-savings {
-            font-size: 14px;
-            color: var(--clay);
-            margin-bottom: 28px;
-            min-height: 20px;
-            font-style: italic;
-            font-family: 'Fraunces', serif;
-        }
-
-        .pricing-divider {
-            border: none;
-            border-top: 1px solid var(--line);
-            margin: 28px 0;
-        }
-
-        .pricing-features {
-            list-style: none;
-            padding: 0;
-        }
-
-        .pricing-features li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            color: var(--cream-dim);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-
-        .pricing-features li::before {
-            content: "→";
-            color: var(--clay);
-            font-weight: 500;
-            flex-shrink: 0;
-        }
-
-        .pricing-trial {
-            text-align: center;
-            margin-top: 48px;
-            color: var(--cream-dim);
-            font-size: 15px;
-        }
-
-        .pricing-trial em {
-            color: var(--clay);
-            font-style: italic;
-            font-family: 'Fraunces', serif;
-        }
-
-        /* Highlights: horizontal ticker feel */
-        .highlights {
-            padding: 80px 0;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-            background: var(--ink-deep);
-        }
-
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-        }
-
-        .highlight-item {
-            padding: 8px 32px;
-            border-right: 1px solid var(--line);
-        }
-
-        .highlight-item:last-child {
-            border-right: none;
-        }
-
-        .highlight-item h4 {
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 144;
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 10px;
-            color: var(--cream);
-            letter-spacing: -0.015em;
-        }
-
-        .highlight-item p {
-            color: var(--cream-dim);
-            font-size: 14px;
-            line-height: 1.55;
-        }
-
-        /* Scope: what it is, what it isn't */
-        .scope {
-            padding: 110px 0;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .scope .section-head {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-
-        .scope .section-label {
-            color: var(--sage);
-            font-size: 11px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-
-        .scope-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .scope-card {
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            padding: 36px 32px;
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.45) 0%, rgba(20, 31, 47, 0.45) 100%);
-        }
-
-        .scope-card h3 {
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 144;
-            font-size: 28px;
-            font-weight: 500;
-            letter-spacing: -0.025em;
-            line-height: 1.1;
-            color: var(--cream);
-            margin-bottom: 14px;
-        }
-
-        .scope-card h3 em {
-            font-style: italic;
-            color: var(--clay);
-            font-weight: 500;
-        }
-
-        .scope-card p {
-            color: var(--cream-dim);
-            font-size: 15px;
-            line-height: 1.65;
-        }
-
-        .scope-card p + p {
-            margin-top: 10px;
-        }
-
-        /* CTA */
-        .cta {
-            padding: 140px 0 120px;
-        }
-
-        .cta-box {
-            border: 1px solid var(--line-strong);
-            padding: 80px 60px;
-            text-align: center;
-            position: relative;
-            background:
-                radial-gradient(ellipse at top, rgba(45, 212, 191, 0.12) 0%, transparent 70%),
-                var(--stone);
-        }
-
-        .cta-label {
-            font-size: 11px;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: var(--sage);
-            margin-bottom: 24px;
-        }
-
-        .cta-box h2 {
-            font-family: 'Fraunces', serif;
-            font-variation-settings: "opsz" 144;
-            font-size: clamp(36px, 5vw, 56px);
-            font-weight: 400;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 20px;
-            max-width: 620px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-box h2 em {
-            font-style: italic;
-            color: var(--clay);
-        }
-
-        .cta-box p {
-            color: var(--cream-dim);
-            margin-bottom: 40px;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 16px;
-            line-height: 1.55;
-        }
-
-        .cta-badges {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Footer */
-        footer {
-            padding: 48px 0 60px;
-            border-top: 1px solid var(--line);
-        }
-
-        .footer-inner {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 28px;
-            flex-wrap: wrap;
-        }
-
-        footer a {
-            color: var(--cream-dim);
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.2s ease;
-        }
-
-        footer a:hover {
-            color: var(--clay);
-        }
-
-        footer .copyright {
-            color: var(--muted);
-            font-size: 12px;
-            letter-spacing: 0.02em;
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .section-head {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .features-list {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-row {
-                border-right: none !important;
-            }
-
-            .feature-row:not(:last-child) {
-                border-bottom: none;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-card:first-child {
-                border-right: none;
-                border-bottom: 1px solid var(--line);
-            }
-
-            .highlights-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .highlight-item {
-                padding: 20px 24px;
-                border-bottom: 1px solid var(--line);
-            }
-
-            .highlight-item:nth-child(2n) {
-                border-right: none;
-            }
-
-            .scope {
-                padding: 80px 0;
-            }
-
-            .scope-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .scope-card {
-                padding: 28px 24px;
-            }
-
-            .scope-card h3 {
-                font-size: 24px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .container {
-                padding: 0 22px;
-            }
-
-            .hero {
-                padding: 72px 0 80px;
-            }
-
-            .cta {
-                padding: 80px 0;
-            }
-
-            .cta-box {
-                padding: 52px 28px;
-            }
-
-            .header-links {
-                display: none;
-            }
-
-            .nav-toggle {
-                display: inline-flex;
-            }
-
-            .logo {
-                font-size: 20px;
-                gap: 8px;
-            }
-
-            .logo img {
-                height: 34px;
-            }
-
-            .footer-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-                justify-items: center;
-            }
-
-            .footer-links {
-                justify-content: center;
-            }
-
-            .highlights-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .highlight-item {
-                border-right: none;
-            }
-        }
-            .feature-link { display: inline-block; margin-top: 10px; color: var(--clay); font-weight: 600; text-decoration: none; }
-        .feature-link:hover { color: var(--clay-hover); }
-    </style>
+    <title>LMT Assistant · Practice management for massage therapists</title>
+    <meta name="description" content="The all-in-one practice management app for licensed massage therapists. Clients, scheduling, SOAP notes, finances, credentials and online booking.">
+    <meta name="theme-color" content="#0F172A">
+    <link rel="canonical" href="https://lmtassistant.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lmtassistant.com/">
+    <meta property="og:title" content="LMT Assistant">
+    <meta property="og:description" content="Our tools. Your clients. Your money. Practice management for licensed massage therapists.">
+    <meta property="og:image" content="https://lmtassistant.com/assets/img/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="apple-itunes-app" content="app-id=6759268672">
+    <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+    <link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
+    <link rel="stylesheet" href="/assets/site.css">
 </head>
-
 <body>
-    <header>
-        <div class="container">
-            <div class="header-inner">
-                <a href="index.html" class="logo">
-                    <img src="logo.png" alt="LMT Assistant">
-                    LMT <em>Assistant</em>
-                </a>
-                <nav class="header-links" aria-label="Primary">
+    <header class="site-header">
+        <div class="wrap">
+            <div class="bar">
+                <a href="/" class="brand"><img src="/assets/img/lmt-mark-sm.png" alt="" width="36" height="36">LMT Assistant</a>
+                <nav class="nav" aria-label="Primary">
                     <a href="#features">Features</a>
                     <a href="#pricing">Pricing</a>
-                    <a href="faq/index.html">FAQ</a>
-                    <a href="mailto:admin@suite-327.com">Contact</a>
+                    <a href="/faq">FAQ</a>
+                    <a href="/support">Support</a>
+                    <a class="btn btn-primary sm" href="https://apps.apple.com/app/id6759268672">Download</a>
                 </nav>
-                <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-                    <span class="nav-toggle-bars" aria-hidden="true">
-                        <span></span><span></span><span></span>
-                    </span>
+                <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+                    <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
                 </button>
             </div>
+            <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="/faq">FAQ</a>
+                <a href="/support">Support</a>
+                <a href="https://apps.apple.com/app/id6759268672">Download on the App Store</a>
+            </nav>
         </div>
     </header>
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="faq/index.html">FAQ</a>
-        <a href="mailto:admin@suite-327.com">Contact</a>
-    </nav>
-    <script>
-        (function(){
-            var toggle = document.querySelector('.nav-toggle');
-            var menu = document.getElementById('mobile-menu');
-            if (!toggle || !menu) return;
-            function setOpen(open){
-                document.body.classList.toggle('menu-open', open);
-                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-                toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-            }
-            toggle.addEventListener('click', function(){
-                setOpen(!document.body.classList.contains('menu-open'));
-            });
-            menu.addEventListener('click', function(e){
-                // Close on link tap OR on empty-space tap (target === menu itself).
-                if (e.target.tagName === 'A' || e.target === menu) setOpen(false);
-            });
-            document.addEventListener('keydown', function(e){
-                if (e.key === 'Escape') setOpen(false);
-            });
-        })();
-    </script>
 
     <main>
         <section class="hero">
-            <div class="container">
-                <div class="hero-grid">
-                    <div>
-                        <div class="hero-eyebrow">For Licensed Massage Therapists</div>
-                        <h1>Our tools.<br>Your clients.<br><em>Your money.</em></h1>
+            <div class="wrap hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>For licensed massage therapists</span>
+                    <h1 class="display">Our tools.<br>Your clients.<br><span class="accent">Your money.</span></h1>
+                    <p class="lede">Clients, scheduling, SOAP notes, finances, credentials and online booking. All in one secure app built for solo practitioners.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary lg" href="https://apps.apple.com/app/id6759268672" aria-label="Download on the App Store">
+                            <svg class="apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.050 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.030 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            <span class="stack"><small>Download on the</small>App Store</span>
+                        </a>
+                        <a class="btn btn-outline lg" href="#features">See what it does</a>
                     </div>
-                    <div class="hero-right">
-                        <p class="hero-sub">
-                            Clients, scheduling, SOAP notes, finances, credentials, and online booking. All in one secure app built for solo practitioners.
-                        </p>
-                        <div class="store-badges">
-                            <a href="https://apps.apple.com/app/id6759268672" class="store-badge" aria-label="Download on the App Store">
-                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                                </svg>
-                                <div class="store-badge-text">
-                                    <div class="store-badge-label">Download on</div>
-                                    <div class="store-badge-store">App Store</div>
+                    <p class="hero-note"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Free for 7 days. No credit card required.</p>
+                </div>
+
+                <div class="hero-phone" aria-hidden="true">
+                    <div class="phone-scale">
+                        <div class="lmt-gphone">
+                            <div class="lmt-status"><span>9:41</span><div class="lmt-island"></div><div class="lmt-status-r"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg></span><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></svg></span><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" x2="22" y1="11" y2="13"/><line x1="6" x2="6" y1="11" y2="13"/><line x1="10" x2="10" y1="11" y2="13"/><line x1="14" x2="14" y1="11" y2="13"/></svg></span></div></div>
+                            <div class="lmt-hbar">
+                                <div class="lmt-hpill lmt-glass"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span><span>Inbox</span><b class="lmt-count">3</b></div>
+                                <div class="lmt-hpill lmt-glass pro"><span class="lmt-live"></span><span class="t">42:18</span><span class="lmt-stop"></span></div>
+                            </div>
+                            <div class="lmt-hero">
+                                <div class="lmt-mark"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span></div>
+                                <div class="lmt-title">Good evening</div>
+                                <p>What can I help with today?</p>
+                            </div>
+                            <div class="lmt-sugg">
+                                <span class="lmt-chip lmt-glass"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg></span>Scan receipts</span>
+                                <span class="lmt-chip lmt-glass"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span>Log mileage</span>
+                                <span class="lmt-chip lmt-glass"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg></span>Add a cash tip</span>
+                            </div>
+                            <div class="lmt-composer lmt-glass">
+                                <span class="typed">Add a $20 cash tip from Maria<span class="lmt-caret"></span></span>
+                                <div class="lmt-crow">
+                                    <div class="lmt-cbtn lmt-cghost"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></div>
+                                    <div class="lmt-cscan"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg></span><span>Scan</span></div>
+                                    <span class="grow"></span>
+                                    <div class="lmt-cbtn"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></span></div>
+                                    <div class="lmt-cbtn lmt-csend"><span class="lmt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></span></div>
                                 </div>
-                            </a>
+                            </div>
+                            <nav class="lmt-gtabs lmt-glass">
+                                <div class="lmt-gtab on"><span class="lmt-ic lmt-tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g fill="currentColor" fill-opacity=".22" stroke="none"><path d="M5.75 9.1 12 3.9l6.25 5.2v9.5c0 1-.8 1.9-1.9 1.9H14v-4.6c0-.6-.5-1.1-1.1-1.1h-1.8c-.6 0-1.1.5-1.1 1.1v4.6H7.65c-1.1 0-1.9-.9-1.9-1.9Z"/></g><path d="M3.75 10.6 10.9 4.5a1.7 1.7 0 0 1 2.2 0l7.15 6.1"/><path d="M5.75 9.1V18.6c0 1 .8 1.9 1.9 1.9H10v-4.6c0-.6.5-1.1 1.1-1.1h1.8c.6 0 1.1.5 1.1 1.1v4.6h2.35c1.1 0 1.9-.9 1.9-1.9V9.1"/></svg></span><span>Home</span></div>
+                                <div class="lmt-gtab"><span class="lmt-ic lmt-tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.75" y="5.25" width="16.5" height="15" rx="3.25"/><path d="M8.25 3.25v4M15.75 3.25v4M3.75 10h16.5"/><rect x="13.25" y="13.25" width="3.5" height="3.5" rx="1"/><path d="M7.5 14.1h2.25M7.5 17.1h2.25"/></svg></span><span>Appts</span></div>
+                                <div class="lmt-gtab"><span class="lmt-ic lmt-tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.25" r="3.5"/><path d="M3.25 19.75v-.6c0-2.75 2.2-4.9 4.9-4.9h2.7c2.7 0 4.9 2.15 4.9 4.9v.6"/><path d="M15.4 4.95a3.5 3.5 0 0 1 0 6.6M17.6 14.45c1.9.6 3.15 2.35 3.15 4.4v.9"/></svg></span><span>Clients</span></div>
+                                <div class="lmt-gtab"><span class="lmt-ic lmt-tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.25 15.2 4.1a1.5 1.5 0 0 1 1.95 1.4v1.75"/><rect x="3.75" y="7.25" width="16.5" height="13" rx="3"/><path d="M20.25 11.5h-3.5a2.25 2.25 0 0 0 0 4.5h3.5"/><circle cx="16.85" cy="13.75" r="1" fill="currentColor" stroke="none"/></svg></span><span>Finances</span></div>
+                                <div class="lmt-gtab"><span class="lmt-ic lmt-tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.75" height="6.75" rx="2"/><rect x="13.25" y="4" width="6.75" height="6.75" rx="2"/><rect x="4" y="13.25" width="6.75" height="6.75" rx="2"/><circle cx="16.625" cy="16.625" r="3.375"/></svg></span><span>More</span></div>
+                            </nav>
+                            <div class="lmt-homebar"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="features" id="features">
-            <div class="container">
+        <section id="features">
+            <div class="wrap">
                 <div class="section-head">
-                    <div class="section-label">Features</div>
-                    <div class="section-title">
-                        <h2>Everything you need, <em>nothing you don't.</em></h2>
-                        <p class="section-kicker">Purpose-built for massage therapy professionals. Every feature earns its place.</p>
-                    </div>
+                    <span class="label">Features</span>
+                    <h2 class="h2">Everything you need, nothing you don't.</h2>
+                    <p>Purpose-built for massage therapy professionals. Every feature earns its place.</p>
                 </div>
-
-                <div class="features-list">
-                    <article class="feature-row">
-                        <div class="feature-num">01</div>
-                        <div class="feature-body">
-                            <h3>Clients &amp; Scheduling</h3>
-                            <p>Manage client records, schedule recurring appointments, send reminders, and keep intake forms and session history organized.</p>
-                        </div>
+                <div class="feature-grid">
+                    <article class="card feature">
+                        <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg></span></div>
+                        <h3>Clients and scheduling</h3>
+                        <p>Manage client records, schedule recurring appointments, send reminders, and keep intake forms and session history organized.</p>
                     </article>
-
-                    <article class="feature-row">
-                        <div class="feature-num">02</div>
-                        <div class="feature-body">
-                            <h3>SOAP Notes &amp; Timer</h3>
-                            <p>Document sessions with professional SOAP notes, use the full-screen session timer, and keep your session playlists one tap away.</p>
-                        </div>
+                    <article class="card feature">
+                        <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span></div>
+                        <h3>SOAP notes and timer</h3>
+                        <p>Document sessions with professional SOAP notes, use the full-screen session timer, and keep your session playlists one tap away.</p>
                     </article>
-
-                    <article class="feature-row">
-                        <div class="feature-num">03</div>
-                        <div class="feature-body">
-                            <h3>Finances &amp; Tax Tracking</h3>
-                            <p>Track income and expenses, scan receipts, PDFs, and 1099s with AI, log mileage with Google Maps, and generate invoices with PDF preview.</p>
-                        </div>
+                    <article class="card feature">
+                        <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg></span></div>
+                        <h3>Finances and tax tracking</h3>
+                        <p>Track income and expenses, scan receipts, PDFs and 1099s with AI, log mileage with Google Maps, and generate invoices with PDF preview.</p>
                     </article>
-
-                    <article class="feature-row">
-                        <div class="feature-num">04</div>
-                        <div class="feature-body">
-                            <h3>Credentials Vault</h3>
-                            <p>Store licenses, insurance policies, CE certificates, and transcripts. Scan documents with AI and get reminders before expiration.</p>
-                        </div>
+                    <article class="card feature">
+                        <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg></span></div>
+                        <h3>Credentials vault</h3>
+                        <p>Store licenses, insurance policies, CE certificates and transcripts. Scan documents with AI and get reminders before they expire.</p>
                     </article>
-
-                    <article class="feature-row">
-                        <div class="feature-num">05</div>
-                        <div class="feature-body">
-                            <h3>Private by Design</h3>
-                            <p>Client records are encrypted with AES-256 before they are stored, using a key unique to your account, and walled off from every other account. Face ID lock, two-step sign-in, automatic timeouts, and a log of every view and export that cannot be edited. No ads, no tracking, and your data is never sold.</p>
-                            <a class="feature-link" href="/faq#security">How we protect your clients&nbsp;&rarr;</a>
-                        </div>
+                    <article class="card feature">
+                        <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></div>
+                        <h3>Private by design</h3>
+                        <p>Client records are encrypted with AES-256 before they are stored, using a key unique to your account. Face ID lock, two-step sign-in, automatic timeouts, and a log of every view and export that cannot be edited. No ads, no tracking, and your data is never sold.</p>
+                        <a class="more" href="/faq#security">How we protect your clients<span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
                     </article>
-
-                    <article class="feature-row">
-                        <div class="feature-num">06</div>
-                        <div class="feature-body">
-                            <h3>Online Booking</h3>
-                            <p>Share a branded booking link. Clients choose studio or mobile visits, see travel fees upfront, sign consent, and submit intake notes. Approve pending requests with one tap.</p>
-                        </div>
+                    <article class="card feature">
+                        <div class="icon-disc"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span></div>
+                        <h3>Online booking</h3>
+                        <p>Share a branded booking link. Clients choose studio or mobile visits, see travel fees upfront, sign consent and submit intake notes. Approve pending requests with one tap.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section class="pricing" id="pricing">
-            <div class="container">
-                <div class="section-head">
-                    <div class="section-label">Pricing</div>
-                    <div class="section-title">
-                        <h2>Simple, <em>transparent</em> pricing.</h2>
-                        <p class="section-kicker">Start with a free 7-day trial. No credit card required.</p>
-                    </div>
+        <section class="also" aria-label="Also included">
+            <div class="wrap">
+                <div class="chip-row">
+                    <div class="chip"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg></span><div><b>AI document scanning</b><span>Snap a photo to pull the details from receipts, credentials and tax forms.</span></div></div>
+                    <div class="chip"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/><path d="M5 12.859a10 10 0 0 1 5.17-2.69"/><path d="M19 12.859a10 10 0 0 0-2.007-1.523"/><path d="M2 8.82a15 15 0 0 1 4.177-2.643"/><path d="M22 8.82a15 15 0 0 0-11.288-3.764"/><path d="m2 2 20 20"/></svg></span><div><b>Works offline</b><span>Keep working without internet. Changes sync when you're back online.</span></div></div>
+                    <div class="chip"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></span><div><b>Reminders</b><span>Notifications for appointments, booking requests and credential expirations.</span></div></div>
+                    <div class="chip"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></span><div><b>English and Spanish</b><span>Full bilingual support with one-tap language switching.</span></div></div>
                 </div>
+            </div>
+        </section>
 
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="pricing-label">Monthly</div>
+        <section id="pricing">
+            <div class="wrap">
+                <div class="section-head center">
+                    <span class="label">Pricing</span>
+                    <h2 class="h2">Simple, transparent pricing.</h2>
+                    <p>Start with a free 7-day trial. No credit card required.</p>
+                </div>
+                <div class="price-grid">
+                    <div class="card price">
+                        <span class="label">Monthly</span>
                         <h3>Flexible billing</h3>
-                        <div class="pricing-price">
-                            <span class="amount">$9.99</span>
-                            <span class="period">/month</span>
-                        </div>
-                        <div class="pricing-savings">&nbsp;</div>
-                        <hr class="pricing-divider">
-                        <ul class="pricing-features">
-                            <li>Unlimited clients &amp; appointments</li>
-                            <li>SOAP notes &amp; session timer</li>
-                            <li>Expense tracking &amp; receipt scanning</li>
-                            <li>Mileage logging with Google Maps</li>
-                            <li>Invoice generation</li>
-                            <li>Credentials vault with reminders</li>
-                            <li>Encrypted client records</li>
-                            <li>Cancel anytime</li>
+                        <div class="amount"><b>$9.99</b><span>/ month</span></div>
+                        <div class="per"></div>
+                        <hr>
+                        <ul class="ticks">
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Unlimited clients and appointments</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>SOAP notes and session timer</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Expense tracking and receipt scanning</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Mileage logging with Google Maps</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Invoice generation</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Credentials vault with reminders</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Encrypted client records</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Cancel anytime</li>
                         </ul>
+                        <a class="btn btn-outline" href="https://apps.apple.com/app/id6759268672">Start free trial</a>
                     </div>
-
-                    <div class="pricing-card featured">
-                        <div class="pricing-badge">Best Value</div>
-                        <div class="pricing-label">Annual</div>
+                    <div class="card price featured">
+                        <span class="badge">Best value</span>
+                        <span class="label">Annual</span>
                         <h3>Full year, 33% off</h3>
-                        <div class="pricing-price">
-                            <span class="amount">$79.99</span>
-                            <span class="period">/year</span>
-                        </div>
-                        <div class="pricing-savings">Just $6.67 / month</div>
-                        <hr class="pricing-divider">
-                        <ul class="pricing-features">
-                            <li>All features included</li>
-                            <li>Billed once per year</li>
-                            <li>Save over $40 vs. monthly</li>
-                            <li>Subscription is tax-deductible</li>
-                            <li>Auto-logged as a business expense</li>
+                        <div class="amount"><b>$79.99</b><span>/ year</span></div>
+                        <div class="per">Just $6.67 a month</div>
+                        <hr>
+                        <ul class="ticks">
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>All features included</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Billed once a year</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Save over $40 compared with monthly</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Subscription is tax-deductible</li>
+                            <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Auto-logged as a business expense</li>
                         </ul>
+                        <a class="btn btn-primary" href="https://apps.apple.com/app/id6759268672">Start free trial</a>
                     </div>
                 </div>
-
-                <p class="pricing-trial">Every new account starts with a <em>free 7-day trial</em>. No credit card required.</p>
+                <p class="trial-note">Every new account starts with a free 7-day trial. Subscriptions are managed in the App Store.</p>
             </div>
         </section>
 
-        <section class="highlights">
-            <div class="container">
-                <div class="highlights-grid">
-                    <div class="highlight-item">
-                        <h4>AI Document Scanning</h4>
-                        <p>Snap a photo to extract data from receipts, credentials, and tax forms.</p>
-                    </div>
-                    <div class="highlight-item">
-                        <h4>Works Offline</h4>
-                        <p>Keep working without internet. Changes sync when you're back online.</p>
-                    </div>
-                    <div class="highlight-item">
-                        <h4>Push Notifications</h4>
-                        <p>Reminders for appointments, booking requests, and credential expirations.</p>
-                    </div>
-                    <div class="highlight-item">
-                        <h4>English &amp; Spanish</h4>
-                        <p>Full bilingual support with one-tap language switching.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="scope">
-            <div class="container">
+        <section aria-labelledby="scope-title">
+            <div class="wrap">
                 <div class="section-head">
-                    <div class="section-label">A note on scope</div>
+                    <span class="label">A note on scope</span>
+                    <h2 class="h2" id="scope-title">Built to support your practice, not run it.</h2>
                 </div>
                 <div class="scope-grid">
-                    <div class="scope-card">
-                        <h3>A tool you <em>use.</em></h3>
+                    <div class="card">
+                        <h3>A tool you use</h3>
                         <p>LMT Assistant is not a marketplace. We don't send clients your way or list you in a directory. Your booking page is a link you share with the people who already know you.</p>
                         <p>Clients find you through your own channels: word of mouth, social, referrals, your website. The app's job is to make the work around those clients easier once they're yours.</p>
                     </div>
-                    <div class="scope-card">
-                        <h3>Payments stay <em>yours.</em></h3>
-                        <p>We don't process payments. When a client pays you by Venmo, Cash App, Zelle, Stripe, Apple Pay, cash, or anything else, the money moves directly between you and them.</p>
-                        <p>The app records what was paid and how, so your books stay clean. It never touches the transaction, holds funds, or takes a cut.</p>
+                    <div class="card">
+                        <h3>Payments stay yours</h3>
+                        <p>We don't process payments. When a client pays you by Venmo, Cash App, Zelle, Stripe, Apple Pay, cash or anything else, the money moves directly between you and them.</p>
+                        <p>The app records what was paid and how, so your books stay clean. It never touches the transaction, holds funds or takes a cut.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta">
-            <div class="container">
-                <div class="cta-box">
-                    <div class="cta-label">Get Started</div>
-                    <h2>Ready to simplify <em>your practice?</em></h2>
-                    <p>Download LMT Assistant and start running your massage therapy business with less friction.</p>
-                    <div class="cta-badges">
-                        <a href="https://apps.apple.com/app/id6759268672" class="store-badge" aria-label="Download on the App Store">
-                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                            </svg>
-                            <div class="store-badge-text">
-                                <div class="store-badge-label">Download on</div>
-                                <div class="store-badge-store">App Store</div>
-                            </div>
-                        </a>
+        <section>
+            <div class="wrap">
+                <div class="card cta-card">
+                    <img src="/assets/img/lmt-mark.png" alt="" width="120" height="108" loading="lazy">
+                    <div>
+                        <h2 class="h2">Ready to simplify your practice?</h2>
+                        <p>Download LMT Assistant and run your massage therapy business with less friction.</p>
                     </div>
+                    <a class="btn btn-primary lg" href="https://apps.apple.com/app/id6759268672">
+                        <svg class="apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        <span class="stack"><small>Download on the</small>App Store</span>
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-links">
-                    <a href="faq/index.html">FAQ</a>
-                    <a href="privacy/index.html">Privacy Policy</a>
-                    <a href="terms/index.html">Terms of Service</a>
-                    <a href="mailto:admin@suite-327.com">Contact</a>
-                </div>
-                <p class="copyright">&copy; 2026 Suite 327 Development LLC</p>
-            </div>
+    <footer class="site-footer">
+        <div class="wrap footer-row">
+            <nav class="footer-links" aria-label="Footer">
+                <a href="/faq">FAQ</a>
+                <a href="/support">Support</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </nav>
+            <p class="copyright">&copy; 2026 Suite 327 Development LLC</p>
         </div>
     </footer>
-</body>
 
+    <script src="/assets/site.js" defer></script>
+</body>
 </html>

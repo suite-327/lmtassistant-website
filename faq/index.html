@@ -5,101 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questions, answered · LMT Assistant</title>
     <meta name="description" content="Answers to common questions about LMT Assistant.">
-    <link rel="icon" type="image/png" href="../logo.png">
-    <link rel="apple-touch-icon" href="../logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ink: #0F172A;
-            --cream: #F8FAFC;
-            --cream-dim: #CBD5E1;
-            --clay: #2DD4BF;
-            --sage: #94A3B8;
-            --stone: #1E293B;
-            --line: rgba(248, 250, 252, 0.10);
-            --line-strong: rgba(248, 250, 252, 0.22);
-            --muted: #64748B;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--ink);
-            color: var(--cream);
-            line-height: 1.7;
-            letter-spacing: -0.005em;
-        }
-        .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
-        header { padding: 28px 0; border-bottom: 1px solid var(--line); }
-        .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-        .logo {
-            display: flex; align-items: center; gap: 10px;
-            font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500;
-            color: var(--cream); text-decoration: none; letter-spacing: -0.02em;
-        }
-        .logo img { height: 36px; width: auto; }
-        .logo em { font-style: normal; color: var(--clay); }
-        .header-inner nav a { color: var(--cream-dim); text-decoration: none; font-size: 14px; margin-left: 24px; }
-        .header-inner nav a:hover { color: var(--clay); }
-        main { padding: 64px 0 80px; }
-        .eyebrow { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); margin-bottom: 16px; }
-        h1 {
-            font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(36px, 7vw, 52px);
-            line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px;
-        }
-        .updated { color: var(--muted); font-size: 14px; margin-bottom: 40px; }
-        .lede { color: var(--cream-dim); font-size: 18px; margin-bottom: 8px; }
-        h2 {
-            font-family: 'Fraunces', serif; font-weight: 500; font-size: 26px; letter-spacing: -0.01em;
-            margin: 48px 0 14px; padding-top: 24px; border-top: 1px solid var(--line);
-        }
-        h3 { font-size: 17px; font-weight: 600; margin: 28px 0 8px; color: var(--cream); }
-        p, li { color: var(--sage); margin-bottom: 14px; }
-        strong { color: var(--cream-dim); font-weight: 600; }
-        ul { margin: 0 0 16px 22px; }
-        a { color: var(--clay); }
-        .note {
-            border: 1px solid var(--line-strong); border-left: 3px solid var(--clay);
-            background: var(--stone); padding: 18px 20px; border-radius: 6px; margin: 24px 0;
-        }
-        .note p:last-child { margin-bottom: 0; }
-        .table-wrap { overflow-x: auto; margin: 8px 0 20px; }
-        table { width: 100%; border-collapse: collapse; font-size: 15px; }
-        th, td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
-        th { color: var(--cream-dim); font-weight: 600; }
-        td { color: var(--sage); }
-        td:first-child { color: var(--cream-dim); white-space: nowrap; }
-        details { border-bottom: 1px solid var(--line); padding: 16px 0; }
-        summary { cursor: pointer; font-weight: 600; color: var(--cream); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
-        summary::-webkit-details-marker { display: none; }
-        summary::after { content: "+"; color: var(--clay); font-size: 20px; line-height: 1; }
-        details[open] summary::after { content: "\2212"; }
-        details > *:not(summary) { margin-top: 12px; }
-        footer { padding: 40px 0 56px; border-top: 1px solid var(--line); }
-        .footer-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 12px; }
-        footer a { color: var(--cream-dim); text-decoration: none; font-size: 13px; }
-        footer a:hover { color: var(--clay); }
-        .copyright { color: var(--muted); font-size: 12px; }
-        @media (max-width: 560px) {
-            .header-inner nav { display: none; }
-            main { padding: 44px 0 64px; }
-        }
-    </style>
+    <meta name="theme-color" content="#0F172A">
+    <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+    <link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
+    <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-    <header>
-        <div class="container header-inner">
-            <a href="../index.html" class="logo"><img src="../logo.png" alt="">LMT <em>Assistant</em></a>
-            <nav aria-label="Primary">
-                <a href="../index.html#features">Features</a>
-                <a href="../faq/index.html">FAQ</a>
-                <a href="mailto:admin@suite-327.com">Contact</a>
+    <header class="site-header">
+        <div class="wrap">
+            <div class="bar">
+                <a href="/" class="brand"><img src="/assets/img/lmt-mark-sm.png" alt="" width="36" height="36">LMT Assistant</a>
+                <nav class="nav" aria-label="Primary">
+                    <a href="/#features">Features</a>
+                    <a href="/#pricing">Pricing</a>
+                    <a href="/faq" aria-current="page">FAQ</a>
+                    <a href="/support">Support</a>
+                    <a class="btn btn-primary sm" href="https://apps.apple.com/app/id6759268672">Download</a>
+                </nav>
+                <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+                    <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+                </button>
+            </div>
+            <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+                <a href="/#features">Features</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/faq">FAQ</a>
+                <a href="/support">Support</a>
+                <a href="https://apps.apple.com/app/id6759268672">Download on the App Store</a>
             </nav>
         </div>
     </header>
-    <main class="container">
-        <p class="eyebrow">FAQ</p>
+    <main class="doc">
+        <span class="eyebrow">FAQ</span>
         <h1>Questions, answered</h1>
         <p class="updated">Updated November 7, 2026</p>
         <h2>Getting started</h2>
@@ -139,13 +77,13 @@
             <p>See the <a href="../privacy/index.html">Privacy Policy</a> for the full details, including what to know if your practice needs a Business Associate Agreement.</p>
         </details>
 
-        <details>
+        <details id="your-data">
             <summary>Can I export or delete my data?</summary>
             <p>Yes. You can export client charts as PDFs, client lists and financial reports as spreadsheets, and a full backup of your records. Deleting your account in Settings permanently deletes your records and files.</p>
         </details>
 
         <h2>Scanning and AI</h2>
-        <details>
+        <details id="scanning">
             <summary>How does document scanning work?</summary>
             <p>Point your camera at a receipt, tax form, credential, insurance document, intake form or booking screenshot, and the app fills in the details for you to check. Where your phone supports it, the reading happens on the phone. If it cannot read a receipt, tax form, credential or insurance document, the app asks before sending that image to OpenAI. Booking screenshots and intake forms are read only on the phone.</p>
         </details>
@@ -176,42 +114,40 @@
             <p>One place for your licenses, insurance, CE certificates and transcripts, with photos or PDFs attached and reminders before anything expires.</p>
         </details>
 
-        <details>
+        <details id="offline">
             <summary>Does the app work offline?</summary>
             <p>Most features do. Changes made offline are stored encrypted on your phone and sync when you are back online. Unsynced offline changes expire after 30 days.</p>
         </details>
 
         <h2>Account and support</h2>
-        <details>
+        <details id="password">
             <summary>How do I reset my password?</summary>
             <p>On the sign-in screen, tap Forgot Password and follow the link we email you.</p>
         </details>
 
-        <details>
+        <details id="subscription">
             <summary>How do I manage my subscription?</summary>
             <p>On your iPhone or iPad, go to Settings, then your name, then Subscriptions. Refunds are handled by Apple.</p>
         </details>
 
         <details>
             <summary>How do I contact support or suggest a feature?</summary>
-            <p>Email <a href="mailto:admin@suite-327.com">admin@suite-327.com</a>. We read every message.</p>
+            <p>Email <a href="mailto:support@lmtassistant.com">support@lmtassistant.com</a>. We read every message.</p>
         </details>
 
     </main>
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="../index.html">Home</a>
-                <a href="../faq/index.html">FAQ</a>
-                <a href="../privacy/index.html">Privacy Policy</a>
-                <a href="../terms/index.html">Terms of Service</a>
-                <a href="mailto:admin@suite-327.com">Contact</a>
-            </div>
+    <footer class="site-footer">
+        <div class="wrap footer-row">
+            <nav class="footer-links" aria-label="Footer">
+                <a href="/">Home</a>
+                <a href="/faq">FAQ</a>
+                <a href="/support">Support</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </nav>
             <p class="copyright">&copy; 2026 Suite 327 Development LLC</p>
         </div>
     </footer>
-<script>
-    if (location.hash === "#security") { var d = document.getElementById("security"); if (d) d.open = true; }
-</script>
+    <script src="/assets/site.js" defer></script>
 </body>
 </html>
