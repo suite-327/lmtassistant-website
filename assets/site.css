@@ -326,8 +326,8 @@ section { padding: 88px 0; }
 .lmt-hero { position: absolute; left: 24px; right: 24px; top: 226px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .lmt-hero .lmt-title { margin-top: 10px; font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -0.3px; }
 .lmt-hero p { font-size: 17px; line-height: 24px; color: var(--text-sub); }
-.lmt-mark { width: 56px; height: 56px; border-radius: 9999px; background: var(--primary-tint); color: var(--primary-text); display: flex; align-items: center; justify-content: center; }
-.lmt-mark .lmt-ic { width: 28px; height: 28px; }
+.lmt-mark { width: 96px; display: flex; align-items: center; justify-content: center; }
+.lmt-mark img { display: block; width: 100%; height: auto; }
 .lmt-sugg { position: absolute; left: 0; right: 0; bottom: 228px; display: flex; gap: 8px; padding: 0 16px; overflow: hidden; z-index: 4; white-space: nowrap; }
 .lmt-chip { flex: none; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 16px 0 14px; border-radius: 9999px; font-size: 15px; line-height: 20px; font-weight: 500; }
 .lmt-chip .lmt-ic { width: 18px; height: 18px; color: var(--primary-text); }
