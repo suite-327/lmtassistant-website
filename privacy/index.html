@@ -43,7 +43,7 @@
     <main class="doc">
         <span class="eyebrow">Legal</span>
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated October 27, 2026</p>
+        <p class="updated">Last updated November 23, 2026</p>
 
         <p class="lede">How LMT Assistant handles your information, and the information you keep about your clients.</p>
         <p>LMT Assistant is made by Suite 327 Development LLC ("we", "us"). This policy covers the LMT Assistant app and the online booking pages it publishes at book.lmtassistant.com. It applies to two groups of people: <strong>therapists</strong> who use the app, and the <strong>clients</strong> whose details therapists keep in it or who use a therapist's booking page.</p>
@@ -90,7 +90,9 @@
 
         <h2>Scanning, dictation and AI</h2>
         <p>Where your phone supports it, the app reads documents on the phone itself. This includes booking screenshots, scanned intake forms and voice dictation, which never leave your device for this purpose.</p>
-        <p>If the phone cannot read a receipt, tax form, credential or insurance document, the app asks you first. Only with your permission does it send that one image to OpenAI to read. The request is made with storage turned off. Under OpenAI's API terms it is not used to train their models, and OpenAI may keep it for up to 30 days to monitor for abuse. You can always type the details in instead.</p>
+        <p>If the phone cannot read a receipt, tax form, credential or insurance document, the app asks you first. Only with your permission does it send that one image to Amazon Web Services (AWS), where an AI model on Amazon Bedrock reads it to fill in the details. AWS states that Amazon Bedrock does not use requests to train models or share them with model providers. You can always type the details in instead.</p>
+        <p>The web version at app.lmtassistant.com has no on-device reading, so the file you choose is sent to AWS the same way, after you agree once for your account. You can withdraw that agreement at any time from the Scan button.</p>
+        <p>If you use the Therapist Assistant, what you type to it is sent to our AWS account to answer or draft. The phone first takes out phone numbers, emails, street addresses and dates written with the full year, so leave other client details out of your questions.</p>
         <p>AI results can be wrong. Check what the app fills in before you save it.</p>
 
         <h2>Companies that handle data for us</h2>
@@ -100,7 +102,7 @@
             <thead><tr><th>Provider</th><th>What it does</th><th>What it receives</th></tr></thead>
             <tbody>
                 <tr><td>Supabase</td><td>Database, sign-in, file storage and server functions, hosted in the United States</td><td>Everything you store, with client details encrypted as described above</td></tr>
-                <tr><td>OpenAI</td><td>Reading documents the phone could not read</td><td>Only images you agree to send</td></tr>
+                <tr><td>Amazon Web Services (AWS)</td><td>Reading documents the phone could not read, and answering Therapist Assistant questions, using AI models on Amazon Bedrock</td><td>Only files you agree to send, and what you type to the assistant after the phone takes out phone numbers, emails, street addresses and full-year dates</td></tr>
                 <tr><td>Google Maps</td><td>Address search, driving distances and trip maps</td><td>The addresses you search for or log a trip between</td></tr>
                 <tr><td>Apple</td><td>App Store, subscriptions, Sign in with Apple, iPhone notifications</td><td>Your subscription, your sign-in, and notification text</td></tr>
                 <tr><td>Google</td><td>Sign in with Google</td><td>Your sign-in, if you choose it</td></tr>
@@ -125,7 +127,7 @@
             <li><strong>See and export:</strong> client charts as PDFs, client lists and financial reports as spreadsheets, and full backups, all from inside the app.</li>
             <li><strong>Correct:</strong> edit your records in the app at any time.</li>
             <li><strong>Delete:</strong> delete individual records, or your whole account from Settings.</li>
-            <li><strong>Limit:</strong> turn notifications off, and decline sending any document to OpenAI.</li>
+            <li><strong>Limit:</strong> turn notifications off, and decline sending any document to AWS.</li>
         </ul>
         <p>Depending on where you live, including Washington, Nevada and California, you may have further rights over your personal or health-related information. Email <a href="mailto:support@lmtassistant.com">support@lmtassistant.com</a> to use them. We will not treat you differently for doing so.</p>
 

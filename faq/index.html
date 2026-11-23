@@ -89,12 +89,12 @@
         <h2>Scanning and AI</h2>
         <details id="scanning">
             <summary>How does document scanning work?</summary>
-            <p>Point your camera at a receipt, tax form, credential, insurance document, intake form or booking screenshot, and the app fills in the details for you to check. Where your phone supports it, the reading happens on the phone. If it cannot read a receipt, tax form, credential or insurance document, the app asks before sending that image to OpenAI. Booking screenshots and intake forms are read only on the phone.</p>
+            <p>Point your camera at a receipt, tax form, credential, insurance document, intake form or booking screenshot, and the app fills in the details for you to check. Where your phone supports it, the reading happens on the phone. If it cannot read a receipt, tax form, credential or insurance document, the app asks before sending that image to Amazon Web Services (AWS), where an AI model on Amazon Bedrock reads it. In the web version at app.lmtassistant.com, the file you choose is sent to AWS after you agree once for your account. Booking screenshots, intake forms, dictation and session summaries are never sent.</p>
         </details>
 
         <details>
-            <summary>Does the AI service keep my images?</summary>
-            <p>Images are sent to OpenAI only with your permission, with storage turned off. Under OpenAI's API terms they are not used for training, and may be kept for up to 30 days for abuse monitoring. You can always type the details in instead.</p>
+            <summary>Are my scans used to train AI models?</summary>
+            <p>Images are sent to AWS only with your permission. AWS states that Amazon Bedrock does not use requests to train models or share them with model providers. You can always type the details in instead.</p>
         </details>
 
         <h2>Features</h2>
