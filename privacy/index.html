@@ -92,7 +92,7 @@
         <p>Where your phone supports it, the app reads documents on the phone itself. This includes booking screenshots, scanned intake forms and voice dictation, which never leave your device for this purpose.</p>
         <p>If the phone cannot read a receipt, tax form, credential or insurance document, the app asks you first. Only with your permission does it send that one image to Amazon Web Services (AWS), where an AI model on Amazon Bedrock reads it to fill in the details. AWS states that Amazon Bedrock does not use requests to train models or share them with model providers. You can always type the details in instead.</p>
         <p>The web version at app.lmtassistant.com has no on-device reading, so the file you choose is sent to AWS the same way, after you agree once for your account. You can withdraw that agreement at any time from the Scan button.</p>
-        <p>If you use the Therapist Assistant, what you type to it is sent to our AWS account to answer or draft. The phone first takes out phone numbers, emails, street addresses and dates written with the full year, so leave other client details out of your questions.</p>
+        <p>If you use the Therapist Assistant, what you type to it is sent to our AWS account to answer or draft. The phone first takes out phone numbers, emails, street addresses and dates written with the full year. It does not remove everything: names and other details you type can still be sent, and when you ask it to read an expense or income entry for a client, the client's name stays in so the entry can be read. Leave out anything you do not want sent. For a question about health or technique, a few medical search terms from it, leaving out anything about a person, are sent to Europe PMC, a public research library, to find further reading.</p>
         <p>AI results can be wrong. Check what the app fills in before you save it.</p>
 
         <h2>Companies that handle data for us</h2>
@@ -102,7 +102,8 @@
             <thead><tr><th>Provider</th><th>What it does</th><th>What it receives</th></tr></thead>
             <tbody>
                 <tr><td>Supabase</td><td>Database, sign-in, file storage and server functions, hosted in the United States</td><td>Everything you store, with client details encrypted as described above</td></tr>
-                <tr><td>Amazon Web Services (AWS)</td><td>Reading documents the phone could not read, and answering Therapist Assistant questions, using AI models on Amazon Bedrock</td><td>Only files you agree to send, and what you type to the assistant after the phone takes out phone numbers, emails, street addresses and full-year dates</td></tr>
+                <tr><td>Amazon Web Services (AWS)</td><td>Reading documents the phone could not read, and answering Therapist Assistant questions, using AI models on Amazon Bedrock</td><td>Only files you agree to send, and what you type to the assistant (the phone first removes phone numbers, emails, street addresses and full-year dates, but not names)</td></tr>
+                <tr><td>Europe PMC</td><td>A public research library, used to find further reading for health and technique questions asked of the Therapist Assistant</td><td>A few medical search terms, with anything about a person left out</td></tr>
                 <tr><td>Google Maps</td><td>Address search, driving distances and trip maps</td><td>The addresses you search for or log a trip between</td></tr>
                 <tr><td>Apple</td><td>App Store, subscriptions, Sign in with Apple, iPhone notifications</td><td>Your subscription, your sign-in, and notification text</td></tr>
                 <tr><td>Google</td><td>Sign in with Google</td><td>Your sign-in, if you choose it</td></tr>
